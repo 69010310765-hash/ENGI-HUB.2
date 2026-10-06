@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        3D Vector Laboratory | ENGI HUB
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, "Noto Sans Thai", sans-serif;
+            background: #f4f7fb;
+        }
+
+
+        .vector-page {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px 70px;
+        }
+
+
+        .vector-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+
+        .vector-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+
+        .vector-header h1 {
+            margin: 0;
+            font-size: 42px;
+            color: #0f172a;
+        }
+
+
+        .vector-header p {
+            max-width: 800px;
+            margin: 12px auto 0;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+
+        .vector-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(320px, 0.8fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+
+        .vector-card {
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+        }
+
+
+        .canvas-card {
+            overflow: hidden;
+        }
+
+
+        .canvas-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+
+        .canvas-header h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #0f172a;
+        }
+
+
+        .canvas-hint {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+
+        #vectorCanvas {
+            width: 100%;
+            height: 560px;
+            display: block;
+        }
+
+
+        .controls-card {
+            padding: 20px;
+        }
+
+
+        .controls-card h2 {
+            margin: 0 0 18px;
+            color: #0f172a;
+            font-size: 20px;
+        }
+
+
+        .vector-group {
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .vector-group.a {
+            background: #f0f9ff;
+        }
+
+
+        .vector-group.b {
+            background: #fff7ed;
+        }
+
+
+        .vector-group h3 {
+            margin: 0 0 14px;
+            font-size: 17px;
+        }
+
+
+        .vector-group.a h3 {
+            color: #0284c7;
+        }
+
+
+        .vector-group.b h3 {
+            color: #ea580c;
+        }
+
+
+        .slider-row {
+            margin-bottom: 14px;
+        }
+
+
+        .slider-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+
+
+        .slider-top strong {
+            min-width: 48px;
+            text-align: right;
+        }
+
+
+        .axis-x {
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+
+        .axis-y {
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+
+        .axis-z {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+
+        .operation-box {
+            margin-top: 18px;
+        }
+
+
+        .operation-box label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #334155;
+        }
+
+
+        #operationSelect {
+            width: 100%;
+            min-height: 44px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 15px;
+            background: white;
+        }
+
+
+        .button-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+
+        .vector-button {
+            border: none;
+            border-radius: 10px;
+            min-height: 44px;
+            padding: 10px 14px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+
+        .reset-button {
+            background: #e2e8f0;
+            color: #334155;
+        }
+
+
+        .save-button {
+            background: #2563eb;
+            color: white;
+        }
+
+
+        .demo-panel {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: 16px;
+            background: linear-gradient(
+                135deg,
+                #eff6ff,
+                #f5f3ff
+            );
+            border: 1px solid #c7d2fe;
+        }
+
+
+        .demo-panel h3 {
+            margin: 0 0 8px;
+            color: #312e81;
+        }
+
+
+        .demo-panel p {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        .demo-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+
+        .demo-button {
+            border: none;
+            min-height: 42px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+
+        #demoStartButton {
+            background: #4f46e5;
+            color: white;
+        }
+
+
+        #demoPauseButton {
+            background: #e2e8f0;
+            color: #334155;
+        }
+
+
+        #demoResetButton {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+
+
+        .demo-step {
+            margin-top: 14px;
+            padding: 12px;
+            border-radius: 10px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            font-size: 14px;
+            color: #334155;
+        }
+
+
+        .status-box {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #334155;
+            font-size: 14px;
+        }
+
+
+        #statusDot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+
+        .results-section {
+            margin-top: 24px;
+        }
+
+
+        .section-title {
+            margin: 0 0 14px;
+            font-size: 24px;
+            color: #0f172a;
+        }
+
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+
+        .result-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+        }
+
+
+        .result-card .label {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+
+        .result-card .value {
+            color: #0f172a;
+            font-size: 20px;
+            font-weight: bold;
+            word-break: break-word;
+        }
+
+
+        .result-card .small {
+            margin-top: 6px;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+
+        .learning-section {
+            margin-top: 30px;
+        }
+
+
+        .learning-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+
+        .learning-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+
+        .learning-card h3 {
+            margin: 0 0 10px;
+            color: #0f172a;
+        }
+
+
+        .learning-card p {
+            margin: 0;
+            color: #64748b;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+
+        .formula-box {
+            margin-top: 30px;
+            padding: 24px;
+            border-radius: 18px;
+            background: #0f172a;
+            color: white;
+        }
+
+
+        .formula-box h2 {
+            margin-top: 0;
+        }
+
+
+        .formula-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+
+        .formula-item {
+            padding: 13px;
+            border-radius: 10px;
+            background: #1e293b;
+            font-family: monospace;
+            color: #e2e8f0;
+        }
+
+
+        .steps-box {
+            margin-top: 24px;
+            padding: 24px;
+            border-radius: 18px;
+            background: white;
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .steps-box ol {
+            margin-bottom: 0;
+            padding-left: 22px;
+        }
+
+
+        .steps-box li {
+            margin-bottom: 12px;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+
+        .steps-box li:last-child {
+            margin-bottom: 0;
+        }
+
+
+        .dark-mode .vector-card,
+        .dark-mode .result-card,
+        .dark-mode .learning-card,
+        .dark-mode .steps-box {
+            background: #111827;
+            border-color: #334155;
+        }
+
+
+        .dark-mode .vector-header h1,
+        .dark-mode .canvas-header h2,
+        .dark-mode .controls-card h2,
+        .dark-mode .section-title,
+        .dark-mode .result-card .value,
+        .dark-mode .learning-card h3 {
+            color: #f8fafc;
+        }
+
+
+        .dark-mode .vector-header p,
+        .dark-mode .canvas-hint,
+        .dark-mode .result-card .label,
+        .dark-mode .result-card .small,
+        .dark-mode .learning-card p {
+            color: #94a3b8;
+        }
+
+
+        @media (max-width: 1050px) {
+
+            .vector-layout {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .result-grid,
+            .learning-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            #vectorCanvas {
+                height: 470px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .vector-page {
+                padding: 20px 12px 50px;
+            }
+
+
+            .vector-header h1 {
+                font-size: 30px;
+            }
+
+
+            #vectorCanvas {
+                height: 400px;
+            }
+
+
+            .result-grid,
+            .learning-grid,
+            .formula-list {
+                grid-template-columns: 1fr;
+            }
+
+
+            .demo-buttons {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+        <div class="menu">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#tools">
+                Tools
+            </a>
+
+            <a href="formulas.html">
+                Formulas
+            </a>
+
+            <a href="equipment.html">
+                Equipment
+            </a>
+
+            <a href="history.html">
+                History
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <button
+                id="darkModeBtn"
+                class="dark-mode-btn"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <main class="vector-page">
+
+
+        <!-- HEADER -->
+
+        <header class="vector-header">
+
+            <div class="vector-badge">
+                🧭 ENGINEERING PHYSICS
+            </div>
+
+            <h1>
+                3D Vector Laboratory
+            </h1>
+
+            <p>
+                ห้องทดลองเวกเตอร์ 3 มิติ
+                ทดลอง Vector A และ Vector B
+                ดูองค์ประกอบตามแกน X Y Z
+                Magnitude, Unit Vector,
+                Projection, Dot Product,
+                Cross Product และมุมระหว่างเวกเตอร์
+            </p>
+
+        </header>
+
+
+        <!-- MAIN -->
+
+        <section class="vector-layout">
+
+
+            <!-- 3D -->
+
+            <div class="vector-card canvas-card">
+
+                <div class="canvas-header">
+
+                    <h2>
+                        🌐 3D Vector Space
+                    </h2>
+
+                    <div class="canvas-hint">
+                        ลากเพื่อหมุน • Scroll เพื่อ Zoom
+                    </div>
+
+                </div>
+
+                <canvas id="vectorCanvas"></canvas>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <aside class="vector-card controls-card">
+
+                <h2>
+                    🎛 Vector Controls
+                </h2>
+
+
+                <!-- A -->
+
+                <div class="vector-group a">
+
+                    <h3>
+                        🔵 Vector A
+                    </h3>
+
+
+                    <div class="slider-row">
+
+                        <div class="slider-top">
+
+                            <span class="axis-x">
+                                Ax
+                            </span>
+
+                            <strong id="vectorAXValue">
+                                4
+                            </strong>
+
+                        </div>
+
+                        <input
+                            id="vectorAX"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="4"
+                        >
+
+                    </div>
+
+
+                    <div class="slider-row">
+
+                        <div class="slider-top">
+
+                            <span class="axis-y">
+                                Ay
+                            </span>
+
+                            <strong id="vectorAYValue">
+                                3
+                            </strong>
+
+                        </div>
+
+                        <input
+                            id="vectorAY"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="3"
+                        >
+
+                    </div>
+
+
+                    <div class="slider-row">
+
+                        <div class="slider-top">
+
+                            <span class="axis-z">
+                                Az
+                            </span>
+
+                            <strong id="vectorAZValue">
+                                2
+                            </strong>
+
+                        </div>
+
+                        <input
+                            id="vectorAZ"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="2"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- B -->
+
+                <div class="vector-group b">
+
+                    <h3>
+                        🟠 Vector B
+                    </h3>
+
+
+                    <div class="slider-row">
+
+                        <div class="slider-top">
+
+                            <span class="axis-x">
+                                Bx
+                            </span>
+
+                            <strong id="vectorBXValue">
+                                2
+                            </strong>
+
+                        </div>
+
+                        <input
+                            id="vectorBX"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="2"
+                        >
+
+                    </div>
+
+
+                    <div class="slider-row">
+
+                        <div class="slider-top">
+
+                            <span class="axis-y">
+                                By
+                            </span>
+
+                            <strong id="vectorBYValue">
+                                1
+                            </strong>
+
+                        </div>
+
+                        <input
+                            id="vectorBY"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="1"
+                        >
+
+                    </div>
+
+
+                    <div class="slider-row">
+
+                        <div class="slider-top">
+
+                            <span class="axis-z">
+                                Bz
+                            </span>
+
+                            <strong id="vectorBZValue">
+                                3
+                            </strong>
+
+                        </div>
+
+                        <input
+                            id="vectorBZ"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="3"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPERATION -->
+
+                <div class="operation-box">
+
+                    <label for="operationSelect">
+                        Operation
+                    </label>
+
+                    <select id="operationSelect">
+
+                        <option value="add">
+                            A + B
+                        </option>
+
+                        <option value="subtract">
+                            A − B
+                        </option>
+
+                        <option value="dot">
+                            A · B — Dot Product
+                        </option>
+
+                        <option value="cross">
+                            A × B — Cross Product
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="button-row">
+
+                    <button
+                        id="resetButton"
+                        class="vector-button reset-button"
+                        type="button"
+                    >
+                        ↻ Reset
+                    </button>
+
+                    <button
+                        id="saveButton"
+                        class="vector-button save-button"
+                        type="button"
+                    >
+                        💾 Save
+                    </button>
+
+                </div>
+
+
+                <!-- DEMO -->
+
+                <div class="demo-panel">
+
+                    <h3>
+                        🎬 Vector Addition Demo
+                    </h3>
+
+                    <p>
+                        ดูการบวกเวกเตอร์แบบ
+                        Head-to-Tail
+                        โดยให้ Vector B
+                        เลื่อนไปต่อจากปลาย Vector A
+                    </p>
+
+
+                    <div class="demo-buttons">
+
+                        <button
+                            id="demoStartButton"
+                            class="demo-button"
+                            type="button"
+                        >
+                            ▶ เริ่ม
+                        </button>
+
+                        <button
+                            id="demoPauseButton"
+                            class="demo-button"
+                            type="button"
+                        >
+                            ⏸ หยุด
+                        </button>
+
+                        <button
+                            id="demoResetButton"
+                            class="demo-button"
+                            type="button"
+                        >
+                            ↻ รีเซ็ต
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="demoStep"
+                        class="demo-step"
+                    >
+                        พร้อมเริ่มการสาธิต
+                    </div>
+
+                </div>
+
+
+                <div class="status-box">
+
+                    <span id="statusDot"></span>
+
+                    <span id="statusText">
+                        พร้อมใช้งาน
+                    </span>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+        <!-- RESULTS -->
+
+        <section class="results-section">
+
+            <h2 class="section-title">
+                📊 Vector Analysis
+            </h2>
+
+
+            <div class="result-grid">
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        Vector A
+                    </div>
+
+                    <div
+                        id="vectorAResult"
+                        class="value"
+                    >
+                        (4.00, 3.00, 2.00)
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        |A| Magnitude
+                    </div>
+
+                    <div
+                        id="magnitudeAResult"
+                        class="value"
+                    >
+                        5.39
+                    </div>
+
+                    <div class="small">
+                        ความยาวของ Vector A
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        Unit Vector A
+                    </div>
+
+                    <div
+                        id="unitAResult"
+                        class="value"
+                    >
+                        (0.74, 0.56, 0.37)
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        Vector B
+                    </div>
+
+                    <div
+                        id="vectorBResult"
+                        class="value"
+                    >
+                        (2.00, 1.00, 3.00)
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        |B| Magnitude
+                    </div>
+
+                    <div
+                        id="magnitudeBResult"
+                        class="value"
+                    >
+                        3.74
+                    </div>
+
+                    <div class="small">
+                        ความยาวของ Vector B
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        Unit Vector B
+                    </div>
+
+                    <div
+                        id="unitBResult"
+                        class="value"
+                    >
+                        (0.53, 0.27, 0.80)
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        Operation
+                    </div>
+
+                    <div
+                        id="operationDescription"
+                        class="value"
+                    >
+                        A + B
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        Result
+                    </div>
+
+                    <div
+                        id="operationValue"
+                        class="value"
+                    >
+                        (6.00, 4.00, 5.00)
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        Angle θ
+                    </div>
+
+                    <div
+                        id="angle3DResult"
+                        class="value"
+                    >
+                        34.80°
+                    </div>
+
+                    <div class="small">
+                        มุมระหว่าง Vector A และ B
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        Projection of A on B
+                    </div>
+
+                    <div
+                        id="projectionVectorResult"
+                        class="value"
+                    >
+                        (2.29, 1.14, 3.43)
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        Scalar Projection
+                    </div>
+
+                    <div
+                        id="projectionScalarResult"
+                        class="value"
+                    >
+                        1.87
+                    </div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <div class="label">
+                        Components
+                    </div>
+
+                    <div class="value">
+
+                        <span class="axis-x">
+                            Aₓ = <span id="componentAX">4.0</span>
+                        </span>
+
+                        <br>
+
+                        <span class="axis-y">
+                            Aᵧ = <span id="componentAY">3.0</span>
+                        </span>
+
+                        <br>
+
+                        <span class="axis-z">
+                            A𝓏 = <span id="componentAZ">2.0</span>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LEARNING -->
+
+        <section class="learning-section">
+
+            <h2 class="section-title">
+                🧠 Learning Lab
+            </h2>
+
+
+            <div class="learning-grid">
+
+
+                <article class="learning-card">
+
+                    <h3>
+                        🔴 X Component
+                    </h3>
+
+                    <p>
+                        ค่า X บอกว่าเวกเตอร์
+                        เคลื่อนที่ไปทางซ้ายหรือขวา
+                        ตามแกน X มากเท่าไร
+                    </p>
+
+                </article>
+
+
+                <article class="learning-card">
+
+                    <h3>
+                        🟢 Y Component
+                    </h3>
+
+                    <p>
+                        ค่า Y บอกว่าเวกเตอร์
+                        สูงขึ้นหรือต่ำลง
+                        ตามแกน Y มากเท่าไร
+                    </p>
+
+                </article>
+
+
+                <article class="learning-card">
+
+                    <h3>
+                        🔵 Z Component
+                    </h3>
+
+                    <p>
+                        ค่า Z บอกตำแหน่งของเวกเตอร์
+                        ในทิศทางด้านหน้าและด้านหลัง
+                    </p>
+
+                </article>
+
+
+                <article class="learning-card">
+
+                    <h3>
+                        📏 Magnitude
+                    </h3>
+
+                    <p>
+                        Magnitude คือความยาวของเวกเตอร์
+                        คำนวณจากรากที่สองของผลรวม
+                        กำลังสองของ X, Y และ Z
+                    </p>
+
+                </article>
+
+
+                <article class="learning-card">
+
+                    <h3>
+                        🎯 Unit Vector
+                    </h3>
+
+                    <p>
+                        Unit Vector คือเวกเตอร์
+                        ที่มีขนาดเท่ากับ 1
+                        แต่ยังคงทิศทางเดิม
+                    </p>
+
+                </article>
+
+
+                <article class="learning-card">
+
+                    <h3>
+                        📐 Angle
+                    </h3>
+
+                    <p>
+                        มุม θ ใช้บอกว่า Vector A
+                        และ Vector B
+                        ทำมุมกันมากน้อยเพียงใด
+                    </p>
+
+                </article>
+
+            </div>
+
+
+            <!-- FORMULAS -->
+
+            <div class="formula-box">
+
+                <h2>
+                    📐 Important Vector Formulas
+                </h2>
+
+
+                <div class="formula-list">
+
+                    <div class="formula-item">
+                        |A| = √(Ax² + Ay² + Az²)
+                    </div>
+
+                    <div class="formula-item">
+                        Â = A / |A|
+                    </div>
+
+                    <div class="formula-item">
+                        A + B = (Ax+Bx, Ay+By, Az+Bz)
+                    </div>
+
+                    <div class="formula-item">
+                        A · B = AxBx + AyBy + AzBz
+                    </div>
+
+                    <div class="formula-item">
+                        A × B = Vector ตั้งฉากกับ A และ B
+                    </div>
+
+                    <div class="formula-item">
+                        cosθ = (A·B)/(|A||B|)
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP BY STEP -->
+
+            <div class="steps-box">
+
+                <h2>
+                    📝 วิธีวิเคราะห์ Vector
+                </h2>
+
+
+                <ol>
+
+                    <li>
+                        อ่านค่าองค์ประกอบ
+                        <strong>Ax, Ay, Az</strong>
+                    </li>
+
+                    <li>
+                        หาความยาวเวกเตอร์
+                        ด้วยสูตร
+                        <strong>|A| = √(Ax² + Ay² + Az²)</strong>
+                    </li>
+
+                    <li>
+                        ถ้าต้องการเฉพาะทิศทาง
+                        ให้หา
+                        <strong>Unit Vector</strong>
+                    </li>
+
+                    <li>
+                        ถ้ามี Vector B
+                        สามารถหาผลบวก
+                        ผลต่าง Dot Product
+                        หรือ Cross Product ได้
+                    </li>
+
+                    <li>
+                        ใช้
+                        <strong>cosθ = (A·B)/(|A||B|)</strong>
+                        เพื่อหามุมระหว่างเวกเตอร์
+                    </li>
+
+                </ol>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script type="importmap">
+
+    {
+        "imports": {
+
+            "three":
+                "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+
+            "three/addons/":
+                "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+
+        }
+    }
+
+    </script>
+
+
+    <script
+        type="module"
+        src="js/physics/vector.js"
+    ></script>
+
+
+    <script src="js/darkmode.js"></script>
+
+</body>
+
+</html>

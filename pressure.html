@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Pressure Calculator | ENGI HUB</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+        <div class="menu">
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="index.html#tools">
+        Tools
+    </a>
+
+    <a href="formulas.html">
+        Formulas
+    </a>
+
+    <a href="history.html">
+        History
+    </a>
+
+    <a href="index.html#about">
+        About
+    </a>
+
+    <button id="darkModeBtn" class="dark-mode-btn">
+        🌙
+    </button>
+
+</div>
+
+    </nav>
+
+
+    <!-- Calculator -->
+    <main class="calculator-page">
+
+        <div class="calculator-card">
+
+            <h1>
+                🔵 Pressure Calculator
+            </h1>
+
+            <p class="calculator-description">
+                คำนวณความดัน แรง และพื้นที่
+            </p>
+
+
+            <!-- Formula -->
+            <div class="formula-box">
+
+                <span>
+                    P = F / A
+                </span>
+
+            </div>
+            <!-- Formula Explanation -->
+
+<div class="formula-info">
+
+    <h2>📚 สูตรและความหมาย</h2>
+
+    <div class="formula-item">
+        <strong>P — Pressure</strong>
+        <p>ความดัน</p>
+        <span>หน่วย: Pascal (Pa)</span>
+    </div>
+
+    <div class="formula-item">
+        <strong>F — Force</strong>
+        <p>แรงที่กระทำต่อพื้นที่</p>
+        <span>หน่วย: Newton (N)</span>
+    </div>
+
+    <div class="formula-item">
+        <strong>A — Area</strong>
+        <p>พื้นที่ที่แรงกระทำ</p>
+        <span>หน่วย: Square meter (m²)</span>
+    </div>
+
+</div>
+<!-- Example -->
+
+<div class="example-box">
+
+    <h2>💡 ตัวอย่างการคำนวณ</h2>
+
+    <p>
+        กำหนดให้มีแรง
+        <strong>100 N</strong>
+        กระทำบนพื้นที่
+        <strong>2 m²</strong>
+    </p>
+
+    <div class="example-formula">
+        P = F / A
+    </div>
+
+    <p>
+        P = 100 / 2
+    </p>
+
+    <p>
+        P = <strong>50 Pa</strong>
+    </p>
+
+    <div class="example-result">
+        ✅ ดังนั้น ความดันมีค่า
+        <strong>50 Pascal</strong>
+    </div>
+
+</div>
+
+
+            <!-- Select -->
+            <label>
+                ต้องการคำนวณอะไร?
+            </label>
+
+            <select id="calculateType">
+
+                <option value="pressure">
+                    Pressure (P)
+                </option>
+
+                <option value="force">
+                    Force (F)
+                </option>
+
+                <option value="area">
+                    Area (A)
+                </option>
+
+            </select>
+
+
+            <!-- Inputs -->
+            <div id="inputArea">
+
+
+                <!-- Pressure -->
+                <div class="input-group"
+                     id="pressureGroup">
+
+                    <label>
+                        Pressure (Pa)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="pressure"
+                        placeholder="เช่น 1000"
+                    >
+
+                </div>
+
+
+                <!-- Force -->
+                <div class="input-group"
+                     id="forceGroup">
+
+                    <label>
+                        Force (N)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="force"
+                        placeholder="เช่น 100"
+                    >
+
+                </div>
+
+
+                <!-- Area -->
+                <div class="input-group"
+                     id="areaGroup">
+
+                    <label>
+                        Area (m²)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="area"
+                        placeholder="เช่น 0.1"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Calculate Button -->
+            <button
+                class="calculate-button"
+                onclick="calculatePressure()"
+            >
+
+                🧮 Calculate
+
+            </button>
+
+
+            <!-- Result -->
+            <div id="result"
+                 class="result-box">
+
+                <h2>
+                    Result
+                </h2>
+
+                <p id="answer">
+                    -
+                </p>
+
+            </div>
+            <a href="index.html"
+   class="back-button">
+
+    🏠 Back to Home
+
+</a>
+
+
+            <!-- Explanation -->
+            <div id="explanation"
+                 class="explanation-box">
+
+                <h2>
+                    📖 วิธีทำ
+                </h2>
+
+                <p id="steps">
+
+                    กรุณากรอกข้อมูล
+                    แล้วกด Calculate
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/pressure.js"></script>
+    <script src="js/darkmode.js"></script>
+
+</body>
+
+</html>

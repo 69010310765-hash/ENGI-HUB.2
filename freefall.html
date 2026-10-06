@@ -1,0 +1,953 @@
+```html
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Free Fall | ENGI HUB
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* ========================================
+           FREE FALL PAGE
+        ======================================== */
+
+        .physics-header {
+
+            padding: 60px 20px;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e3a8a
+                );
+
+            color: white;
+
+        }
+
+
+        .physics-header h1 {
+
+            margin: 0 0 12px;
+
+            font-size: 38px;
+
+        }
+
+
+        .physics-header p {
+
+            margin: 0;
+
+            font-size: 17px;
+
+            opacity: 0.9;
+
+        }
+
+
+        .physics-container {
+
+            max-width: 1200px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+
+        }
+
+
+        .physics-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                320px 1fr;
+
+            gap: 25px;
+
+        }
+
+
+        .physics-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(15, 23, 42, 0.08);
+
+        }
+
+
+        .physics-card h2 {
+
+            margin-top: 0;
+
+        }
+
+
+        .control-group {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .control-group label {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+
+            font-weight: bold;
+
+        }
+
+
+        .control-group input[type="range"] {
+
+            width: 100%;
+
+        }
+
+
+        .value-display {
+
+            color: #2563eb;
+
+            font-weight: bold;
+
+        }
+
+
+        .button-group {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+
+        }
+
+
+        .physics-button {
+
+            border: none;
+
+            border-radius: 10px;
+
+            padding: 12px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            background: #2563eb;
+
+            color: white;
+
+        }
+
+
+        .physics-button:hover {
+
+            opacity: 0.9;
+
+        }
+
+
+        .physics-button:disabled {
+
+            opacity: 0.4;
+
+            cursor: not-allowed;
+
+        }
+
+
+        .simulation-canvas {
+
+            width: 100%;
+
+            height: 430px;
+
+            display: block;
+
+            border-radius: 12px;
+
+        }
+
+
+        .status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 15px;
+
+            font-weight: bold;
+
+        }
+
+
+        .status-dot {
+
+            width: 10px;
+
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #94a3b8;
+
+        }
+
+
+        .status-dot.running {
+
+            background: #22c55e;
+
+        }
+
+
+        .status-dot.paused {
+
+            background: #f59e0b;
+
+        }
+
+
+        .status-dot.finished {
+
+            background: #2563eb;
+
+        }
+
+
+        .realtime-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .realtime-box {
+
+            background: #f8fafc;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+        }
+
+
+        .realtime-box span {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .realtime-box strong {
+
+            font-size: 18px;
+
+        }
+
+
+        .results-card {
+
+            margin-top: 25px;
+
+        }
+
+
+        .results-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+
+        }
+
+
+        .result-box {
+
+            background: #eff6ff;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+        }
+
+
+        .result-box span {
+
+            display: block;
+
+            color: #475569;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .result-box strong {
+
+            color: #1d4ed8;
+
+            font-size: 24px;
+
+        }
+
+
+        .graph-card {
+
+            margin-top: 25px;
+
+        }
+
+
+        .graph-buttons {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .graph-button {
+
+            border: none;
+
+            padding: 9px 16px;
+
+            border-radius: 8px;
+
+            background: #e2e8f0;
+
+            cursor: pointer;
+
+        }
+
+
+        .graph-button.active {
+
+            background: #2563eb;
+
+            color: white;
+
+        }
+
+
+        .graph-wrapper {
+
+            width: 100%;
+
+            overflow: hidden;
+
+        }
+
+
+        #graphCanvas {
+
+            width: 100%;
+
+            height: 320px;
+
+            display: block;
+
+        }
+
+
+        .formulas-card {
+
+            margin-top: 25px;
+
+        }
+
+
+        .formula {
+
+            background: #f8fafc;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            margin-bottom: 10px;
+
+            font-family: monospace;
+
+        }
+
+
+        @media (max-width: 850px) {
+
+            .physics-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .realtime-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .results-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .physics-header h1 {
+
+                font-size: 30px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- ========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+        <div class="menu">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#tools">
+                Tools
+            </a>
+
+            <a href="formulas.html">
+                Formulas
+            </a>
+
+            <a href="history.html">
+                History
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <button
+                id="darkModeBtn"
+                class="dark-mode-btn"
+                type="button"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ========================================
+         HEADER
+    ========================================= -->
+
+    <header class="physics-header">
+
+        <h1>
+            🪂 Free Fall Simulation
+        </h1>
+
+        <p>
+            การจำลองการตกอย่างอิสระ
+            ภายใต้แรงโน้มถ่วง
+        </p>
+
+    </header>
+
+
+    <!-- ========================================
+         MAIN
+    ========================================= -->
+
+    <main class="physics-container">
+
+
+        <!-- ====================================
+             CONTROL + SIMULATION
+        ===================================== -->
+
+        <div class="physics-grid">
+
+
+            <!-- CONTROLS -->
+
+            <section class="physics-card">
+
+                <h2>
+                    ⚙️ Parameters
+                </h2>
+
+
+                <!-- HEIGHT -->
+
+                <div class="control-group">
+
+                    <label>
+
+                        <span>
+                            ความสูงเริ่มต้น
+                        </span>
+
+                        <span
+                            id="heightValue"
+                            class="value-display"
+                        >
+                            20.00 m
+                        </span>
+
+                    </label>
+
+                    <input
+                        id="height"
+                        type="range"
+                        min="1"
+                        max="100"
+                        step="1"
+                        value="20"
+                    >
+
+                </div>
+
+
+                <!-- MASS -->
+
+                <div class="control-group">
+
+                    <label>
+
+                        <span>
+                            มวล
+                        </span>
+
+                        <span
+                            id="massValue"
+                            class="value-display"
+                        >
+                            1.00 kg
+                        </span>
+
+                    </label>
+
+                    <input
+                        id="mass"
+                        type="range"
+                        min="0.1"
+                        max="100"
+                        step="0.1"
+                        value="1"
+                    >
+
+                </div>
+
+
+                <!-- GRAVITY -->
+
+                <div class="control-group">
+
+                    <label>
+
+                        <span>
+                            แรงโน้มถ่วง
+                        </span>
+
+                        <span
+                            id="gravityValue"
+                            class="value-display"
+                        >
+                            9.81 m/s²
+                        </span>
+
+                    </label>
+
+                    <input
+                        id="gravity"
+                        type="range"
+                        min="1"
+                        max="20"
+                        step="0.01"
+                        value="9.81"
+                    >
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="button-group">
+
+                    <button
+                        id="startButton"
+                        class="physics-button"
+                    >
+                        ▶ Start
+                    </button>
+
+                    <button
+                        id="pauseButton"
+                        class="physics-button"
+                        disabled
+                    >
+                        ⏸ Pause
+                    </button>
+
+                    <button
+                        id="resumeButton"
+                        class="physics-button"
+                        disabled
+                    >
+                        ▶ Resume
+                    </button>
+
+                    <button
+                        id="resetButton"
+                        class="physics-button"
+                    >
+                        🔄 Reset
+                    </button>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="status">
+
+                    <span
+                        id="statusDot"
+                        class="status-dot"
+                    ></span>
+
+                    <span id="statusText">
+                        Ready
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- SIMULATION -->
+
+            <section class="physics-card">
+
+                <h2>
+                    🎯 Simulation
+                </h2>
+
+                <canvas
+                    id="simulationCanvas"
+                    class="simulation-canvas"
+                ></canvas>
+
+
+                <!-- REALTIME -->
+
+                <div class="realtime-grid">
+
+                    <div class="realtime-box">
+
+                        <span>
+                            เวลา
+                        </span>
+
+                        <strong id="realtimeTime">
+                            0.00 s
+                        </strong>
+
+                    </div>
+
+
+                    <div class="realtime-box">
+
+                        <span>
+                            ความสูง
+                        </span>
+
+                        <strong id="realtimeHeight">
+                            20.00 m
+                        </strong>
+
+                    </div>
+
+
+                    <div class="realtime-box">
+
+                        <span>
+                            ความเร็ว
+                        </span>
+
+                        <strong id="realtimeVelocity">
+                            0.00 m/s
+                        </strong>
+
+                    </div>
+
+
+                    <div class="realtime-box">
+
+                        <span>
+                            ความเร่ง
+                        </span>
+
+                        <strong id="realtimeAcceleration">
+                            9.81 m/s²
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ====================================
+             RESULTS
+        ===================================== -->
+
+        <section class="physics-card results-card">
+
+            <h2>
+                📊 Results
+            </h2>
+
+            <div class="results-grid">
+
+                <div class="result-box">
+
+                    <span>
+                        เวลาที่ตกถึงพื้น
+                    </span>
+
+                    <strong id="fallTimeResult">
+                        2.02 s
+                    </strong>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <span>
+                        ความเร็วเมื่อกระทบพื้น
+                    </span>
+
+                    <strong id="impactVelocityResult">
+                        19.81 m/s
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================
+             GRAPH
+        ===================================== -->
+
+        <section class="physics-card graph-card">
+
+            <h2>
+                📈 Real-time Graph
+            </h2>
+
+
+            <div class="graph-buttons">
+
+                <button
+                    class="graph-button active"
+                    data-graph="height"
+                >
+                    Height
+                </button>
+
+                <button
+                    class="graph-button"
+                    data-graph="velocity"
+                >
+                    Velocity
+                </button>
+
+                <button
+                    class="graph-button"
+                    data-graph="acceleration"
+                >
+                    Acceleration
+                </button>
+
+            </div>
+
+
+            <div class="graph-wrapper">
+
+                <canvas
+                    id="graphCanvas"
+                ></canvas>
+
+            </div>
+
+
+            <h3 id="graphCurrentTitle">
+                ความสูง
+            </h3>
+
+            <strong id="graphCurrentValue">
+                20.00 m
+            </strong>
+
+            <div
+                id="graphEmpty"
+                style="display:block;"
+            ></div>
+
+        </section>
+
+
+        <!-- ====================================
+             FORMULAS
+        ===================================== -->
+
+        <section class="physics-card formulas-card">
+
+            <h2>
+                📐 Formulas
+            </h2>
+
+            <div class="formula">
+                h = h₀ − ½gt²
+            </div>
+
+            <div class="formula">
+                v = gt
+            </div>
+
+            <div class="formula">
+                t = √(2h₀/g)
+            </div>
+
+            <div class="formula">
+                v = √(2gh₀)
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ========================================
+         FOOTER
+    ========================================= -->
+
+    <footer>
+
+        <p>
+            © 2026 ENGI HUB
+        </p>
+
+        <p>
+            Engineering Calculation Tools
+        </p>
+
+    </footer>
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script src="js/physics/freefall.js"></script>
+
+    <script src="js/darkmode.js"></script>
+
+</body>
+
+</html>
+```

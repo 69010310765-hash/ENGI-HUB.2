@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Simple Pendulum | ENGI HUB</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                "Noto Sans Thai",
+                sans-serif;
+
+            background:
+                #f4f7fb;
+
+            color:
+                #0f172a;
+        }
+
+
+        /* ========================================
+           NAVBAR
+        ======================================== */
+
+        nav {
+
+            height: 70px;
+
+            background:
+                #0f172a;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                0 30px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 24px;
+
+            align-items: center;
+        }
+
+
+        .nav-links a {
+
+            color: white;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition:
+                0.2s;
+        }
+
+
+        .nav-links a:hover {
+
+            color:
+                #60a5fa;
+        }
+
+
+        /* ========================================
+           HERO
+        ======================================== */
+
+        .hero {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e3a8a
+                );
+
+            color: white;
+
+            text-align: center;
+
+            padding:
+                55px 20px;
+        }
+
+
+        .hero h1 {
+
+            margin:
+                0 0 12px;
+
+            font-size:
+                clamp(30px, 5vw, 46px);
+        }
+
+
+        .hero p {
+
+            margin: 0;
+
+            color:
+                #cbd5e1;
+
+            font-size:
+                16px;
+        }
+
+
+        /* ========================================
+           CONTAINER
+        ======================================== */
+
+        .container {
+
+            width:
+                min(1400px, 94%);
+
+            margin:
+                35px auto 60px;
+        }
+
+
+        /* ========================================
+           SIMULATION LAYOUT
+        ======================================== */
+
+        .simulation-container {
+
+            display: grid;
+
+            grid-template-columns:
+                320px
+                1fr;
+
+            gap:
+                24px;
+
+            align-items:
+                start;
+        }
+
+
+        /* ========================================
+           CONTROL PANEL
+        ======================================== */
+
+        .control-panel {
+
+            background:
+                white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius:
+                20px;
+
+            padding:
+                24px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(15, 23, 42, 0.08);
+
+            position:
+                sticky;
+
+            top:
+                94px;
+        }
+
+
+        .control-panel h2 {
+
+            margin:
+                0 0 22px;
+
+            font-size:
+                20px;
+        }
+
+
+        .control-group {
+
+            margin-bottom:
+                22px;
+        }
+
+
+        .control-label {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+
+            margin-bottom:
+                9px;
+
+            font-size:
+                14px;
+
+            font-weight:
+                bold;
+        }
+
+
+        .control-value {
+
+            color:
+                #2563eb;
+
+            font-weight:
+                bold;
+
+            white-space:
+                nowrap;
+        }
+
+
+        input[type="range"] {
+
+            width: 100%;
+
+            accent-color:
+                #2563eb;
+
+            cursor:
+                pointer;
+        }
+
+
+        /* ========================================
+           BUTTONS
+        ======================================== */
+
+        .button-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                10px;
+
+            margin-top:
+                25px;
+        }
+
+
+        .simulation-button {
+
+            border:
+                none;
+
+            border-radius:
+                12px;
+
+            padding:
+                12px 10px;
+
+            font-size:
+                14px;
+
+            font-weight:
+                bold;
+
+            cursor:
+                pointer;
+
+            transition:
+                transform 0.15s,
+                opacity 0.15s;
+        }
+
+
+        .simulation-button:hover:not(:disabled) {
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .simulation-button:disabled {
+
+            opacity:
+                0.45;
+
+            cursor:
+                not-allowed;
+        }
+
+
+        #startButton {
+
+            background:
+                #2563eb;
+
+            color:
+                white;
+        }
+
+
+        #pauseButton {
+
+            background:
+                #f59e0b;
+
+            color:
+                white;
+        }
+
+
+        #resumeButton {
+
+            background:
+                #16a34a;
+
+            color:
+                white;
+        }
+
+
+        #resetButton {
+
+            background:
+                #64748b;
+
+            color:
+                white;
+        }
+
+
+        /* ========================================
+           STATUS
+        ======================================== */
+
+        .status-box {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            margin-top:
+                20px;
+
+            padding:
+                12px 14px;
+
+            border-radius:
+                12px;
+
+            background:
+                #f8fafc;
+
+            border:
+                1px solid #e2e8f0;
+
+            font-size:
+                14px;
+        }
+
+
+        .status-dot {
+
+            width:
+                10px;
+
+            height:
+                10px;
+
+            border-radius:
+                50%;
+
+            background:
+                #94a3b8;
+
+            flex-shrink:
+                0;
+        }
+
+
+        .status-dot.running {
+
+            background:
+                #22c55e;
+
+            box-shadow:
+                0 0 0 5px
+                rgba(34, 197, 94, 0.15);
+        }
+
+
+        .status-dot.paused {
+
+            background:
+                #f59e0b;
+
+            box-shadow:
+                0 0 0 5px
+                rgba(245, 158, 11, 0.15);
+        }
+
+
+        .status-dot.finished {
+
+            background:
+                #2563eb;
+
+            box-shadow:
+                0 0 0 5px
+                rgba(37, 99, 235, 0.15);
+        }
+
+
+        /* ========================================
+           SIMULATION PANEL
+        ======================================== */
+
+        .simulation-panel {
+
+            background:
+                white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius:
+                20px;
+
+            padding:
+                20px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(15, 23, 42, 0.08);
+        }
+
+
+        .panel-header {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                15px;
+        }
+
+
+        .panel-header h2 {
+
+            margin: 0;
+
+            font-size:
+                20px;
+        }
+
+
+        .live-badge {
+
+            background:
+                #dcfce7;
+
+            color:
+                #166534;
+
+            border:
+                1px solid #bbf7d0;
+
+            border-radius:
+                999px;
+
+            padding:
+                6px 11px;
+
+            font-size:
+                11px;
+
+            font-weight:
+                bold;
+
+            letter-spacing:
+                0.5px;
+
+            white-space:
+                nowrap;
+        }
+
+
+        /* ========================================
+           CANVAS
+        ======================================== */
+
+        .canvas-wrapper {
+
+            position:
+                relative;
+
+            width:
+                100%;
+
+            height:
+                520px;
+
+            overflow:
+                hidden;
+
+            border-radius:
+                16px;
+
+            background:
+                #dff3ff;
+
+            border:
+                1px solid #dbeafe;
+        }
+
+
+        #simulationCanvas {
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            height:
+                100%;
+        }
+
+
+        /* ========================================
+           REALTIME
+        ======================================== */
+
+        .realtime-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap:
+                12px;
+
+            margin-top:
+                16px;
+        }
+
+
+        .realtime-card {
+
+            padding:
+                16px;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius:
+                14px;
+
+            background:
+                #f8fafc;
+        }
+
+
+        .realtime-card .label {
+
+            font-size:
+                12px;
+
+            color:
+                #64748b;
+
+            margin-bottom:
+                7px;
+        }
+
+
+        .realtime-card .value {
+
+            font-size:
+                20px;
+
+            font-weight:
+                bold;
+
+            color:
+                #0f172a;
+        }
+
+
+        /* ========================================
+           RESULTS
+        ======================================== */
+
+        .results-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                14px;
+
+            margin-top:
+                16px;
+        }
+
+
+        .result-card {
+
+            padding:
+                20px;
+
+            border-radius:
+                16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #f8fafc
+                );
+
+            border:
+                1px solid #dbeafe;
+        }
+
+
+        .result-card .label {
+
+            color:
+                #64748b;
+
+            font-size:
+                13px;
+
+            margin-bottom:
+                8px;
+        }
+
+
+        .result-card .value {
+
+            color:
+                #1d4ed8;
+
+            font-size:
+                28px;
+
+            font-weight:
+                bold;
+        }
+
+
+        /* ========================================
+           GRAPH SECTION
+        ======================================== */
+
+        .graph-section {
+
+            margin-top:
+                24px;
+
+            background:
+                white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius:
+                20px;
+
+            padding:
+                22px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(15, 23, 42, 0.06);
+        }
+
+
+        .graph-header {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                16px;
+        }
+
+
+        .graph-header h2 {
+
+            margin: 0;
+
+            font-size:
+                20px;
+        }
+
+
+        .graph-current {
+
+            text-align:
+                right;
+        }
+
+
+        .graph-current-title {
+
+            font-size:
+                12px;
+
+            color:
+                #64748b;
+        }
+
+
+        .graph-current-value {
+
+            font-size:
+                18px;
+
+            font-weight:
+                bold;
+
+            color:
+                #2563eb;
+        }
+
+
+        .graph-controls {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                8px;
+
+            margin-bottom:
+                14px;
+        }
+
+
+        .graph-button {
+
+            border:
+                1px solid #cbd5e1;
+
+            background:
+                white;
+
+            color:
+                #334155;
+
+            border-radius:
+                10px;
+
+            padding:
+                9px 14px;
+
+            cursor:
+                pointer;
+
+            font-weight:
+                bold;
+
+            transition:
+                0.2s;
+        }
+
+
+        .graph-button:hover {
+
+            border-color:
+                #2563eb;
+
+            color:
+                #2563eb;
+        }
+
+
+        .graph-button.active {
+
+            background:
+                #2563eb;
+
+            border-color:
+                #2563eb;
+
+            color:
+                white;
+        }
+
+
+        .graph-wrapper {
+
+            position:
+                relative;
+
+            width:
+                100%;
+
+            height:
+                420px;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius:
+                14px;
+
+            overflow:
+                hidden;
+
+            background:
+                #f8fafc;
+        }
+
+
+        #graphCanvas {
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            height:
+                100%;
+        }
+
+
+        .graph-empty {
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            color:
+                #94a3b8;
+
+            font-size:
+                14px;
+
+            pointer-events:
+                none;
+        }
+
+
+        /* ========================================
+           FORMULA SECTION
+        ======================================== */
+
+        .formula-section {
+
+            margin-top:
+                24px;
+
+            background:
+                white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius:
+                20px;
+
+            padding:
+                25px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(15, 23, 42, 0.06);
+        }
+
+
+        .formula-section h2 {
+
+            margin:
+                0 0 20px;
+
+            font-size:
+                20px;
+        }
+
+
+        .formula-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap:
+                14px;
+        }
+
+
+        .formula-card {
+
+            background:
+                #f8fafc;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius:
+                14px;
+
+            padding:
+                18px;
+
+            font-family:
+                "Courier New",
+                monospace;
+
+            font-size:
+                15px;
+        }
+
+
+        .formula-card strong {
+
+            display:
+                block;
+
+            font-family:
+                Arial,
+                "Noto Sans Thai",
+                sans-serif;
+
+            font-size:
+                12px;
+
+            color:
+                #64748b;
+
+            margin-bottom:
+                8px;
+        }
+
+
+        /* ========================================
+           FOOTER
+        ======================================== */
+
+        footer {
+
+            background:
+                #0f172a;
+
+            color:
+                #94a3b8;
+
+            text-align:
+                center;
+
+            padding:
+                28px 20px;
+
+            font-size:
+                13px;
+        }
+
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+
+        @media (
+            max-width: 1000px
+        ) {
+
+            .simulation-container {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .control-panel {
+
+                position:
+                    static;
+            }
+
+
+            .realtime-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (
+            max-width: 700px
+        ) {
+
+            nav {
+
+                padding:
+                    0 16px;
+            }
+
+
+            .nav-links {
+
+                gap:
+                    12px;
+            }
+
+
+            .nav-links a {
+
+                font-size:
+                    12px;
+            }
+
+
+            .canvas-wrapper {
+
+                height:
+                    430px;
+            }
+
+
+            .graph-wrapper {
+
+                height:
+                    330px;
+            }
+
+
+            .formula-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media (
+            max-width: 520px
+        ) {
+
+            .nav-links a:nth-child(2),
+            .nav-links a:nth-child(3) {
+
+                display:
+                    none;
+            }
+
+
+            .hero {
+
+                padding:
+                    40px 15px;
+            }
+
+
+            .container {
+
+                width:
+                    94%;
+
+                margin-top:
+                    20px;
+            }
+
+
+            .realtime-grid,
+            .results-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .canvas-wrapper {
+
+                height:
+                    360px;
+            }
+
+
+            .panel-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+
+
+            .graph-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+
+
+            .graph-current {
+
+                text-align:
+                    left;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         NAVBAR
+    ======================================== -->
+
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="physics.html">
+                Physics Simulation
+            </a>
+
+            <a href="formulas.html">
+                Formulas
+            </a>
+
+            <a href="history.html">
+                History
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ========================================
+         HERO
+    ======================================== -->
+
+    <section class="hero">
+
+        <h1>
+            🪀 Simple Pendulum
+        </h1>
+
+        <p>
+            จำลองการแกว่งของลูกตุ้มอย่างง่าย
+            พร้อมดูข้อมูลและกราฟแบบ Real-time
+        </p>
+
+    </section>
+
+
+    <!-- ========================================
+         MAIN
+    ======================================== -->
+
+    <main class="container">
+
+
+        <div class="simulation-container">
+
+
+            <!-- ==================================
+                 CONTROL PANEL
+            ================================== -->
+
+            <aside class="control-panel">
+
+                <h2>
+                    ⚙ Simulation Controls
+                </h2>
+
+
+                <div class="control-group">
+
+                    <div class="control-label">
+
+                        <span>
+                            ความยาวเชือก L
+                        </span>
+
+                        <span
+                            class="control-value"
+                            id="lengthValue"
+                        >
+                            1.00 m
+                        </span>
+
+                    </div>
+
+
+                    <input
+                        type="range"
+                        id="length"
+                        min="0.2"
+                        max="5"
+                        value="1"
+                        step="0.01"
+                    >
+
+                </div>
+
+
+                <div class="control-group">
+
+                    <div class="control-label">
+
+                        <span>
+                            มวลลูกตุ้ม m
+                        </span>
+
+                        <span
+                            class="control-value"
+                            id="massValue"
+                        >
+                            1.00 kg
+                        </span>
+
+                    </div>
+
+
+                    <input
+                        type="range"
+                        id="mass"
+                        min="0.1"
+                        max="10"
+                        value="1"
+                        step="0.1"
+                    >
+
+                </div>
+
+
+                <div class="control-group">
+
+                    <div class="control-label">
+
+                        <span>
+                            มุมเริ่มต้น θ₀
+                        </span>
+
+                        <span
+                            class="control-value"
+                            id="angleValue"
+                        >
+                            20°
+                        </span>
+
+                    </div>
+
+
+                    <input
+                        type="range"
+                        id="initialAngle"
+                        min="1"
+                        max="60"
+                        value="20"
+                        step="1"
+                    >
+
+                </div>
+
+
+                <div class="control-group">
+
+                    <div class="control-label">
+
+                        <span>
+                            ความเร่งโน้มถ่วง g
+                        </span>
+
+                        <span
+                            class="control-value"
+                            id="gravityValue"
+                        >
+                            9.81 m/s²
+                        </span>
+
+                    </div>
+
+
+                    <input
+                        type="range"
+                        id="gravity"
+                        min="0.1"
+                        max="20"
+                        value="9.81"
+                        step="0.01"
+                    >
+
+                </div>
+
+
+                <div class="button-grid">
+
+                    <button
+                        id="startButton"
+                        class="simulation-button"
+                    >
+                        ▶ Start
+                    </button>
+
+
+                    <button
+                        id="pauseButton"
+                        class="simulation-button"
+                        disabled
+                    >
+                        ⏸ Pause
+                    </button>
+
+
+                    <button
+                        id="resumeButton"
+                        class="simulation-button"
+                        disabled
+                    >
+                        ▶ Resume
+                    </button>
+
+
+                    <button
+                        id="resetButton"
+                        class="simulation-button"
+                    >
+                        ↻ Reset
+                    </button>
+
+                </div>
+
+
+                <div class="status-box">
+
+                    <span
+                        id="statusDot"
+                        class="status-dot"
+                    ></span>
+
+                    <span id="statusText">
+                        Ready
+                    </span>
+
+                </div>
+
+            </aside>
+
+
+            <!-- ==================================
+                 SIMULATION
+            ================================== -->
+
+            <section class="simulation-panel">
+
+
+                <div class="panel-header">
+
+                    <h2>
+                        🪀 Pendulum Simulation
+                    </h2>
+
+
+                    <span class="live-badge">
+                        REAL-TIME SIMULATION
+                    </span>
+
+                </div>
+
+
+                <div class="canvas-wrapper">
+
+                    <canvas
+                        id="simulationCanvas"
+                    ></canvas>
+
+                </div>
+
+
+                <!-- REALTIME -->
+
+                <div class="realtime-grid">
+
+
+                    <div class="realtime-card">
+
+                        <div class="label">
+                            เวลา t
+                        </div>
+
+                        <div
+                            class="value"
+                            id="realtimeTime"
+                        >
+                            0.00 s
+                        </div>
+
+                    </div>
+
+
+                    <div class="realtime-card">
+
+                        <div class="label">
+                            มุม θ
+                        </div>
+
+                        <div
+                            class="value"
+                            id="realtimeAngle"
+                        >
+                            20.00°
+                        </div>
+
+                    </div>
+
+
+                    <div class="realtime-card">
+
+                        <div class="label">
+                            ความเร็วเชิงมุม ω
+                        </div>
+
+                        <div
+                            class="value"
+                            id="realtimeOmega"
+                        >
+                            0.00 rad/s
+                        </div>
+
+                    </div>
+
+
+                    <div class="realtime-card">
+
+                        <div class="label">
+                            ความเร็ว v
+                        </div>
+
+                        <div
+                            class="value"
+                            id="realtimeVelocity"
+                        >
+                            0.00 m/s
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESULTS -->
+
+                <div class="results-grid">
+
+
+                    <div class="result-card">
+
+                        <div class="label">
+                            คาบการแกว่ง T
+                        </div>
+
+                        <div
+                            class="value"
+                            id="periodResult"
+                        >
+                            2.01 s
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <div class="label">
+                            ความถี่ f
+                        </div>
+
+                        <div
+                            class="value"
+                            id="frequencyResult"
+                        >
+                            0.50 Hz
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ======================================
+             GRAPH
+        ======================================= -->
+
+        <section class="graph-section">
+
+
+            <div class="graph-header">
+
+                <h2>
+                    📈 Real-time Graph
+                </h2>
+
+
+                <div class="graph-current">
+
+                    <div
+                        class="graph-current-title"
+                        id="graphCurrentTitle"
+                    >
+                        มุม θ
+                    </div>
+
+
+                    <div
+                        class="graph-current-value"
+                        id="graphCurrentValue"
+                    >
+                        20.00°
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="graph-controls">
+
+                <button
+                    class="graph-button active"
+                    data-graph="angle"
+                >
+                    θ Angle
+                </button>
+
+
+                <button
+                    class="graph-button"
+                    data-graph="omega"
+                >
+                    ω Angular Velocity
+                </button>
+
+
+                <button
+                    class="graph-button"
+                    data-graph="velocity"
+                >
+                    v Velocity
+                </button>
+
+            </div>
+
+
+            <div class="graph-wrapper">
+
+                <canvas
+                    id="graphCanvas"
+                ></canvas>
+
+
+                <div
+                    class="graph-empty"
+                    id="graphEmpty"
+                >
+                    กด Start เพื่อเริ่มเก็บข้อมูลสำหรับกราฟ
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             FORMULAS
+        ======================================= -->
+
+        <section class="formula-section">
+
+            <h2>
+                📐 Physics Formulas
+            </h2>
+
+
+            <div class="formula-grid">
+
+
+                <div class="formula-card">
+
+                    <strong>
+                        ตำแหน่งเชิงมุม
+                    </strong>
+
+                    θ(t) ≈ θ₀ cos(√(g/L)t)
+
+                </div>
+
+
+                <div class="formula-card">
+
+                    <strong>
+                        ความเร็วเชิงมุม
+                    </strong>
+
+                    ω(t) = −θ₀√(g/L) sin(√(g/L)t)
+
+                </div>
+
+
+                <div class="formula-card">
+
+                    <strong>
+                        ความเร็วเชิงเส้น
+                    </strong>
+
+                    v = Lω
+
+                </div>
+
+
+                <div class="formula-card">
+
+                    <strong>
+                        คาบการแกว่ง
+                    </strong>
+
+                    T = 2π√(L/g)
+
+                </div>
+
+
+                <div class="formula-card">
+
+                    <strong>
+                        ความถี่
+                    </strong>
+
+                    f = 1/T
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
+
+    <footer>
+
+        © 2026 ENGI HUB
+        <br>
+        Engineering Physics Simulation
+
+    </footer>
+
+
+    <script
+        src="js/physics/pendulum.js"
+    ></script>
+
+</body>
+
+</html>

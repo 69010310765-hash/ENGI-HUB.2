@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Energy & Work Laboratory | ENGI HUB
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family:
+                Arial,
+                "Noto Sans Thai",
+                sans-serif;
+            background: #f4f7fb;
+        }
+
+
+        /* ========================================
+           HERO
+        ======================================== */
+
+        .energy-hero {
+
+            padding: 70px 20px 55px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(245, 158, 11, 0.25),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #78350f
+                );
+        }
+
+
+        .energy-badge {
+
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,0.12);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.18);
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .energy-hero h1 {
+
+            margin: 0;
+
+            font-size:
+                clamp(34px, 6vw, 60px);
+
+            font-weight: 800;
+        }
+
+
+        .energy-hero p {
+
+            max-width: 760px;
+
+            margin: 18px auto 0;
+
+            color: #fef3c7;
+
+            line-height: 1.8;
+        }
+
+
+        /* ========================================
+           MAIN
+        ======================================== */
+
+        .energy-main {
+
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            padding: 45px 20px 80px;
+        }
+
+
+        .energy-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.55fr)
+                minmax(320px, 0.85fr);
+
+            gap: 24px;
+
+            align-items: start;
+        }
+
+
+        /* ========================================
+           CARDS
+        ======================================== */
+
+        .energy-card {
+
+            background: white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(15,23,42,0.07);
+
+            overflow: hidden;
+        }
+
+
+        .energy-card-header {
+
+            padding: 20px 22px;
+
+            border-bottom:
+                1px solid #e2e8f0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+        }
+
+
+        .energy-card-header h2 {
+
+            margin: 0;
+
+            font-size: 20px;
+
+            color: #0f172a;
+        }
+
+
+        .energy-card-header p {
+
+            margin: 5px 0 0;
+
+            font-size: 13px;
+
+            color: #64748b;
+        }
+
+
+        /* ========================================
+           SIMULATION
+        ======================================== */
+
+        .simulation-area {
+
+            padding: 18px;
+        }
+
+
+        #simulationCanvas {
+
+            width: 100%;
+
+            display: block;
+
+            border-radius: 14px;
+
+            background: #0f172a;
+        }
+
+
+        .simulation-help {
+
+            text-align: center;
+
+            margin-top: 10px;
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+
+        /* ========================================
+           STATUS
+        ======================================== */
+
+        .status-row {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 15px;
+        }
+
+
+        #statusDot {
+
+            width: 11px;
+
+            height: 11px;
+
+            border-radius: 50%;
+
+            background: #94a3b8;
+        }
+
+
+        #statusText {
+
+            font-weight: 600;
+
+            color: #475569;
+        }
+
+
+        /* ========================================
+           REALTIME
+        ======================================== */
+
+        .realtime-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 10px;
+
+            padding: 0 18px 18px;
+        }
+
+
+        .realtime-box {
+
+            padding: 14px;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #e2e8f0;
+
+            text-align: center;
+        }
+
+
+        .realtime-label {
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .realtime-value {
+
+            color: #0f172a;
+
+            font-size: 18px;
+
+            font-weight: 800;
+        }
+
+
+        /* ========================================
+           CONTROLS
+        ======================================== */
+
+        .controls-card {
+
+            padding-bottom: 20px;
+        }
+
+
+        .control-section {
+
+            padding: 20px 22px 0;
+        }
+
+
+        .control-section h3 {
+
+            margin: 0 0 15px;
+
+            font-size: 15px;
+
+            color: #334155;
+        }
+
+
+        .control-group {
+
+            margin-bottom: 18px;
+        }
+
+
+        .control-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .control-label {
+
+            color: #475569;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .control-value {
+
+            color: #2563eb;
+
+            font-weight: 800;
+
+            font-size: 14px;
+        }
+
+
+        .control-group input[type="range"] {
+
+            width: 100%;
+        }
+
+
+        /* ========================================
+           BUTTONS
+        ======================================== */
+
+        .button-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            padding: 20px 22px 0;
+        }
+
+
+        .energy-button {
+
+            border: none;
+
+            min-height: 45px;
+
+            border-radius: 10px;
+
+            padding: 10px 14px;
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+        }
+
+
+        .energy-button:hover {
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .start-button {
+
+            background: #2563eb;
+
+            color: white;
+        }
+
+
+        .pause-button {
+
+            background: #f59e0b;
+
+            color: white;
+        }
+
+
+        .resume-button {
+
+            background: #16a34a;
+
+            color: white;
+        }
+
+
+        .reset-button {
+
+            background: #e2e8f0;
+
+            color: #334155;
+        }
+
+
+        .save-button {
+
+            grid-column: 1 / -1;
+
+            background: #7c3aed;
+
+            color: white;
+        }
+
+
+        /* ========================================
+           RESULTS
+        ======================================== */
+
+        .results-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            padding: 20px 22px;
+        }
+
+
+        .result-box {
+
+            padding: 16px;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid #e2e8f0;
+        }
+
+
+        .result-title {
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .result-value {
+
+            color: #0f172a;
+
+            font-size: 20px;
+
+            font-weight: 800;
+        }
+
+
+        /* ========================================
+           GRAPH
+        ======================================== */
+
+        .graph-section {
+
+            margin-top: 24px;
+        }
+
+
+        .graph-buttons {
+
+            display: flex;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+
+            padding: 0 22px 18px;
+        }
+
+
+        .graph-button {
+
+            border:
+                1px solid #cbd5e1;
+
+            background: white;
+
+            color: #475569;
+
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+        }
+
+
+        .graph-button.active {
+
+            background: #2563eb;
+
+            color: white;
+
+            border-color: #2563eb;
+        }
+
+
+        .graph-container {
+
+            padding: 0 18px 20px;
+        }
+
+
+        #graphCanvas {
+
+            width: 100%;
+
+            display: block;
+
+            background: #0f172a;
+
+            border-radius: 14px;
+        }
+
+
+        .graph-info {
+
+            text-align: center;
+
+            margin-top: 10px;
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+
+        /* ========================================
+           FORMULA
+        ======================================== */
+
+        .formula-card {
+
+            margin-top: 24px;
+
+            background: white;
+
+            border:
+                1px solid #e2e8f0;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(15,23,42,0.06);
+        }
+
+
+        .formula-card h2 {
+
+            margin-top: 0;
+
+            color: #0f172a;
+        }
+
+
+        .formula-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .formula-item {
+
+            padding: 16px;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            font-family:
+                "Courier New",
+                monospace;
+
+            text-align: center;
+
+            color: #334155;
+        }
+
+
+        /* ========================================
+           DARK MODE
+        ======================================== */
+
+        body.dark-mode {
+
+            background: #020617;
+        }
+
+
+        body.dark-mode .energy-main {
+
+            background: #020617;
+        }
+
+
+        body.dark-mode .energy-card,
+
+        body.dark-mode .formula-card {
+
+            background: #0f172a;
+
+            border-color: #1e293b;
+        }
+
+
+        body.dark-mode
+        .energy-card-header {
+
+            border-color: #1e293b;
+        }
+
+
+        body.dark-mode
+        .energy-card-header h2,
+
+        body.dark-mode
+        .formula-card h2,
+
+        body.dark-mode
+        .result-value,
+
+        body.dark-mode
+        .realtime-value {
+
+            color: #f8fafc;
+        }
+
+
+        body.dark-mode
+        .energy-card-header p,
+
+        body.dark-mode
+        .control-label,
+
+        body.dark-mode
+        .realtime-label,
+
+        body.dark-mode
+        .result-title,
+
+        body.dark-mode
+        .simulation-help,
+
+        body.dark-mode
+        .graph-info {
+
+            color: #94a3b8;
+        }
+
+
+        body.dark-mode
+        .realtime-box,
+
+        body.dark-mode
+        .result-box,
+
+        body.dark-mode
+        .formula-item {
+
+            background: #020617;
+
+            border-color: #1e293b;
+        }
+
+
+        body.dark-mode
+        .formula-item {
+
+            color: #cbd5e1;
+        }
+
+
+        body.dark-mode
+        .graph-button {
+
+            background: #0f172a;
+
+            color: #cbd5e1;
+
+            border-color: #334155;
+        }
+
+
+        body.dark-mode
+        .reset-button {
+
+            background: #1e293b;
+
+            color: #e2e8f0;
+        }
+
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+
+        @media (max-width: 1000px) {
+
+            .energy-layout {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .realtime-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .formula-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .energy-main {
+
+                padding-left: 12px;
+
+                padding-right: 12px;
+            }
+
+
+            .realtime-grid,
+
+            .results-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .button-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .save-button {
+
+                grid-column: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         NAVBAR
+    ======================================== -->
+
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+        <div class="menu">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#tools">
+                Tools
+            </a>
+
+            <a href="formulas.html">
+                Formulas
+            </a>
+
+            <a href="equipment.html">
+                Equipment
+            </a>
+
+            <a href="history.html">
+                History
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <button
+                id="darkModeBtn"
+                class="dark-mode-btn"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ========================================
+         HERO
+    ======================================== -->
+
+    <header class="energy-hero">
+
+        <div class="energy-badge">
+            ⚡ ENGINEERING PHYSICS
+        </div>
+
+        <h1>
+            Energy & Work Laboratory
+        </h1>
+
+        <p>
+            ห้องทดลองงานและพลังงาน
+            ทดลองแรง การกระจัด งาน พลังงานจลน์
+            และทฤษฎีงาน–พลังงาน
+            พร้อมดูผลลัพธ์แบบ Real-time
+        </p>
+
+    </header>
+
+
+    <!-- ========================================
+         MAIN
+    ======================================== -->
+
+    <main class="energy-main">
+
+
+        <div class="energy-layout">
+
+
+            <!-- ====================================
+                 SIMULATION
+            ==================================== -->
+
+            <section class="energy-card">
+
+                <div class="energy-card-header">
+
+                    <div>
+
+                        <h2>
+                            ⚡ Energy Simulation
+                        </h2>
+
+                        <p>
+                            ทดลองแรงที่กระทำต่อวัตถุ
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="simulation-area">
+
+                    <canvas
+                        id="simulationCanvas"
+                        width="900"
+                        height="430"
+                    ></canvas>
+
+                    <div class="simulation-help">
+                        แสดงทิศทางแรง การเคลื่อนที่
+                        และการเปลี่ยนแปลงของพลังงาน
+                    </div>
+
+                </div>
+
+
+                <div class="status-row">
+
+                    <span id="statusDot"></span>
+
+                    <span id="statusText">
+                        พร้อมเริ่มการทดลอง
+                    </span>
+
+                </div>
+
+
+                <!-- REALTIME -->
+
+                <div class="realtime-grid">
+
+                    <div class="realtime-box">
+
+                        <div class="realtime-label">
+                            เวลา
+                        </div>
+
+                        <div
+                            class="realtime-value"
+                            id="realtimeTime"
+                        >
+                            0.00 s
+                        </div>
+
+                    </div>
+
+
+                    <div class="realtime-box">
+
+                        <div class="realtime-label">
+                            ระยะทาง
+                        </div>
+
+                        <div
+                            class="realtime-value"
+                            id="realtimeDistance"
+                        >
+                            0.00 m
+                        </div>
+
+                    </div>
+
+
+                    <div class="realtime-box">
+
+                        <div class="realtime-label">
+                            ความเร็ว
+                        </div>
+
+                        <div
+                            class="realtime-value"
+                            id="realtimeVelocity"
+                        >
+                            0.00 m/s
+                        </div>
+
+                    </div>
+
+
+                    <div class="realtime-box">
+
+                        <div class="realtime-label">
+                            KE
+                        </div>
+
+                        <div
+                            class="realtime-value"
+                            id="realtimeKE"
+                        >
+                            0.00 J
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ====================================
+                 CONTROLS
+            ==================================== -->
+
+            <section class="energy-card controls-card">
+
+                <div class="energy-card-header">
+
+                    <div>
+
+                        <h2>
+                            🎛️ Simulation Controls
+                        </h2>
+
+                        <p>
+                            กำหนดค่าการทดลอง
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="control-section">
+
+                    <h3>
+                        Object
+                    </h3>
+
+
+                    <!-- MASS -->
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                มวล
+                            </span>
+
+                            <span
+                                class="control-value"
+                                id="massValue"
+                            >
+                                2.0 kg
+                            </span>
+
+                        </div>
+
+                        <input
+                            type="range"
+                            id="mass"
+                            min="0.5"
+                            max="20"
+                            step="0.5"
+                            value="2"
+                        >
+
+                    </div>
+
+
+                    <!-- INITIAL VELOCITY -->
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                ความเร็วต้น
+                            </span>
+
+                            <span
+                                class="control-value"
+                                id="initialVelocityValue"
+                            >
+                                0.0 m/s
+                            </span>
+
+                        </div>
+
+                        <input
+                            type="range"
+                            id="initialVelocity"
+                            min="0"
+                            max="15"
+                            step="0.1"
+                            value="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="control-section">
+
+                    <h3>
+                        Applied Force
+                    </h3>
+
+
+                    <!-- FORCE -->
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                แรงที่กระทำ
+                            </span>
+
+                            <span
+                                class="control-value"
+                                id="forceValue"
+                            >
+                                10 N
+                            </span>
+
+                        </div>
+
+                        <input
+                            type="range"
+                            id="force"
+                            min="0"
+                            max="100"
+                            step="1"
+                            value="10"
+                        >
+
+                    </div>
+
+
+                    <!-- ANGLE -->
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                มุมแรง
+                            </span>
+
+                            <span
+                                class="control-value"
+                                id="angleValue"
+                            >
+                                0°
+                            </span>
+
+                        </div>
+
+                        <input
+                            type="range"
+                            id="angle"
+                            min="-60"
+                            max="60"
+                            step="1"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <!-- FRICTION -->
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                สัมประสิทธิ์เสียดทาน
+                            </span>
+
+                            <span
+                                class="control-value"
+                                id="frictionValue"
+                            >
+                                0.00
+                            </span>
+
+                        </div>
+
+                        <input
+                            type="range"
+                            id="friction"
+                            min="0"
+                            max="0.8"
+                            step="0.01"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <!-- DISTANCE -->
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                ระยะทางเป้าหมาย
+                            </span>
+
+                            <span
+                                class="control-value"
+                                id="distanceValue"
+                            >
+                                10 m
+                            </span>
+
+                        </div>
+
+                        <input
+                            type="range"
+                            id="targetDistance"
+                            min="1"
+                            max="30"
+                            step="0.5"
+                            value="10"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="button-grid">
+
+                    <button
+                        type="button"
+                        id="startButton"
+                        class="energy-button start-button"
+                    >
+                        ▶ Start
+                    </button>
+
+                    <button
+                        type="button"
+                        id="pauseButton"
+                        class="energy-button pause-button"
+                    >
+                        ⏸ Pause
+                    </button>
+
+                    <button
+                        type="button"
+                        id="resumeButton"
+                        class="energy-button resume-button"
+                    >
+                        ▶ Resume
+                    </button>
+
+                    <button
+                        type="button"
+                        id="resetButton"
+                        class="energy-button reset-button"
+                    >
+                        ↺ Reset
+                    </button>
+
+                    <button
+                        type="button"
+                        id="saveButton"
+                        class="energy-button save-button"
+                    >
+                        💾 Save Result
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ========================================
+             RESULTS
+        ======================================== -->
+
+        <section class="energy-card graph-section">
+
+            <div class="energy-card-header">
+
+                <div>
+
+                    <h2>
+                        📊 Energy Results
+                    </h2>
+
+                    <p>
+                        ผลการทดลองและพลังงานที่คำนวณได้
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="results-grid">
+
+                <div class="result-box">
+
+                    <div class="result-title">
+                        Work จากแรงภายนอก
+                    </div>
+
+                    <div
+                        class="result-value"
+                        id="workResult"
+                    >
+                        0.00 J
+                    </div>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <div class="result-title">
+                        Work จากแรงเสียดทาน
+                    </div>
+
+                    <div
+                        class="result-value"
+                        id="frictionWorkResult"
+                    >
+                        0.00 J
+                    </div>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <div class="result-title">
+                        Net Work
+                    </div>
+
+                    <div
+                        class="result-value"
+                        id="netWorkResult"
+                    >
+                        0.00 J
+                    </div>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <div class="result-title">
+                        Kinetic Energy
+                    </div>
+
+                    <div
+                        class="result-value"
+                        id="kineticResult"
+                    >
+                        0.00 J
+                    </div>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <div class="result-title">
+                        แรงลัพธ์
+                    </div>
+
+                    <div
+                        class="result-value"
+                        id="netForceResult"
+                    >
+                        0.00 N
+                    </div>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <div class="result-title">
+                        ความเร็วสุดท้าย
+                    </div>
+
+                    <div
+                        class="result-value"
+                        id="finalVelocityResult"
+                    >
+                        0.00 m/s
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- GRAPH BUTTONS -->
+
+            <div class="graph-buttons">
+
+                <button
+                    type="button"
+                    class="graph-button active"
+                    data-graph="kinetic"
+                >
+                    Kinetic Energy
+                </button>
+
+                <button
+                    type="button"
+                    class="graph-button"
+                    data-graph="work"
+                >
+                    Work
+                </button>
+
+                <button
+                    type="button"
+                    class="graph-button"
+                    data-graph="velocity"
+                >
+                    Velocity
+                </button>
+
+            </div>
+
+
+            <div class="graph-container">
+
+                <canvas
+                    id="graphCanvas"
+                    width="900"
+                    height="320"
+                ></canvas>
+
+                <div
+                    class="graph-info"
+                    id="graphInfo"
+                >
+                    Kinetic Energy vs Time
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             FORMULAS
+        ======================================== -->
+
+        <section class="formula-card">
+
+            <h2>
+                📐 Energy & Work Formulas
+            </h2>
+
+            <div class="formula-grid">
+
+                <div class="formula-item">
+                    W = Fs cosθ
+                </div>
+
+                <div class="formula-item">
+                    W<sub>net</sub> = ΔKE
+                </div>
+
+                <div class="formula-item">
+                    KE = ½mv²
+                </div>
+
+                <div class="formula-item">
+                    f = μN
+                </div>
+
+                <div class="formula-item">
+                    W<sub>f</sub> = −fs
+                </div>
+
+                <div class="formula-item">
+                    F<sub>net</sub> = ma
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 ENGI HUB
+        </p>
+
+        <p>
+            Engineering Calculation Tools
+        </p>
+
+    </footer>
+
+
+    <script src="js/darkmode.js"></script>
+
+    <script
+        type="module"
+        src="js/physics/energy.js"
+    ></script>
+
+
+</body>
+
+</html>

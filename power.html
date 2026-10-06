@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Electrical Power | ENGI HUB</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+        <div class="menu">
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="index.html#tools">
+        Tools
+    </a>
+
+    <a href="formulas.html">
+        Formulas
+    </a>
+
+    <a href="history.html">
+        History
+    </a>
+
+    <a href="index.html#about">
+        About
+    </a>
+
+    <button id="darkModeBtn" class="dark-mode-btn">
+        🌙
+    </button>
+
+</div>
+
+    </nav>
+
+
+    <!-- Calculator -->
+    <main class="calculator-page">
+
+        <div class="calculator-card">
+
+            <h1>
+                ⚡ Electrical Power
+            </h1>
+
+            <p class="calculator-description">
+                คำนวณกำลังไฟฟ้า Voltage
+                และ Current
+            </p>
+
+
+            <!-- Formula -->
+            <div class="formula-box">
+
+                <span>
+                    P = VI
+                </span>
+
+            </div>
+            <!-- Formula Explanation -->
+
+<div class="formula-info">
+
+    <h2>📚 สูตรและความหมาย</h2>
+
+    <div class="formula-item">
+        <strong>P — Power</strong>
+        <p>กำลังไฟฟ้า</p>
+        <span>หน่วย: Watt (W)</span>
+    </div>
+
+    <div class="formula-item">
+        <strong>V — Voltage</strong>
+        <p>แรงดันไฟฟ้า</p>
+        <span>หน่วย: Volt (V)</span>
+    </div>
+
+    <div class="formula-item">
+        <strong>I — Current</strong>
+        <p>กระแสไฟฟ้า</p>
+        <span>หน่วย: Ampere (A)</span>
+    </div>
+
+</div>
+<!-- Example -->
+
+<div class="example-box">
+
+    <h2>💡 ตัวอย่างการคำนวณ</h2>
+
+    <p>
+        กำหนดให้อุปกรณ์ไฟฟ้ามีแรงดันไฟฟ้า
+        <strong>12 V</strong>
+        และมีกระแสไฟฟ้า
+        <strong>2 A</strong>
+    </p>
+
+    <div class="example-formula">
+
+        P = V × I
+
+    </div>
+
+    <p>
+
+        P = 12 × 2
+
+    </p>
+
+    <p>
+
+        P = <strong>24 W</strong>
+
+    </p>
+
+    <div class="example-result">
+
+        ✅ ดังนั้น อุปกรณ์ไฟฟ้านี้ใช้กำลังไฟฟ้า
+        <strong>24 Watt</strong>
+
+    </div>
+
+</div>
+
+
+            <!-- Select -->
+            <label>
+                ต้องการคำนวณอะไร?
+            </label>
+
+            <select id="calculateType">
+
+                <option value="power">
+                    Power (P)
+                </option>
+
+                <option value="voltage">
+                    Voltage (V)
+                </option>
+
+                <option value="current">
+                    Current (I)
+                </option>
+
+            </select>
+
+
+            <!-- Inputs -->
+            <div id="inputArea">
+
+
+                <!-- Power -->
+                <div class="input-group"
+                     id="powerGroup">
+
+                    <label>
+                        Power (W)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="power"
+                        placeholder="เช่น 100"
+                    >
+
+                </div>
+
+
+                <!-- Voltage -->
+                <div class="input-group"
+                     id="voltageGroup">
+
+                    <label>
+                        Voltage (V)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="voltage"
+                        placeholder="เช่น 12"
+                    >
+
+                </div>
+
+
+                <!-- Current -->
+                <div class="input-group"
+                     id="currentGroup">
+
+                    <label>
+                        Current (A)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="current"
+                        placeholder="เช่น 2"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Calculate Button -->
+            <button
+                class="calculate-button"
+                onclick="calculatePower()"
+            >
+
+                🧮 Calculate
+
+            </button>
+
+
+            <!-- Result -->
+            <div id="result"
+                 class="result-box">
+
+                <h2>
+                    Result
+                </h2>
+
+                <p id="answer">
+                    -
+                </p>
+
+            </div><a href="index.html"
+   class="back-button">
+
+    🏠 Back to Home
+
+</a>
+
+
+
+            <!-- Explanation -->
+            <div id="explanation"
+                 class="explanation-box">
+
+                <h2>
+                    📖 วิธีทำ
+                </h2>
+
+                <p id="steps">
+
+                    กรุณากรอกข้อมูล
+                    แล้วกด Calculate
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/power.js"></script>
+    <script src="js/darkmode.js"></script>
+
+</body>
+
+</html>

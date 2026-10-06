@@ -1,0 +1,1050 @@
+[
+    {
+        "id": 1,
+        "name": "Digital Multimeter",
+        "thaiName": "ดิจิทัลมัลติมิเตอร์",
+        "category": "electrical",
+        "keywords": [
+            "multimeter",
+            "digital multimeter",
+            "มัลติมิเตอร์",
+            "มิเตอร์",
+            "วัดไฟ",
+            "วัดแรงดัน",
+            "วัดกระแส",
+            "วัดความต้านทาน"
+        ],
+        "image": "images/equipment/multimeter.jpg",
+        "description": "เครื่องมือวัดทางไฟฟ้าที่ใช้ตรวจสอบแรงดันไฟฟ้า กระแสไฟฟ้า และความต้านทาน",
+        "function": "ใช้ตรวจสอบและวัดค่าทางไฟฟ้าในวงจร",
+        "workingPrinciple": "วงจรอิเล็กทรอนิกส์ภายในทำการตรวจวัดค่าทางไฟฟ้าและแปลงผลเป็นค่าที่แสดงบนหน้าจอ",
+        "measurement": [
+            "Voltage (V)",
+            "Current (A)",
+            "Resistance (Ω)"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Clamp Meter",
+        "thaiName": "แคลมป์มิเตอร์",
+        "category": "electrical",
+        "keywords": [
+            "clamp meter",
+            "current clamp",
+            "แคลมป์มิเตอร์",
+            "วัดกระแส",
+            "วัดกระแสไฟฟ้า"
+        ],
+        "image": "images/equipment/clamp-meter.jpg",
+        "description": "เครื่องมือวัดกระแสไฟฟ้าที่สามารถวัดกระแสโดยไม่ต้องตัดวงจร",
+        "function": "ใช้วัดกระแสไฟฟ้าในสายไฟและตรวจสอบระบบไฟฟ้า",
+        "workingPrinciple": "ใช้เซนเซอร์แม่เหล็กไฟฟ้าตรวจจับสนามแม่เหล็กที่เกิดจากกระแสไฟฟ้าในตัวนำ",
+        "measurement": [
+            "Current (A)",
+            "AC Current",
+            "DC Current"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Oscilloscope",
+        "thaiName": "ออสซิลโลสโคป",
+        "category": "electronics",
+        "keywords": [
+            "oscilloscope",
+            "scope",
+            "ออสซิลโลสโคป",
+            "สโคป",
+            "วัดสัญญาณ"
+        ],
+        "image": "images/equipment/oscilloscope.jpg",
+        "description": "เครื่องมือสำหรับแสดงรูปคลื่นของสัญญาณไฟฟ้าตามเวลา",
+        "function": "ใช้วิเคราะห์รูปคลื่น ความถี่ แรงดัน และพฤติกรรมของสัญญาณไฟฟ้า",
+        "workingPrinciple": "รับสัญญาณไฟฟ้าผ่านโพรบแล้วแปลงเป็นข้อมูลเพื่อแสดงรูปคลื่นบนหน้าจอ",
+        "measurement": [
+            "Voltage (V)",
+            "Frequency (Hz)",
+            "Period (s)",
+            "Time (s)"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Function Generator",
+        "thaiName": "เครื่องกำเนิดสัญญาณ",
+        "category": "electronics",
+        "keywords": [
+            "function generator",
+            "signal generator",
+            "เครื่องกำเนิดสัญญาณ",
+            "กำเนิดสัญญาณ"
+        ],
+        "image": "images/equipment/function-generator.jpg",
+        "description": "เครื่องมือสำหรับสร้างสัญญาณไฟฟ้ารูปแบบต่าง ๆ เพื่อใช้ในการทดลอง",
+        "function": "ใช้สร้างสัญญาณ Sine, Square, Triangle และสัญญาณรูปแบบอื่น",
+        "workingPrinciple": "วงจรภายในสร้างสัญญาณไฟฟ้าตามรูปแบบ ความถี่ และแอมพลิจูดที่ผู้ใช้กำหนด",
+        "measurement": [
+            "Frequency (Hz)",
+            "Amplitude (V)",
+            "Duty Cycle (%)"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "DC Power Supply",
+        "thaiName": "แหล่งจ่ายไฟกระแสตรง",
+        "category": "electrical",
+        "keywords": [
+            "dc power supply",
+            "power supply",
+            "แหล่งจ่ายไฟ",
+            "จ่ายไฟ"
+        ],
+        "image": "images/equipment/dc-power-supply.jpg",
+        "description": "อุปกรณ์สำหรับจ่ายแรงดันไฟฟ้ากระแสตรงให้กับวงจรหรืออุปกรณ์ทดลอง",
+        "function": "ใช้จ่ายแรงดันและจำกัดกระแสให้กับวงจรไฟฟ้า",
+        "workingPrinciple": "แปลงและควบคุมพลังงานไฟฟ้าให้เป็นแรงดัน DC ตามค่าที่ผู้ใช้กำหนด",
+        "measurement": [
+            "Voltage (V)",
+            "Current (A)",
+            "Power (W)"
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Spectrum Analyzer",
+        "thaiName": "เครื่องวิเคราะห์สเปกตรัม",
+        "category": "electronics",
+        "keywords": [
+            "spectrum analyzer",
+            "เครื่องวิเคราะห์สเปกตรัม",
+            "วิเคราะห์สัญญาณ",
+            "frequency analyzer"
+        ],
+        "image": "images/equipment/spectrum-analyzer.jpg",
+        "description": "เครื่องมือสำหรับวิเคราะห์องค์ประกอบความถี่ของสัญญาณ",
+        "function": "ใช้ตรวจสอบพลังงานของสัญญาณในช่วงความถี่ต่าง ๆ",
+        "workingPrinciple": "วิเคราะห์สัญญาณอินพุตในโดเมนความถี่และแสดงระดับสัญญาณตามความถี่",
+        "measurement": [
+            "Frequency (Hz)",
+            "Power (dBm)",
+            "Amplitude"
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Logic Analyzer",
+        "thaiName": "เครื่องวิเคราะห์ลอจิก",
+        "category": "electronics",
+        "keywords": [
+            "logic analyzer",
+            "ลอจิกอะนาไลเซอร์",
+            "digital signal",
+            "วิเคราะห์สัญญาณดิจิทัล"
+        ],
+        "image": "images/equipment/logic-analyzer.jpg",
+        "description": "เครื่องมือสำหรับตรวจสอบและวิเคราะห์สัญญาณดิจิทัลหลายช่องสัญญาณ",
+        "function": "ใช้ตรวจสอบการทำงานของวงจรดิจิทัลและโปรโตคอลการสื่อสาร",
+        "workingPrinciple": "เก็บตัวอย่างสถานะ Logic ของสัญญาณตามเวลาแล้วแสดงผลเป็นรูปคลื่นดิจิทัล",
+        "measurement": [
+            "Logic High/Low",
+            "Frequency (Hz)",
+            "Timing (s)",
+            "Data Protocol"
+        ]
+    },
+    {
+        "id": 8,
+        "name": "LCR Meter",
+        "thaiName": "เครื่องวัด LCR",
+        "category": "electronics",
+        "keywords": [
+            "lcr meter",
+            "LCR",
+            "วัดความเหนี่ยวนำ",
+            "วัดความจุ",
+            "วัดความต้านทาน"
+        ],
+        "image": "images/equipment/lcr-meter.jpg",
+        "description": "เครื่องมือสำหรับวัดค่าความเหนี่ยวนำ ความจุ และความต้านทานของอุปกรณ์อิเล็กทรอนิกส์",
+        "function": "ใช้ตรวจสอบคุณสมบัติของตัวต้านทาน ตัวเก็บประจุ และตัวเหนี่ยวนำ",
+        "workingPrinciple": "ส่งสัญญาณทดสอบไปยังอุปกรณ์และวิเคราะห์การตอบสนองทางไฟฟ้า",
+        "measurement": [
+            "Inductance (H)",
+            "Capacitance (F)",
+            "Resistance (Ω)"
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Power Meter",
+        "thaiName": "เครื่องวัดกำลังไฟฟ้า",
+        "category": "electrical",
+        "keywords": [
+            "power meter",
+            "วัดกำลังไฟฟ้า",
+            "power measurement"
+        ],
+        "image": "images/equipment/power-meter.jpg",
+        "description": "เครื่องมือสำหรับวัดกำลังไฟฟ้าที่อุปกรณ์หรือระบบใช้",
+        "function": "ใช้ตรวจสอบการใช้พลังงานและกำลังไฟฟ้า",
+        "workingPrinciple": "ตรวจวัดแรงดันและกระแสแล้วคำนวณกำลังไฟฟ้า",
+        "measurement": [
+            "Power (W)",
+            "Voltage (V)",
+            "Current (A)",
+            "Power Factor"
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Insulation Tester",
+        "thaiName": "เครื่องทดสอบฉนวน",
+        "category": "electrical",
+        "keywords": [
+            "insulation tester",
+            "megger",
+            "เครื่องทดสอบฉนวน",
+            "วัดฉนวน"
+        ],
+        "image": "images/equipment/insulation-tester.jpg",
+        "description": "เครื่องมือสำหรับตรวจสอบค่าความต้านทานของฉนวนไฟฟ้า",
+        "function": "ใช้ตรวจสอบสภาพฉนวนของสายไฟ มอเตอร์ และระบบไฟฟ้า",
+        "workingPrinciple": "จ่ายแรงดันทดสอบ DC แล้ววัดกระแสรั่วเพื่อคำนวณค่าความต้านทานฉนวน",
+        "measurement": [
+            "Insulation Resistance (MΩ)",
+            "Test Voltage (V)"
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Soldering Iron",
+        "thaiName": "หัวแร้งบัดกรี",
+        "category": "electronics",
+        "keywords": [
+            "soldering iron",
+            "หัวแร้ง",
+            "บัดกรี",
+            "เครื่องบัดกรี"
+        ],
+        "image": "images/equipment/soldering-iron.jpg",
+        "description": "เครื่องมือให้ความร้อนสำหรับหลอมตะกั่วบัดกรีเพื่อเชื่อมต่ออุปกรณ์อิเล็กทรอนิกส์",
+        "function": "ใช้บัดกรีสายไฟและชิ้นส่วนอิเล็กทรอนิกส์",
+        "workingPrinciple": "ตัวทำความร้อนเปลี่ยนพลังงานไฟฟ้าเป็นความร้อนที่ปลายหัวแร้ง",
+        "measurement": [
+            "Temperature (°C)",
+            "Power (W)"
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Soldering Station",
+        "thaiName": "สถานีบัดกรี",
+        "category": "electronics",
+        "keywords": [
+            "soldering station",
+            "สถานีบัดกรี",
+            "หัวแร้งควบคุมอุณหภูมิ"
+        ],
+        "image": "images/equipment/soldering-station.jpg",
+        "description": "สถานีบัดกรีที่สามารถควบคุมอุณหภูมิของหัวแร้งได้",
+        "function": "ใช้สำหรับงานบัดกรีอิเล็กทรอนิกส์ที่ต้องการควบคุมอุณหภูมิ",
+        "workingPrinciple": "ระบบควบคุมอุณหภูมิจะปรับกำลังความร้อนให้หัวแร้งรักษาอุณหภูมิที่กำหนด",
+        "measurement": [
+            "Temperature (°C)",
+            "Power (W)"
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Hot Air Rework Station",
+        "thaiName": "สถานีเป่าลมร้อน",
+        "category": "electronics",
+        "keywords": [
+            "hot air rework",
+            "hot air station",
+            "สถานีเป่าลมร้อน",
+            "เป่าลมร้อน"
+        ],
+        "image": "images/equipment/hot-air-rework.jpg",
+        "description": "เครื่องมือสำหรับใช้ลมร้อนในการถอดหรือบัดกรีชิ้นส่วนอิเล็กทรอนิกส์",
+        "function": "ใช้ถอด IC และชิ้นส่วน SMD รวมถึงงานซ่อมแผงวงจร",
+        "workingPrinciple": "ทำความร้อนอากาศแล้วเป่าผ่านหัวเป่าไปยังชิ้นงาน",
+        "measurement": [
+            "Temperature (°C)",
+            "Air Flow"
+        ]
+    },
+    {
+        "id": 14,
+        "name": "Thermal Camera",
+        "thaiName": "กล้องถ่ายภาพความร้อน",
+        "category": "instrumentation",
+        "keywords": [
+            "thermal camera",
+            "infrared camera",
+            "กล้องความร้อน",
+            "อินฟราเรด"
+        ],
+        "image": "images/equipment/thermal-camera.jpg",
+        "description": "กล้องที่ใช้ตรวจจับและแสดงการกระจายตัวของอุณหภูมิบนพื้นผิว",
+        "function": "ใช้ค้นหาจุดร้อน ตรวจสอบระบบไฟฟ้า เครื่องจักร และอาคาร",
+        "workingPrinciple": "ตรวจจับรังสีอินฟราเรดจากวัตถุและแปลงเป็นภาพอุณหภูมิ",
+        "measurement": [
+            "Temperature (°C)",
+            "Temperature Difference (°C)"
+        ]
+    },
+    {
+        "id": 15,
+        "name": "Lathe Machine",
+        "thaiName": "เครื่องกลึง",
+        "category": "mechanical",
+        "keywords": [
+            "lathe",
+            "lathe machine",
+            "เครื่องกลึง",
+            "กลึงโลหะ"
+        ],
+        "image": "images/equipment/lathe-machine.jpg",
+        "description": "เครื่องจักรกลสำหรับขึ้นรูปชิ้นงานโดยการหมุนชิ้นงานและใช้มีดตัด",
+        "function": "ใช้กลึง ปาดหน้า เจาะ คว้าน และทำเกลียว",
+        "workingPrinciple": "ชิ้นงานหมุนรอบแกนขณะที่เครื่องมือตัดเคลื่อนที่เข้าหาชิ้นงาน",
+        "measurement": [
+            "Workpiece Diameter (mm)",
+            "Length (mm)",
+            "Spindle Speed (RPM)"
+        ]
+    },
+    {
+        "id": 16,
+        "name": "Milling Machine",
+        "thaiName": "เครื่องกัด",
+        "category": "mechanical",
+        "keywords": [
+            "milling machine",
+            "milling",
+            "เครื่องกัด",
+            "กัดโลหะ"
+        ],
+        "image": "images/equipment/milling-machine.jpg",
+        "description": "เครื่องจักรสำหรับกัดขึ้นรูปชิ้นงานด้วยดอกกัดที่หมุนด้วยความเร็วสูง",
+        "function": "ใช้กัดร่อง ผิวเรียบ เฟือง และรูปร่างต่าง ๆ",
+        "workingPrinciple": "ดอกกัดหมุนและตัดเนื้อวัสดุขณะที่ชิ้นงานหรือหัวกัดเคลื่อนที่ตามแนวที่กำหนด",
+        "measurement": [
+            "Feed Rate (mm/min)",
+            "Spindle Speed (RPM)",
+            "Cutting Depth (mm)"
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Drill Press",
+        "thaiName": "สว่านแท่น",
+        "category": "mechanical",
+        "keywords": [
+            "drill press",
+            "bench drill",
+            "สว่านแท่น",
+            "เจาะรู"
+        ],
+        "image": "images/equipment/drill-press.jpg",
+        "description": "เครื่องเจาะที่ติดตั้งบนแท่นเพื่อให้สามารถเจาะรูได้อย่างแม่นยำ",
+        "function": "ใช้เจาะรูในโลหะ ไม้ พลาสติก และวัสดุอื่น ๆ",
+        "workingPrinciple": "มอเตอร์หมุนดอกสว่านและชุดป้อนจะเคลื่อนดอกสว่านลงสู่ชิ้นงาน",
+        "measurement": [
+            "Drill Diameter (mm)",
+            "Spindle Speed (RPM)",
+            "Drilling Depth (mm)"
+        ]
+    },
+    {
+        "id": 18,
+        "name": "Bench Grinder",
+        "thaiName": "เครื่องเจียรตั้งโต๊ะ",
+        "category": "mechanical",
+        "keywords": [
+            "bench grinder",
+            "เครื่องเจียรตั้งโต๊ะ",
+            "เจียร",
+            "ลับคม"
+        ],
+        "image": "images/equipment/bench-grinder.jpg",
+        "description": "เครื่องเจียรที่ติดตั้งบนโต๊ะสำหรับลับคมและปรับแต่งชิ้นงาน",
+        "function": "ใช้ลับคมเครื่องมือและขัดแต่งชิ้นงานโลหะ",
+        "workingPrinciple": "มอเตอร์หมุนล้อเจียรด้วยความเร็วสูงเพื่อขัดหรือลบเนื้อวัสดุ",
+        "measurement": [
+            "Wheel Diameter (mm)",
+            "Spindle Speed (RPM)",
+            "Motor Power (W)"
+        ]
+    },
+    {
+        "id": 19,
+        "name": "Angle Grinder",
+        "thaiName": "เครื่องเจียรไฟฟ้า",
+        "category": "mechanical",
+        "keywords": [
+            "angle grinder",
+            "grinder",
+            "เครื่องเจียร",
+            "ลูกหมู",
+            "ตัดโลหะ"
+        ],
+        "image": "images/equipment/angle-grinder.jpg",
+        "description": "เครื่องมือไฟฟ้าสำหรับเจียร ตัด และขัดวัสดุโดยใช้จานหมุน",
+        "function": "ใช้ตัด เจียร และขัดโลหะหรือวัสดุต่าง ๆ",
+        "workingPrinciple": "มอเตอร์หมุนจานเจียรด้วยความเร็วสูงเพื่อทำการตัดหรือขัดชิ้นงาน",
+        "measurement": [
+            "Disc Diameter (mm)",
+            "Spindle Speed (RPM)",
+            "Motor Power (W)"
+        ]
+    },
+    {
+        "id": 20,
+        "name": "Bench Vise",
+        "thaiName": "ปากกาจับชิ้นงาน",
+        "category": "mechanical",
+        "keywords": [
+            "bench vise",
+            "vise",
+            "ปากกาจับชิ้นงาน",
+            "ปากกาจับงาน"
+        ],
+        "image": "images/equipment/bench-vise.jpg",
+        "description": "อุปกรณ์สำหรับจับยึดชิ้นงานให้อยู่กับที่ระหว่างการทำงาน",
+        "function": "ใช้จับชิ้นงานระหว่างตัด เจาะ ตะไบ หรือประกอบ",
+        "workingPrinciple": "สกรูหมุนทำให้ปากจับเคลื่อนที่เข้าหากันเพื่อสร้างแรงยึดชิ้นงาน",
+        "measurement": [
+            "Jaw Width (mm)",
+            "Maximum Opening (mm)"
+        ]
+    },
+    {
+        "id": 21,
+        "name": "Hydraulic Press",
+        "thaiName": "เครื่องอัดไฮดรอลิก",
+        "category": "mechanical",
+        "keywords": [
+            "hydraulic press",
+            "เครื่องอัด",
+            "ไฮดรอลิก",
+            "press machine"
+        ],
+        "image": "images/equipment/hydraulic-press.jpg",
+        "description": "เครื่องจักรที่ใช้แรงดันไฮดรอลิกเพื่อสร้างแรงอัดสูง",
+        "function": "ใช้ดัด กด ประกอบ หรือถอดชิ้นส่วนที่ต้องใช้แรงมาก",
+        "workingPrinciple": "ใช้แรงดันของของไหลในกระบอกไฮดรอลิกเพื่อสร้างแรงทางกล",
+        "measurement": [
+            "Force (kN)",
+            "Pressure (MPa)",
+            "Stroke (mm)"
+        ]
+    },
+    {
+        "id": 22,
+        "name": "Welding Machine",
+        "thaiName": "เครื่องเชื่อม",
+        "category": "mechanical",
+        "keywords": [
+            "welding machine",
+            "welder",
+            "เครื่องเชื่อม",
+            "เชื่อมโลหะ"
+        ],
+        "image": "images/equipment/welding-machine.jpg",
+        "description": "เครื่องมือสำหรับเชื่อมโลหะให้ยึดติดกันด้วยความร้อนหรืออาร์กไฟฟ้า",
+        "function": "ใช้เชื่อมประกอบชิ้นงานโลหะ",
+        "workingPrinciple": "สร้างความร้อนจากอาร์กไฟฟ้าหรือกระบวนการเชื่อมเพื่อหลอมโลหะบริเวณรอยต่อ",
+        "measurement": [
+            "Welding Current (A)",
+            "Voltage (V)",
+            "Power (W)"
+        ]
+    },
+    {
+        "id": 23,
+        "name": "Band Saw",
+        "thaiName": "เครื่องเลื่อยสายพาน",
+        "category": "mechanical",
+        "keywords": [
+            "band saw",
+            "เครื่องเลื่อยสายพาน",
+            "เลื่อย",
+            "ตัดโลหะ"
+        ],
+        "image": "images/equipment/band-saw.jpg",
+        "description": "เครื่องจักรสำหรับตัดวัสดุด้วยใบเลื่อยสายพานที่เคลื่อนที่ต่อเนื่อง",
+        "function": "ใช้ตัดโลหะ ไม้ และวัสดุอื่นตามขนาดที่ต้องการ",
+        "workingPrinciple": "มอเตอร์ขับใบเลื่อยสายพานให้เคลื่อนที่ผ่านชิ้นงานอย่างต่อเนื่อง",
+        "measurement": [
+            "Cutting Length (mm)",
+            "Blade Speed",
+            "Cutting Capacity (mm)"
+        ]
+    },
+    {
+        "id": 24,
+        "name": "Power Drill",
+        "thaiName": "สว่านไฟฟ้า",
+        "category": "mechanical",
+        "keywords": [
+            "power drill",
+            "electric drill",
+            "สว่านไฟฟ้า",
+            "สว่าน"
+        ],
+        "image": "images/equipment/power-drill.jpg",
+        "description": "เครื่องมือไฟฟ้าสำหรับเจาะรูในวัสดุประเภทต่าง ๆ",
+        "function": "ใช้เจาะรูและขันสกรูด้วยอุปกรณ์เสริมที่เหมาะสม",
+        "workingPrinciple": "มอเตอร์ไฟฟ้าหมุนหัวจับเพื่อขับดอกสว่าน",
+        "measurement": [
+            "Drill Diameter (mm)",
+            "Spindle Speed (RPM)",
+            "Motor Power (W)"
+        ]
+    },
+    {
+        "id": 25,
+        "name": "Torque Wrench",
+        "thaiName": "ประแจปอนด์",
+        "category": "mechanical",
+        "keywords": [
+            "torque wrench",
+            "ประแจปอนด์",
+            "วัดแรงบิด",
+            "ขันแรงบิด"
+        ],
+        "image": "images/equipment/torque-wrench.jpg",
+        "description": "เครื่องมือสำหรับขันสกรูหรือน็อตด้วยแรงบิดที่กำหนด",
+        "function": "ใช้ควบคุมแรงบิดในการขันสลักเกลียว",
+        "workingPrinciple": "กลไกภายในจะปล่อยหรือแสดงสัญญาณเมื่อแรงบิดถึงค่าที่ตั้งไว้",
+        "measurement": [
+            "Torque (N·m)",
+            "Torque (lb·ft)"
+        ]
+    },
+    {
+        "id": 26,
+        "name": "Measuring Wheel",
+        "thaiName": "ล้อวัดระยะ",
+        "category": "mechanical",
+        "keywords": [
+            "measuring wheel",
+            "ล้อวัดระยะ",
+            "วัดระยะ",
+            "measuring"
+        ],
+        "image": "images/equipment/measuring-wheel.jpg",
+        "description": "ล้อวัดระยะที่สามารถใช้วัดระยะทางได้อย่างแม่นยำ",
+        "function": "ใช้วัดระยะทางบนพื้นผิวที่ต้องการ เช่น ถนน สนาม หรือพื้นที่ก่อสร้าง",
+        "workingPrinciple": "เมื่อล้อกลิ้งไปบนพื้นผิว ล้อจะหมุนและส่งสัญญาณไปยังมิเตอร์เพื่อคำนวณระยะทาง",
+        "measurement": [
+            "Distance (m)",
+            "Distance (ft)"
+        ]
+    },
+    {
+        "id": 27,
+        "name": "Wire Stripper",
+        "thaiName": "คีมปอกสายไฟ",
+        "category": "electrical",
+        "keywords": [
+            "wire stripper",
+            "คีมปอกสายไฟ",
+            "ปอกสายไฟ",
+            "wire stripping"
+        ],
+        "image": "images/equipment/wire-stripper.jpg",
+        "description": "เครื่องมือสำหรับลอกฉนวนออกจากสายไฟโดยไม่ทำลายตัวนำ",
+        "function": "ใช้เตรียมปลายสายไฟสำหรับการต่อวงจร",
+        "workingPrinciple": "ใบมีดจะตัดเฉพาะฉนวนตามขนาดสายแล้วดึงฉนวนออก",
+        "measurement": [
+            "Wire Size (AWG)",
+            "Wire Diameter (mm)"
+        ]
+    },
+    {
+        "id": 28,
+        "name": "Wire Cutter",
+        "thaiName": "คีมตัดสายไฟ",
+        "category": "electrical",
+        "keywords": [
+            "wire cutter",
+            "wire cutting plier",
+            "คีมตัดสายไฟ",
+            "คีมตัด"
+        ],
+        "image": "images/equipment/wire-cutter.jpg",
+        "description": "เครื่องมือสำหรับตัดสายไฟและลวดให้มีความยาวตามต้องการ",
+        "function": "ใช้ตัดสายไฟและลวดในงานไฟฟ้าและอิเล็กทรอนิกส์",
+        "workingPrinciple": "ใบตัดสองด้านเคลื่อนเข้าหากันเพื่อสร้างแรงเฉือนตัดตัวนำ",
+        "measurement": [
+            "Maximum Wire Diameter (mm)",
+            "Wire Size (AWG)"
+        ]
+    },
+    {
+        "id": 29,
+        "name": "Crimping Tool",
+        "thaiName": "คีมย้ำหางปลา",
+        "category": "electrical",
+        "keywords": [
+            "crimping tool",
+            "คีมย้ำ",
+            "ย้ำหางปลา",
+            "terminal crimper"
+        ],
+        "image": "images/equipment/crimping-tool.jpg",
+        "description": "เครื่องมือสำหรับย้ำขั้วต่อเข้ากับปลายสายไฟ",
+        "function": "ใช้ติดตั้ง Terminal และ Connector บนสายไฟ",
+        "workingPrinciple": "แรงกดจากคีมจะเปลี่ยนรูปขั้วต่อให้ยึดติดกับตัวนำอย่างแน่นหนา",
+        "measurement": [
+            "Wire Size (AWG)",
+            "Wire Cross Section (mm²)"
+        ]
+    },
+    {
+        "id": 30,
+        "name": "Vernier Caliper",
+        "thaiName": "เวอร์เนียร์คาลิปเปอร์",
+        "category": "mechanical",
+        "keywords": [
+            "vernier caliper",
+            "vernier",
+            "caliper",
+            "เวอร์เนียร์",
+            "วัดขนาด"
+        ],
+        "image": "images/equipment/vernier-caliper.jpg",
+        "description": "เครื่องมือวัดขนาดที่สามารถวัดภายนอก ภายใน และความลึกของชิ้นงาน",
+        "function": "ใช้วัดขนาดชิ้นงานอย่างละเอียด",
+        "workingPrinciple": "ใช้สเกลหลักร่วมกับสเกลเวอร์เนียร์เพื่ออ่านค่าขนาดอย่างละเอียด",
+        "measurement": [
+            "External Diameter (mm)",
+            "Internal Diameter (mm)",
+            "Depth (mm)"
+        ]
+    },
+    {
+        "id": 31,
+        "name": "Micrometer",
+        "thaiName": "ไมโครมิเตอร์",
+        "category": "mechanical",
+        "keywords": [
+            "micrometer",
+            "micrometer screw gauge",
+            "ไมโครมิเตอร์",
+            "วัดความหนา"
+        ],
+        "image": "images/equipment/micrometer.jpg",
+        "description": "เครื่องมือวัดละเอียดสำหรับวัดความหนาและขนาดของชิ้นงาน",
+        "function": "ใช้วัดขนาดภายนอกของชิ้นงานที่ต้องการความละเอียดสูง",
+        "workingPrinciple": "ใช้สกรูเกลียวละเอียดเปลี่ยนการหมุนให้เป็นการเคลื่อนที่เชิงเส้นอย่างแม่นยำ",
+        "measurement": [
+            "Thickness (mm)",
+            "Diameter (mm)",
+            "Resolution (mm)"
+        ]
+    },
+    {
+        "id": 32,
+        "name": "Dial Indicator",
+        "thaiName": "ไดอัลอินดิเคเตอร์",
+        "category": "mechanical",
+        "keywords": [
+            "dial indicator",
+            "dial gauge",
+            "ไดอัลเกจ",
+            "วัดระยะ",
+            "วัดความคลาดเคลื่อน"
+        ],
+        "image": "images/equipment/dial-indicator.jpg",
+        "description": "เครื่องมือวัดการเคลื่อนที่หรือความคลาดเคลื่อนขนาดเล็กของชิ้นงาน",
+        "function": "ใช้ตรวจสอบความเรียบ การเยื้องศูนย์ และความคลาดเคลื่อนของชิ้นงาน",
+        "workingPrinciple": "หัวสัมผัสเคลื่อนที่และส่งการเคลื่อนที่ผ่านกลไกเฟืองไปยังเข็มแสดงค่า",
+        "measurement": [
+            "Displacement (mm)",
+            "Runout (mm)",
+            "Accuracy (mm)"
+        ]
+    },
+    {
+        "id": 33,
+        "name": "Height Gauge",
+        "thaiName": "ไฮเกจ",
+        "category": "mechanical",
+        "keywords": [
+            "height gauge",
+            "ไฮเกจ",
+            "วัดความสูง",
+            "height measurement"
+        ],
+        "image": "images/equipment/height-gauge.jpg",
+        "description": "เครื่องมือสำหรับวัดหรือกำหนดตำแหน่งความสูงของชิ้นงานจากพื้นอ้างอิง",
+        "function": "ใช้วัดความสูงและขีดตำแหน่งบนชิ้นงาน",
+        "workingPrinciple": "หัววัดเคลื่อนที่ตามสเกลแนวตั้งและอ่านค่าความสูงจากฐานอ้างอิง",
+        "measurement": [
+            "Height (mm)",
+            "Vertical Distance (mm)"
+        ]
+    },
+    {
+        "id": 34,
+        "name": "Depth Gauge",
+        "thaiName": "เกจวัดความลึก",
+        "category": "mechanical",
+        "keywords": [
+            "depth gauge",
+            "depth meter",
+            "เกจวัดความลึก",
+            "วัดความลึก"
+        ],
+        "image": "images/equipment/depth-gauge.jpg",
+        "description": "เครื่องมือสำหรับวัดความลึกของรู ร่อง หรือช่องบนชิ้นงาน",
+        "function": "ใช้ตรวจสอบความลึกของชิ้นส่วนเครื่องจักรและชิ้นงาน",
+        "workingPrinciple": "หัววัดสัมผัสก้นพื้นที่ที่ต้องการวัดและอ่านระยะจากฐานอ้างอิง",
+        "measurement": [
+            "Depth (mm)",
+            "Depth Resolution (mm)"
+        ]
+    },
+    {
+        "id": 35,
+        "name": "Feeler Gauge",
+        "thaiName": "ฟิลเลอร์เกจ",
+        "category": "mechanical",
+        "keywords": [
+            "feeler gauge",
+            "ฟิลเลอร์เกจ",
+            "วัดช่องว่าง",
+            "gap gauge"
+        ],
+        "image": "images/equipment/feeler-gauge.jpg",
+        "description": "ชุดแผ่นโลหะบางสำหรับตรวจสอบระยะห่างหรือช่องว่างระหว่างชิ้นส่วน",
+        "function": "ใช้ตรวจสอบระยะห่างของชิ้นส่วนเครื่องจักร",
+        "workingPrinciple": "เลือกแผ่นโลหะที่มีความหนาต่างกันเพื่อสอดเข้าไปในช่องว่างและตรวจสอบขนาด",
+        "measurement": [
+            "Gap (mm)",
+            "Thickness (mm)"
+        ]
+    },
+    {
+        "id": 36,
+        "name": "Bore Gauge",
+        "thaiName": "บอร์เกจ",
+        "category": "mechanical",
+        "keywords": [
+            "bore gauge",
+            "bore measurement",
+            "บอร์เกจ",
+            "วัดรู"
+        ],
+        "image": "images/equipment/bore-gauge.jpg",
+        "description": "เครื่องมือสำหรับวัดขนาดภายในของรูหรือกระบอกสูบอย่างละเอียด",
+        "function": "ใช้ตรวจสอบเส้นผ่านศูนย์กลางภายในและความคลาดเคลื่อนของรู",
+        "workingPrinciple": "หัววัดสัมผัสผิวด้านในของรูและถ่ายทอดการเคลื่อนที่ไปยังตัวแสดงค่า",
+        "measurement": [
+            "Internal Diameter (mm)",
+            "Bore Deviation (mm)"
+        ]
+    },
+    {
+        "id": 37,
+        "name": "Surface Plate",
+        "thaiName": "แท่นระดับผิวเรียบ",
+        "category": "mechanical",
+        "keywords": [
+            "surface plate",
+            "แท่นระดับ",
+            "แท่นตรวจสอบ",
+            "surface measurement"
+        ],
+        "image": "images/equipment/surface-plate.jpg",
+        "description": "พื้นผิวอ้างอิงที่มีความเรียบสูงสำหรับงานตรวจสอบและวัดชิ้นงาน",
+        "function": "ใช้เป็นฐานอ้างอิงในการตรวจสอบขนาดและความเรียบของชิ้นงาน",
+        "workingPrinciple": "ใช้พื้นผิวที่ผ่านการปรับความเรียบสูงเป็นระนาบอ้างอิงสำหรับการวัด",
+        "measurement": [
+            "Flatness (mm)",
+            "Surface Deviation (mm)"
+        ]
+    },
+    {
+        "id": 38,
+        "name": "Steel Ruler",
+        "thaiName": "ไม้บรรทัดเหล็ก",
+        "category": "mechanical",
+        "keywords": [
+            "steel ruler",
+            "ruler",
+            "ไม้บรรทัดเหล็ก",
+            "วัดความยาว"
+        ],
+        "image": "images/equipment/steel-ruler.jpg",
+        "description": "เครื่องมือวัดความยาวพื้นฐานที่ทำจากเหล็ก",
+        "function": "ใช้วัดและตรวจสอบความยาวของชิ้นงาน",
+        "workingPrinciple": "อ่านค่าความยาวจากขีดสเกลที่กำหนดไว้บนแผ่นเหล็ก",
+        "measurement": [
+            "Length (mm)",
+            "Length (cm)"
+        ]
+    },
+    {
+        "id": 39,
+        "name": "Bevel Protractor",
+        "thaiName": "โปรแทรกเตอร์วัดมุม",
+        "category": "mechanical",
+        "keywords": [
+            "bevel protractor",
+            "protractor",
+            "วัดมุม",
+            "โปรแทรกเตอร์"
+        ],
+        "image": "images/equipment/bevel-protractor.jpg",
+        "description": "เครื่องมือสำหรับวัดและตรวจสอบมุมของชิ้นงาน",
+        "function": "ใช้ตรวจสอบมุมของชิ้นส่วนและงานเครื่องจักร",
+        "workingPrinciple": "ใช้แขนวัดสัมผัสพื้นผิวสองด้านและอ่านค่ามุมจากสเกล",
+        "measurement": [
+            "Angle (degree)",
+            "Angular Deviation (degree)"
+        ]
+    },
+    {
+        "id": 40,
+        "name": "Total Station",
+        "thaiName": "กล้องสำรวจ Total Station",
+        "category": "civil",
+        "keywords": [
+            "total station",
+            "กล้องสำรวจ",
+            "สำรวจพื้นที่",
+            "surveying"
+        ],
+        "image": "images/equipment/total-station.jpg",
+        "description": "เครื่องมือสำรวจที่รวมการวัดมุม ระยะทาง และพิกัดเข้าด้วยกัน",
+        "function": "ใช้สำรวจพื้นที่ วางแนว และกำหนดพิกัดสำหรับงานก่อสร้าง",
+        "workingPrinciple": "วัดมุมด้วยระบบอิเล็กทรอนิกส์และวัดระยะด้วยคลื่น EDM เพื่อคำนวณพิกัด",
+        "measurement": [
+            "Horizontal Angle",
+            "Vertical Angle",
+            "Distance (m)",
+            "Coordinates"
+        ]
+    },
+    {
+        "id": 41,
+        "name": "Theodolite",
+        "thaiName": "กล้องวัดมุม",
+        "category": "civil",
+        "keywords": [
+            "theodolite",
+            "กล้องวัดมุม",
+            "วัดมุม",
+            "surveying"
+        ],
+        "image": "images/equipment/theodolite.jpg",
+        "description": "เครื่องมือสำรวจสำหรับวัดมุมแนวราบและแนวดิ่ง",
+        "function": "ใช้วัดมุมและกำหนดแนวในงานสำรวจและงานก่อสร้าง",
+        "workingPrinciple": "ระบบแกนหมุนและวงกลมสเกลช่วยให้สามารถวัดมุมในแนวราบและแนวดิ่ง",
+        "measurement": [
+            "Horizontal Angle",
+            "Vertical Angle"
+        ]
+    },
+    {
+        "id": 42,
+        "name": "Automatic Level",
+        "thaiName": "กล้องระดับอัตโนมัติ",
+        "category": "civil",
+        "keywords": [
+            "automatic level",
+            "surveying level",
+            "กล้องระดับ",
+            "วัดระดับ"
+        ],
+        "image": "images/equipment/automatic-level.jpg",
+        "description": "กล้องสำรวจสำหรับวัดความแตกต่างของระดับความสูงระหว่างจุดต่าง ๆ",
+        "function": "ใช้หาค่าระดับในงานก่อสร้างและงานสำรวจ",
+        "workingPrinciple": "ระบบชดเชยอัตโนมัติช่วยรักษาแนวเล็งให้อยู่ในแนวระดับ",
+        "measurement": [
+            "Elevation",
+            "Height Difference (m)",
+            "Distance (m)"
+        ]
+    },
+    {
+        "id": 43,
+        "name": "Laser Level",
+        "thaiName": "เครื่องวัดระดับเลเซอร์",
+        "category": "civil",
+        "keywords": [
+            "laser level",
+            "laser",
+            "เครื่องวัดระดับ",
+            "เลเซอร์วัดระดับ"
+        ],
+        "image": "images/equipment/laser-level.jpg",
+        "description": "เครื่องมือสร้างแนวเลเซอร์เพื่อใช้เป็นแนวอ้างอิงในงานก่อสร้าง",
+        "function": "ใช้ตรวจสอบแนวระดับ แนวดิ่ง และแนวการติดตั้ง",
+        "workingPrinciple": "ไดโอดเลเซอร์สร้างลำแสงที่ใช้เป็นแนวอ้างอิงสำหรับการจัดตำแหน่ง",
+        "measurement": [
+            "Level Accuracy",
+            "Working Distance (m)"
+        ]
+    },
+    {
+        "id": 44,
+        "name": "GNSS Surveying Receiver",
+        "thaiName": "เครื่องรับสัญญาณ GNSS สำรวจ",
+        "category": "civil",
+        "keywords": [
+            "gnss receiver",
+            "gnss",
+            "gps surveying",
+            "เครื่องรับ GNSS",
+            "สำรวจพิกัด"
+        ],
+        "image": "images/equipment/gnss-receiver.jpg",
+        "description": "เครื่องรับสัญญาณดาวเทียมสำหรับกำหนดตำแหน่งและพิกัดในการสำรวจ",
+        "function": "ใช้หาพิกัดตำแหน่งสำหรับงานสำรวจและทำแผนที่",
+        "workingPrinciple": "รับสัญญาณจากดาวเทียมนำทางหลายระบบและคำนวณตำแหน่งของเครื่องรับ",
+        "measurement": [
+            "Latitude",
+            "Longitude",
+            "Elevation",
+            "Position Accuracy"
+        ]
+    },
+    {
+        "id": 45,
+        "name": "Surveying Tripod",
+        "thaiName": "ขาตั้งกล้องสำรวจ",
+        "category": "civil",
+        "keywords": [
+            "surveying tripod",
+            "tripod",
+            "ขาตั้งกล้อง",
+            "ขาตั้งกล้องสำรวจ"
+        ],
+        "image": "images/equipment/surveying-tripod.jpg",
+        "description": "ขาตั้งสำหรับรองรับกล้องสำรวจและอุปกรณ์วัดต่าง ๆ ให้มั่นคง",
+        "function": "ใช้รองรับ Total Station, Theodolite และกล้องสำรวจอื่น ๆ",
+        "workingPrinciple": "ขาทั้งสามสร้างฐานรองรับที่มั่นคงและสามารถปรับระดับให้เหมาะกับพื้นที่",
+        "measurement": [
+            "Tripod Height (m)",
+            "Platform Level"
+        ]
+    },
+    {
+        "id": 46,
+        "name": "Pressure Gauge",
+        "thaiName": "เกจวัดความดัน",
+        "category": "instrumentation",
+        "keywords": [
+            "pressure gauge",
+            "pressure meter",
+            "เกจวัดความดัน",
+            "เครื่องวัดความดัน",
+            "วัดความดัน"
+        ],
+        "image": "images/equipment/pressure-gauge.jpg",
+        "description": "เครื่องมือสำหรับวัดความดันของของเหลวหรือก๊าซในระบบ",
+        "function": "ใช้ตรวจสอบแรงดันในระบบท่อ เครื่องจักร ระบบลม และระบบไฮดรอลิก",
+        "workingPrinciple": "แรงดันของของไหลทำให้ชิ้นส่วนตรวจจับ เช่น Bourdon Tube เกิดการเปลี่ยนรูปและแสดงค่าแรงดัน",
+        "measurement": [
+            "Pressure (Pa)",
+            "Pressure (kPa)",
+            "Pressure (bar)",
+            "Pressure (psi)"
+        ]
+    },
+    {
+        "id": 47,
+        "name": "Thermometer",
+        "thaiName": "เครื่องวัดอุณหภูมิ",
+        "category": "instrumentation",
+        "keywords": [
+            "thermometer",
+            "temperature meter",
+            "เครื่องวัดอุณหภูมิ",
+            "วัดอุณหภูมิ"
+        ],
+        "image": "images/equipment/thermometer.jpg",
+        "description": "เครื่องมือสำหรับวัดอุณหภูมิของวัตถุ อากาศ หรือของเหลว",
+        "function": "ใช้ตรวจสอบอุณหภูมิในงานอุตสาหกรรม ห้องทดลอง และระบบเครื่องจักร",
+        "workingPrinciple": "ตรวจจับการเปลี่ยนแปลงทางกายภาพหรือสัญญาณไฟฟ้าที่สัมพันธ์กับอุณหภูมิ",
+        "measurement": [
+            "Temperature (°C)",
+            "Temperature (°F)",
+            "Temperature (K)"
+        ]
+    },
+    {
+        "id": 48,
+        "name": "Tachometer",
+        "thaiName": "เครื่องวัดความเร็วรอบ",
+        "category": "instrumentation",
+        "keywords": [
+            "tachometer",
+            "rpm meter",
+            "เครื่องวัดความเร็วรอบ",
+            "วัดรอบ",
+            "วัดความเร็วรอบ"
+        ],
+        "image": "images/equipment/tachometer.jpg",
+        "description": "เครื่องมือสำหรับวัดความเร็วรอบของเพลาหรือชิ้นส่วนที่กำลังหมุน",
+        "function": "ใช้ตรวจสอบความเร็วรอบของมอเตอร์ เครื่องจักร และเพลา",
+        "workingPrinciple": "ตรวจจับการหมุนด้วยเซนเซอร์แสง แม่เหล็ก หรือระบบสัมผัสแล้วคำนวณจำนวนรอบต่อเวลา",
+        "measurement": [
+            "Rotational Speed (RPM)",
+            "Frequency (Hz)"
+        ]
+    },
+    {
+        "id": 49,
+        "name": "Vibration Meter",
+        "thaiName": "เครื่องวัดการสั่นสะเทือน",
+        "category": "instrumentation",
+        "keywords": [
+            "vibration meter",
+            "vibration tester",
+            "เครื่องวัดการสั่นสะเทือน",
+            "วัดแรงสั่น",
+            "vibration"
+        ],
+        "image": "images/equipment/vibration-meter.jpg",
+        "description": "เครื่องมือสำหรับวัดระดับการสั่นสะเทือนของเครื่องจักรและอุปกรณ์",
+        "function": "ใช้ตรวจสอบสภาพเครื่องจักรและค้นหาความผิดปกติจากการสั่น",
+        "workingPrinciple": "เซนเซอร์ Accelerometer ตรวจจับการสั่นสะเทือนและแปลงเป็นสัญญาณเพื่อคำนวณค่าการสั่น",
+        "measurement": [
+            "Acceleration (m/s²)",
+            "Velocity (mm/s)",
+            "Displacement (mm)",
+            "Frequency (Hz)"
+        ]
+    },
+    {
+        "id": 50,
+        "name": "Flow Meter",
+        "thaiName": "เครื่องวัดอัตราการไหล",
+        "category": "instrumentation",
+        "keywords": [
+            "flow meter",
+            "flowmeter",
+            "เครื่องวัดอัตราการไหล",
+            "วัดอัตราการไหล",
+            "อัตราการไหล"
+        ],
+        "image": "images/equipment/flow-meter.jpg",
+        "description": "เครื่องมือสำหรับวัดอัตราการไหลของของเหลวหรือก๊าซในระบบท่อ",
+        "function": "ใช้ตรวจสอบและควบคุมอัตราการไหลในระบบอุตสาหกรรมและกระบวนการผลิต",
+        "workingPrinciple": "ใช้หลักการวัดที่เหมาะสมกับชนิดของ Flow Meter เช่น ความเร็ว ความดันแตกต่าง หรือสนามแม่เหล็ก",
+        "measurement": [
+            "Flow Rate (L/min)",
+            "Flow Rate (m³/h)",
+            "Velocity (m/s)"
+        ]
+    }
+]

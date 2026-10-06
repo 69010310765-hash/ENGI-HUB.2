@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Unit Converter | ENGI HUB</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+        <div class="menu">
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="index.html#tools">
+        Tools
+    </a>
+
+    <a href="formulas.html">
+        Formulas
+    </a>
+
+    <a href="history.html">
+        History
+    </a>
+
+    <a href="index.html#about">
+        About
+    </a>
+
+    <button id="darkModeBtn" class="dark-mode-btn">
+        🌙
+    </button>
+
+</div>
+
+    </nav>
+
+
+    <!-- Unit Converter -->
+    <main class="calculator-page">
+
+        <div class="calculator-card">
+
+            <h1>
+                🔄 Unit Converter
+            </h1>
+
+            <p class="calculator-description">
+                แปลงหน่วยที่ใช้ในงานวิศวกรรม
+            </p>
+
+
+            <!-- Unit Explanation -->
+
+            <div class="formula-info">
+
+                <h2>📚 หมวดหมู่และหน่วย</h2>
+
+                <div class="formula-item">
+
+                    <strong>
+                        📏 Length — ความยาว
+                    </strong>
+
+                    <p>
+                        ใช้สำหรับแปลงหน่วยความยาว
+                    </p>
+
+                    <span>
+                        mm, cm, m, km
+                    </span>
+
+                </div>
+
+
+                <div class="formula-item">
+
+                    <strong>
+                        ⚖️ Mass — มวล
+                    </strong>
+
+                    <p>
+                        ใช้สำหรับแปลงหน่วยมวล
+                    </p>
+
+                    <span>
+                        g, kg, ton
+                    </span>
+
+                </div>
+
+
+                <div class="formula-item">
+
+                    <strong>
+                        ⏱️ Time — เวลา
+                    </strong>
+
+                    <p>
+                        ใช้สำหรับแปลงหน่วยเวลา
+                    </p>
+
+                    <span>
+                        s, min, h
+                    </span>
+
+                </div>
+
+
+                <div class="formula-item">
+
+                    <strong>
+                        🌡️ Temperature — อุณหภูมิ
+                    </strong>
+
+                    <p>
+                        ใช้สำหรับแปลงหน่วยอุณหภูมิ
+                    </p>
+
+                    <span>
+                        °C, °F, K
+                    </span>
+
+                </div>
+
+
+                <div class="formula-item">
+
+                    <strong>
+                        💨 Pressure — ความดัน
+                    </strong>
+
+                    <p>
+                        ใช้สำหรับแปลงหน่วยความดัน
+                    </p>
+
+                    <span>
+                        Pa, kPa, bar, psi
+                    </span>
+
+                </div>
+
+            </div>
+
+<!-- Example -->
+
+<div class="example-box">
+
+    <h2>💡 ตัวอย่างการแปลงหน่วย</h2>
+
+    <p>
+        สมมติว่าต้องการแปลงความยาว
+        <strong>100 cm</strong>
+        เป็นเมตร
+    </p>
+
+    <div class="example-formula">
+        100 cm = 1 m
+    </div>
+
+    <p>
+        เนื่องจาก
+        <strong>1 m = 100 cm</strong>
+    </p>
+
+    <p>
+        ดังนั้น
+        <strong>100 cm = 1 m</strong>
+    </p>
+
+    <div class="example-result">
+        ✅ ผลลัพธ์คือ
+        <strong>1 Meter (m)</strong>
+    </div>
+
+</div>
+
+            <!-- Category -->
+
+            <label>
+                ประเภทหน่วย
+            </label>
+
+            <select id="category">
+
+                <option value="length">
+                    📏 Length
+                </option>
+
+                <option value="mass">
+                    ⚖️ Mass
+                </option>
+
+                <option value="time">
+                    ⏱️ Time
+                </option>
+
+                <option value="temperature">
+                    🌡️ Temperature
+                </option>
+
+                <option value="pressure">
+                    💨 Pressure
+                </option>
+
+            </select>
+
+
+            <!-- From -->
+
+            <div class="input-group">
+
+                <label>
+                    จาก
+                </label>
+
+                <input
+                    type="number"
+                    id="inputValue"
+                    placeholder="เช่น 100"
+                >
+
+                <select id="fromUnit">
+                </select>
+
+            </div>
+
+
+            <!-- Swap -->
+
+            <div style="text-align: center; margin: 15px 0;">
+
+                <button
+                    type="button"
+                    id="swapButton"
+                    style="padding: 8px 18px;"
+                >
+                    ⇅ สลับหน่วย
+                </button>
+
+            </div>
+
+
+            <!-- To -->
+
+            <div class="input-group">
+
+                <label>
+                    เป็น
+                </label>
+
+                <select id="toUnit">
+                </select>
+
+            </div>
+
+
+            <!-- Convert -->
+
+            <button
+                class="calculate-button"
+                onclick="convertUnit()"
+            >
+
+                🔄 Convert
+
+            </button>
+
+
+            <!-- Result -->
+
+            <div id="result"
+                 class="result-box">
+
+                <h2>
+                    Result
+                </h2>
+
+                <p id="answer">
+                    -
+                </p>
+
+            </div>
+
+
+            <!-- Back Home -->
+
+            <a href="index.html"
+               class="back-button">
+
+                🏠 Back to Home
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- JavaScript -->
+
+    <script src="js/unit.js"></script>
+
+    <script src="js/darkmode.js"></script>
+
+</body>
+
+</html>

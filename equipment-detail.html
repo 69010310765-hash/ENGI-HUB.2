@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Equipment Detail | ENGI HUB
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* ========================================
+           Equipment Detail Page
+        ======================================== */
+
+        .equipment-detail-page {
+
+            width: 90%;
+            max-width: 1100px;
+
+            margin: 50px auto;
+
+        }
+
+
+        /* ========================================
+           Back Button
+        ======================================== */
+
+        .equipment-back {
+
+            display: inline-block;
+
+            margin-bottom: 25px;
+
+            padding: 10px 18px;
+
+            background: #e2e8f0;
+
+            color: #334155;
+
+            text-decoration: none;
+
+            border-radius: 10px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+
+        }
+
+
+        .equipment-back:hover {
+
+            background: #cbd5e1;
+
+        }
+
+
+        /* ========================================
+           Main Card
+        ======================================== */
+
+        .equipment-detail-card {
+
+            background: white;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 8px 30px
+                rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        /* ========================================
+           Top Section
+        ======================================== */
+
+        .equipment-detail-top {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 35px;
+
+            padding: 35px;
+
+            align-items: center;
+
+        }
+
+
+        /* ========================================
+           Image
+        ======================================== */
+
+        .equipment-detail-image {
+
+            width: 100%;
+
+            max-height: 450px;
+
+            object-fit: contain;
+
+            border-radius: 16px;
+
+            background: #f8fafc;
+
+            padding: 20px;
+
+            box-sizing: border-box;
+
+        }
+
+
+        /* ========================================
+           Information
+        ======================================== */
+
+        .equipment-detail-info {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+
+        }
+
+
+        .equipment-detail-category {
+
+            display: inline-block;
+
+            width: fit-content;
+
+            padding: 6px 12px;
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+            border-radius: 999px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+        }
+
+
+        .equipment-detail-info h1 {
+
+            margin: 0;
+
+            color: #1e293b;
+
+            font-size: 36px;
+
+            line-height: 1.2;
+
+        }
+
+
+        .equipment-detail-thai {
+
+            margin: 0;
+
+            color: #2563eb;
+
+            font-size: 20px;
+
+            font-weight: 600;
+
+        }
+
+
+        .equipment-detail-description {
+
+            margin-top: 10px;
+
+            color: #475569;
+
+            line-height: 1.8;
+
+            font-size: 16px;
+
+        }
+
+
+        /* ========================================
+           Detail Sections
+        ======================================== */
+
+        .equipment-detail-content {
+
+            padding: 0 35px 35px;
+
+        }
+
+
+        .equipment-detail-section {
+
+            margin-top: 25px;
+
+            padding: 25px;
+
+            background: #f8fafc;
+
+            border-radius: 15px;
+
+            border: 1px solid #e2e8f0;
+
+        }
+
+
+        .equipment-detail-section h2 {
+
+            margin-top: 0;
+
+            margin-bottom: 15px;
+
+            color: #1e293b;
+
+            font-size: 21px;
+
+        }
+
+
+        .equipment-detail-section p {
+
+            margin: 0;
+
+            color: #475569;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* ========================================
+           Measurement List
+        ======================================== */
+
+        .measurement-list {
+
+            margin: 0;
+
+            padding-left: 22px;
+
+        }
+
+
+        .measurement-list li {
+
+            margin-bottom: 8px;
+
+            color: #475569;
+
+        }
+
+
+        /* ========================================
+           Keywords
+        ======================================== */
+
+        .equipment-keywords {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+        }
+
+
+        .equipment-keyword {
+
+            padding: 7px 12px;
+
+            background: #e0f2fe;
+
+            color: #0369a1;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+        }
+
+
+        /* ========================================
+           Loading / Error
+        ======================================== */
+
+        .equipment-detail-message {
+
+            background: white;
+
+            padding: 50px 25px;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+
+            color: #64748b;
+
+        }
+
+
+        .equipment-detail-message h2 {
+
+            color: #1e293b;
+
+        }
+
+
+        /* ========================================
+           Responsive
+        ======================================== */
+
+        @media (max-width: 800px) {
+
+            .equipment-detail-top {
+
+                grid-template-columns: 1fr;
+
+                padding: 25px;
+
+            }
+
+
+            .equipment-detail-content {
+
+                padding:
+                    0
+                    25px
+                    25px;
+
+            }
+
+
+            .equipment-detail-info h1 {
+
+                font-size: 28px;
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .equipment-detail-page {
+
+                width: 92%;
+
+                margin-top: 30px;
+
+            }
+
+
+            .equipment-detail-top {
+
+                padding: 18px;
+
+                gap: 20px;
+
+            }
+
+
+            .equipment-detail-content {
+
+                padding:
+                    0
+                    18px
+                    18px;
+
+            }
+
+
+            .equipment-detail-section {
+
+                padding: 18px;
+
+            }
+
+
+            .equipment-detail-info h1 {
+
+                font-size: 24px;
+
+            }
+
+
+            .equipment-detail-thai {
+
+                font-size: 17px;
+
+            }
+
+        }
+
+
+        /* ========================================
+           Dark Mode
+        ======================================== */
+
+        body.dark-mode
+        .equipment-detail-card {
+
+            background: #1e293b;
+
+        }
+
+
+        body.dark-mode
+        .equipment-detail-image {
+
+            background: #0f172a;
+
+        }
+
+
+        body.dark-mode
+        .equipment-detail-info h1 {
+
+            color: #f8fafc;
+
+        }
+
+
+        body.dark-mode
+        .equipment-detail-description,
+
+        body.dark-mode
+        .equipment-detail-section p,
+
+        body.dark-mode
+        .measurement-list li {
+
+            color: #cbd5e1;
+
+        }
+
+
+        body.dark-mode
+        .equipment-detail-section {
+
+            background: #0f172a;
+
+            border-color: #334155;
+
+        }
+
+
+        body.dark-mode
+        .equipment-detail-section h2 {
+
+            color: #f8fafc;
+
+        }
+
+
+        body.dark-mode
+        .equipment-back {
+
+            background: #334155;
+
+            color: #f8fafc;
+
+        }
+
+
+        body.dark-mode
+        .equipment-back:hover {
+
+            background: #475569;
+
+        }
+
+
+        body.dark-mode
+        .equipment-detail-message {
+
+            background: #1e293b;
+
+        }
+
+
+        body.dark-mode
+        .equipment-detail-message h2 {
+
+            color: #f8fafc;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         Navigation
+    ======================================== -->
+
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+
+        <div class="menu">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#tools">
+                Tools
+            </a>
+
+            <a href="formulas.html">
+                Formulas
+            </a>
+
+            <a href="equipment.html">
+                Equipment
+            </a>
+
+            <a href="physics.html">
+                ⚛ Physics Simulation
+            </a>
+
+            <a href="history.html">
+                History
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <button
+                id="darkModeBtn"
+                class="dark-mode-btn"
+                type="button"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ========================================
+         Main
+    ======================================== -->
+
+    <main class="equipment-detail-page">
+
+
+        <a
+            href="index.html#equipment"
+            class="equipment-back"
+        >
+            ← กลับไปหน้า Equipment
+        </a>
+
+
+        <div id="equipmentDetail">
+
+            <div class="equipment-detail-message">
+
+                <h2>
+                    ⏳ กำลังโหลดข้อมูล...
+                </h2>
+
+                <p>
+                    กรุณารอสักครู่
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- ========================================
+         JavaScript
+    ======================================== -->
+
+    <script src="js/equipment-detail.js"></script>
+
+
+    <!-- ========================================
+         Dark Mode
+    ======================================== -->
+
+    <script>
+
+        const darkModeBtn =
+            document.getElementById(
+                "darkModeBtn"
+            );
+
+
+        if (darkModeBtn) {
+
+            if (
+                localStorage.getItem(
+                    "darkMode"
+                ) === "enabled"
+            ) {
+
+                document.body.classList.add(
+                    "dark-mode"
+                );
+
+                darkModeBtn.textContent =
+                    "☀️";
+
+            }
+
+
+            darkModeBtn.addEventListener(
+                "click",
+                function () {
+
+                    document.body.classList.toggle(
+                        "dark-mode"
+                    );
+
+
+                    if (
+                        document.body.classList.contains(
+                            "dark-mode"
+                        )
+                    ) {
+
+                        localStorage.setItem(
+                            "darkMode",
+                            "enabled"
+                        );
+
+                        darkModeBtn.textContent =
+                            "☀️";
+
+                    }
+
+                    else {
+
+                        localStorage.setItem(
+                            "darkMode",
+                            "disabled"
+                        );
+
+                        darkModeBtn.textContent =
+                            "🌙";
+
+                    }
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Motion Laboratory | ENGI HUB</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="icon"
+        href="data:,"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+        }
+
+
+        /* ========================================
+           HEADER
+        ======================================== */
+
+        .motion-header {
+
+            padding: 75px 20px 55px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e3a8a
+                );
+
+        }
+
+
+        .motion-badge {
+
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            margin-bottom: 18px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,0.12);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.2);
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+        .motion-header h1 {
+
+            margin: 0 0 14px;
+
+            font-size: 42px;
+
+            font-weight: 800;
+
+        }
+
+
+        .motion-header p {
+
+            max-width: 760px;
+
+            margin: 0 auto;
+
+            color: #dbeafe;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+        }
+
+
+        /* ========================================
+           MAIN
+        ======================================== */
+
+        .motion-container {
+
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            padding: 45px 20px 70px;
+
+        }
+
+
+        .motion-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.4fr)
+                minmax(320px, 0.8fr);
+
+            gap: 24px;
+
+            align-items: start;
+
+        }
+
+
+        /* ========================================
+           SIMULATION CARD
+        ======================================== */
+
+        .motion-card {
+
+            background: white;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(15,23,42,0.08);
+
+            overflow: hidden;
+
+        }
+
+
+        .motion-card-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 20px 24px;
+
+            border-bottom:
+                1px solid
+                #e2e8f0;
+
+        }
+
+
+        .motion-card-header h2 {
+
+            margin: 0;
+
+            color: #0f172a;
+
+            font-size: 20px;
+
+        }
+
+
+        .motion-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+        }
+
+
+        .status-dot {
+
+            width: 10px;
+
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #94a3b8;
+
+        }
+
+
+        .status-dot.running {
+            background: #22c55e;
+        }
+
+
+        .status-dot.paused {
+            background: #f59e0b;
+        }
+
+
+        .status-dot.finished {
+            background: #3b82f6;
+        }
+
+
+        .status-dot.stopped {
+            background: #94a3b8;
+        }
+
+
+        /* ========================================
+           CANVAS
+        ======================================== */
+
+        .motion-canvas-wrap {
+
+            position: relative;
+
+            padding: 20px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #eff6ff,
+                    #f8fafc
+                );
+
+        }
+
+
+        #simulationCanvas {
+
+            display: block;
+
+            width: 100%;
+
+            height: auto;
+
+            min-height: 360px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #dbeafe,
+                    #f8fafc
+                );
+
+        }
+
+
+        .canvas-help {
+
+            margin-top: 10px;
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+        }
+
+
+        /* ========================================
+           CONTROLS
+        ======================================== */
+
+        .control-card {
+
+            padding: 24px;
+
+        }
+
+
+        .control-section {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .control-section:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .control-section h3 {
+
+            margin: 0 0 15px;
+
+            color: #0f172a;
+
+            font-size: 17px;
+
+        }
+
+
+        .field {
+
+            margin-bottom: 17px;
+
+        }
+
+
+        .field:last-child {
+
+            margin-bottom: 0;
+
+        }
+
+
+        .field-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .field-header label {
+
+            color: #334155;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+        .value-display {
+
+            color: #2563eb;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+
+        }
+
+
+        select {
+
+            width: 100%;
+
+            min-height: 46px;
+
+            padding: 10px 12px;
+
+            border:
+                1px solid
+                #cbd5e1;
+
+            border-radius: 10px;
+
+            background: white;
+
+            color: #0f172a;
+
+            font-size: 15px;
+
+            outline: none;
+
+        }
+
+
+        select:focus {
+
+            border-color: #2563eb;
+
+        }
+
+
+        input[type="range"] {
+
+            width: 100%;
+
+            cursor: pointer;
+
+            accent-color: #2563eb;
+
+        }
+
+
+        .range-scale {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-top: 5px;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+
+        }
+
+
+        /* ========================================
+           BUTTONS
+        ======================================== */
+
+        .motion-buttons {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            margin-top: 25px;
+
+        }
+
+
+        .motion-button {
+
+            min-height: 46px;
+
+            padding: 10px 14px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease;
+
+        }
+
+
+        .motion-button:hover {
+
+            transform: translateY(-1px);
+
+        }
+
+
+        .start-button {
+
+            background: #2563eb;
+
+            color: white;
+
+        }
+
+
+        .pause-button {
+
+            background: #f59e0b;
+
+            color: white;
+
+        }
+
+
+        .resume-button {
+
+            background: #16a34a;
+
+            color: white;
+
+        }
+
+
+        .reset-button {
+
+            background: #e2e8f0;
+
+            color: #334155;
+
+        }
+
+
+        .save-button {
+
+            grid-column: 1 / -1;
+
+            background: #0f172a;
+
+            color: white;
+
+        }
+
+
+        /* ========================================
+           REALTIME DATA
+        ======================================== */
+
+        .realtime-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            padding: 20px;
+
+        }
+
+
+        .realtime-item {
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+        }
+
+
+        .realtime-label {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+        }
+
+
+        .realtime-value {
+
+            display: block;
+
+            color: #0f172a;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* ========================================
+           GRAPH
+        ======================================== */
+
+        .graph-card {
+
+            margin-top: 24px;
+
+        }
+
+
+        .graph-controls {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            padding: 15px 20px;
+
+            border-bottom:
+                1px solid
+                #e2e8f0;
+
+        }
+
+
+        .graph-button {
+
+            padding: 8px 12px;
+
+            border:
+                1px solid
+                #cbd5e1;
+
+            border-radius: 8px;
+
+            background: white;
+
+            color: #475569;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+        }
+
+
+        .graph-button.active {
+
+            border-color: #2563eb;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+        }
+
+
+        .graph-area {
+
+            padding: 20px;
+
+        }
+
+
+        #graphCanvas {
+
+            display: block;
+
+            width: 100%;
+
+            height: auto;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+        }
+
+
+        /* ========================================
+           RESULTS
+        ======================================== */
+
+        .results-card {
+
+            margin-top: 24px;
+
+        }
+
+
+        .results-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            padding: 20px;
+
+        }
+
+
+        .result-box {
+
+            padding: 18px;
+
+            border-radius: 14px;
+
+            background: #f8fafc;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+        }
+
+
+        .result-box span {
+
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+        }
+
+
+        .result-box strong {
+
+            display: block;
+
+            color: #0f172a;
+
+            font-size: 21px;
+
+        }
+
+
+        /* ========================================
+           FORMULA
+        ======================================== */
+
+        .formula-card {
+
+            margin-top: 24px;
+
+            padding: 24px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #f8fafc
+                );
+
+            border:
+                1px solid
+                #dbeafe;
+
+        }
+
+
+        .formula-card h2 {
+
+            margin: 0 0 15px;
+
+            color: #0f172a;
+
+            font-size: 20px;
+
+        }
+
+
+        .formula-list {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+        }
+
+
+        .formula-item {
+
+            padding: 13px;
+
+            border-radius: 10px;
+
+            background: white;
+
+            color: #334155;
+
+            font-family:
+                "Courier New",
+                monospace;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+        /* ========================================
+           DARK MODE
+        ======================================== */
+
+        body.dark-mode
+        .motion-card {
+
+            background: #1e293b;
+
+            border-color: #334155;
+
+        }
+
+
+        body.dark-mode
+        .motion-card-header {
+
+            border-color: #334155;
+
+        }
+
+
+        body.dark-mode
+        .motion-card-header h2 {
+
+            color: white;
+
+        }
+
+
+        body.dark-mode
+        .control-section h3 {
+
+            color: white;
+
+        }
+
+
+        body.dark-mode
+        .field-header label {
+
+            color: #cbd5e1;
+
+        }
+
+
+        body.dark-mode
+        select {
+
+            background: #0f172a;
+
+            border-color: #475569;
+
+            color: white;
+
+        }
+
+
+        body.dark-mode
+        .realtime-item {
+
+            background: #0f172a;
+
+            border-color: #334155;
+
+        }
+
+
+        body.dark-mode
+        .realtime-value {
+
+            color: white;
+
+        }
+
+
+        body.dark-mode
+        .graph-button {
+
+            background: #0f172a;
+
+            border-color: #475569;
+
+            color: #cbd5e1;
+
+        }
+
+
+        body.dark-mode
+        .graph-button.active {
+
+            background: #172554;
+
+            border-color: #60a5fa;
+
+            color: #93c5fd;
+
+        }
+
+
+        body.dark-mode
+        .formula-card {
+
+            background: #0f172a;
+
+            border-color: #334155;
+
+        }
+
+
+        body.dark-mode
+        .formula-card h2 {
+
+            color: white;
+
+        }
+
+
+        body.dark-mode
+        .formula-item {
+
+            background: #1e293b;
+
+            color: #cbd5e1;
+
+        }
+
+
+        body.dark-mode
+        .result-box {
+
+            background: #0f172a;
+
+            border-color: #334155;
+
+        }
+
+
+        body.dark-mode
+        .result-box strong {
+
+            color: white;
+
+        }
+
+
+        body.dark-mode
+        .motion-canvas-wrap {
+
+            background: #0f172a;
+
+        }
+
+
+        body.dark-mode
+        .canvas-help {
+
+            color: #94a3b8;
+
+        }
+
+
+        /* ========================================
+           RESPONSIVE
+        ======================================== */
+
+        @media (max-width: 950px) {
+
+            .motion-layout {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .motion-header {
+
+                padding:
+                    55px 18px 45px;
+
+            }
+
+
+            .motion-header h1 {
+
+                font-size: 32px;
+
+            }
+
+
+            .motion-header p {
+
+                font-size: 15px;
+
+            }
+
+
+            .motion-container {
+
+                padding:
+                    30px 14px 55px;
+
+            }
+
+
+            .results-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .formula-list {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .motion-buttons {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .save-button {
+
+                grid-column: auto;
+
+            }
+
+
+            .realtime-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         NAVBAR
+    ========================================= -->
+
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+        <div class="menu">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#tools">
+                Tools
+            </a>
+
+            <a href="formulas.html">
+                Formulas
+            </a>
+
+            <a href="history.html">
+                History
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <button
+                id="darkModeBtn"
+                class="dark-mode-btn"
+                type="button"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ========================================
+         HEADER
+    ========================================= -->
+
+    <header class="motion-header">
+
+        <div class="motion-badge">
+            🏃 ENGINEERING PHYSICS
+        </div>
+
+        <h1>
+            Motion Laboratory
+        </h1>
+
+        <p>
+            ห้องทดลองการเคลื่อนที่แบบ 1 มิติ
+            ทดลองตำแหน่ง ความเร็ว และความเร่ง
+            พร้อมดูผลลัพธ์และกราฟแบบ Real-time
+        </p>
+
+    </header>
+
+
+    <!-- ========================================
+         MAIN
+    ========================================= -->
+
+    <main class="motion-container">
+
+
+        <div class="motion-layout">
+
+
+            <!-- ====================================
+                 LEFT
+            ===================================== -->
+
+            <section class="motion-card">
+
+                <div class="motion-card-header">
+
+                    <h2>
+                        🏃 Motion Simulation
+                    </h2>
+
+                    <div class="motion-status">
+
+                        <span
+                            id="statusDot"
+                            class="status-dot stopped"
+                        ></span>
+
+                        <span id="statusText">
+                            Ready
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="motion-canvas-wrap">
+
+                    <canvas
+                        id="simulationCanvas"
+                        width="900"
+                        height="430"
+                    ></canvas>
+
+                    <div class="canvas-help">
+                        แสดงการเคลื่อนที่ของวัตถุบนแกน 1 มิติ
+                    </div>
+
+                </div>
+
+
+                <!-- REALTIME -->
+
+                <div class="realtime-grid">
+
+                    <div class="realtime-item">
+
+                        <span class="realtime-label">
+                            Time
+                        </span>
+
+                        <strong
+                            id="realtimeTime"
+                            class="realtime-value"
+                        >
+                            0.00 s
+                        </strong>
+
+                    </div>
+
+
+                    <div class="realtime-item">
+
+                        <span class="realtime-label">
+                            Position
+                        </span>
+
+                        <strong
+                            id="realtimePosition"
+                            class="realtime-value"
+                        >
+                            0.00 m
+                        </strong>
+
+                    </div>
+
+
+                    <div class="realtime-item">
+
+                        <span class="realtime-label">
+                            Velocity
+                        </span>
+
+                        <strong
+                            id="realtimeVelocity"
+                            class="realtime-value"
+                        >
+                            0.00 m/s
+                        </strong>
+
+                    </div>
+
+
+                    <div class="realtime-item">
+
+                        <span class="realtime-label">
+                            Acceleration
+                        </span>
+
+                        <strong
+                            id="realtimeAcceleration"
+                            class="realtime-value"
+                        >
+                            0.00 m/s²
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ====================================
+                 RIGHT
+            ===================================== -->
+
+            <section class="motion-card control-card">
+
+
+                <div class="control-section">
+
+                    <h3>
+                        ⚙️ Motion Settings
+                    </h3>
+
+
+                    <div class="field">
+
+                        <div class="field-header">
+
+                            <label for="motionType">
+                                ประเภทการเคลื่อนที่
+                            </label>
+
+                        </div>
+
+                        <select id="motionType">
+
+                            <option value="uniform">
+                                Uniform Motion
+                                — ความเร็วคงที่
+                            </option>
+
+                            <option value="accelerated">
+                                Uniformly Accelerated Motion
+                                — ความเร่งคงที่
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <div class="field-header">
+
+                            <label for="initialPosition">
+                                ตำแหน่งเริ่มต้น
+                            </label>
+
+                            <span
+                                id="initialPositionValue"
+                                class="value-display"
+                            >
+                                0.0 m
+                            </span>
+
+                        </div>
+
+                        <input
+                            id="initialPosition"
+                            type="range"
+                            min="0"
+                            max="20"
+                            step="0.1"
+                            value="0"
+                        >
+
+                        <div class="range-scale">
+                            <span>0 m</span>
+                            <span>20 m</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <div class="field-header">
+
+                            <label for="initialVelocity">
+                                ความเร็วเริ่มต้น
+                            </label>
+
+                            <span
+                                id="initialVelocityValue"
+                                class="value-display"
+                            >
+                                5.0 m/s
+                            </span>
+
+                        </div>
+
+                        <input
+                            id="initialVelocity"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="5"
+                        >
+
+                        <div class="range-scale">
+                            <span>-10</span>
+                            <span>10 m/s</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <div class="field-header">
+
+                            <label for="acceleration">
+                                ความเร่ง
+                            </label>
+
+                            <span
+                                id="accelerationValue"
+                                class="value-display"
+                            >
+                                0.0 m/s²
+                            </span>
+
+                        </div>
+
+                        <input
+                            id="acceleration"
+                            type="range"
+                            min="-5"
+                            max="5"
+                            step="0.1"
+                            value="0"
+                        >
+
+                        <div class="range-scale">
+                            <span>-5</span>
+                            <span>5 m/s²</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <div class="field-header">
+
+                            <label for="simulationTime">
+                                เวลาจำลอง
+                            </label>
+
+                            <span
+                                id="simulationTimeValue"
+                                class="value-display"
+                            >
+                                10 s
+                            </span>
+
+                        </div>
+
+                        <input
+                            id="simulationTime"
+                            type="range"
+                            min="1"
+                            max="30"
+                            step="1"
+                            value="10"
+                        >
+
+                        <div class="range-scale">
+                            <span>1 s</span>
+                            <span>30 s</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="motion-buttons">
+
+                    <button
+                        id="startButton"
+                        class="motion-button start-button"
+                        type="button"
+                    >
+                        ▶ Start
+                    </button>
+
+                    <button
+                        id="pauseButton"
+                        class="motion-button pause-button"
+                        type="button"
+                    >
+                        ⏸ Pause
+                    </button>
+
+                    <button
+                        id="resumeButton"
+                        class="motion-button resume-button"
+                        type="button"
+                    >
+                        ▶ Resume
+                    </button>
+
+                    <button
+                        id="resetButton"
+                        class="motion-button reset-button"
+                        type="button"
+                    >
+                        ↻ Reset
+                    </button>
+
+                    <button
+                        id="saveButton"
+                        class="motion-button save-button"
+                        type="button"
+                    >
+                        💾 Save to History
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ========================================
+             RESULTS
+        ========================================= -->
+
+        <section class="motion-card results-card">
+
+            <div class="motion-card-header">
+
+                <h2>
+                    📊 Final Results
+                </h2>
+
+            </div>
+
+
+            <div class="results-grid">
+
+                <div class="result-box">
+
+                    <span>
+                        Final Position
+                    </span>
+
+                    <strong id="finalPositionResult">
+                        0.00 m
+                    </strong>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <span>
+                        Final Velocity
+                    </span>
+
+                    <strong id="finalVelocityResult">
+                        0.00 m/s
+                    </strong>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <span>
+                        Final Acceleration
+                    </span>
+
+                    <strong id="finalAccelerationResult">
+                        0.00 m/s²
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             GRAPH
+        ========================================= -->
+
+        <section class="motion-card graph-card">
+
+            <div class="motion-card-header">
+
+                <h2>
+                    📈 Motion Graph
+                </h2>
+
+            </div>
+
+
+            <div class="graph-controls">
+
+                <button
+                    type="button"
+                    class="graph-button active"
+                    data-graph="position"
+                >
+                    Position
+                </button>
+
+                <button
+                    type="button"
+                    class="graph-button"
+                    data-graph="velocity"
+                >
+                    Velocity
+                </button>
+
+                <button
+                    type="button"
+                    class="graph-button"
+                    data-graph="acceleration"
+                >
+                    Acceleration
+                </button>
+
+            </div>
+
+
+            <div class="graph-area">
+
+                <canvas
+                    id="graphCanvas"
+                    width="1000"
+                    height="400"
+                ></canvas>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             FORMULAS
+        ========================================= -->
+
+        <section class="formula-card">
+
+            <h2>
+                📐 Physics Formulas
+            </h2>
+
+
+            <div class="formula-list">
+
+                <div class="formula-item">
+                    x = x₀ + vt
+                </div>
+
+                <div class="formula-item">
+                    v = constant
+                </div>
+
+                <div class="formula-item">
+                    v = v₀ + at
+                </div>
+
+                <div class="formula-item">
+                    x = x₀ + v₀t + ½at²
+                </div>
+
+                <div class="formula-item">
+                    v² = v₀² + 2a(x − x₀)
+                </div>
+
+                <div class="formula-item">
+                    a = Δv / Δt
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ========================================
+         FOOTER
+    ========================================= -->
+
+    <footer>
+
+        <p>
+            © 2026 ENGI HUB
+        </p>
+
+        <p>
+            Engineering Calculation Tools
+        </p>
+
+    </footer>
+
+
+    <script src="js/darkmode.js"></script>
+
+    <script
+        type="module"
+        src="js/physics/motion.js"
+    ></script>
+
+
+</body>
+
+</html>

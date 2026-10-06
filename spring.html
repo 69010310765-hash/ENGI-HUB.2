@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+
+<html lang="th">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Spring-Mass Simulation | ENGI HUB
+</title>
+
+<link
+    rel="stylesheet"
+    href="css/style.css"
+>
+
+<style>
+
+    /* ========================================
+       SPRING PAGE
+    ======================================== */
+
+    .physics-header {
+
+        padding: 60px 20px;
+
+        text-align: center;
+
+        background:
+            linear-gradient(
+                135deg,
+                #0f172a,
+                #1e3a8a
+            );
+
+        color: white;
+
+    }
+
+
+    .physics-header h1 {
+
+        margin: 0 0 12px;
+
+        font-size: 38px;
+
+    }
+
+
+    .physics-header p {
+
+        margin: 0;
+
+        font-size: 17px;
+
+        opacity: 0.9;
+
+    }
+
+
+    .physics-container {
+
+        max-width: 1200px;
+
+        margin: 40px auto;
+
+        padding: 0 20px;
+
+    }
+
+
+    .physics-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            320px 1fr;
+
+        gap: 25px;
+
+    }
+
+
+    .physics-card {
+
+        background: white;
+
+        border-radius: 18px;
+
+        padding: 25px;
+
+        box-shadow:
+            0 10px 30px
+            rgba(15, 23, 42, 0.08);
+
+    }
+
+
+    .physics-card h2 {
+
+        margin-top: 0;
+
+    }
+
+
+    .control-group {
+
+        margin-bottom: 25px;
+
+    }
+
+
+    .control-group label {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        margin-bottom: 8px;
+
+        font-weight: bold;
+
+    }
+
+
+    .control-group input[type="range"] {
+
+        width: 100%;
+
+    }
+
+
+    .value-display {
+
+        color: #2563eb;
+
+        font-weight: bold;
+
+        white-space: nowrap;
+
+    }
+
+
+    .button-group {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 10px;
+
+    }
+
+
+    .physics-button {
+
+        border: none;
+
+        border-radius: 10px;
+
+        padding: 12px;
+
+        cursor: pointer;
+
+        font-weight: bold;
+
+        background: #2563eb;
+
+        color: white;
+
+    }
+
+
+    .physics-button:hover {
+
+        opacity: 0.9;
+
+    }
+
+
+    .physics-button:disabled {
+
+        opacity: 0.4;
+
+        cursor: not-allowed;
+
+    }
+
+
+    .simulation-canvas {
+
+        width: 100%;
+
+        height: 430px;
+
+        display: block;
+
+        border-radius: 12px;
+
+    }
+
+
+    .status {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        margin-top: 15px;
+
+        font-weight: bold;
+
+    }
+
+
+    .status-dot {
+
+        width: 10px;
+
+        height: 10px;
+
+        border-radius: 50%;
+
+        background: #94a3b8;
+
+    }
+
+
+    .status-dot.running {
+
+        background: #22c55e;
+
+    }
+
+
+    .status-dot.paused {
+
+        background: #f59e0b;
+
+    }
+
+
+    .status-dot.finished {
+
+        background: #2563eb;
+
+    }
+
+
+    .realtime-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 12px;
+
+        margin-top: 20px;
+
+    }
+
+
+    .realtime-box {
+
+        background: #f8fafc;
+
+        padding: 15px;
+
+        border-radius: 12px;
+
+        text-align: center;
+
+    }
+
+
+    .realtime-box span {
+
+        display: block;
+
+        color: #64748b;
+
+        font-size: 13px;
+
+        margin-bottom: 5px;
+
+    }
+
+
+    .realtime-box strong {
+
+        font-size: 18px;
+
+    }
+
+
+    .results-card {
+
+        margin-top: 25px;
+
+    }
+
+
+    .results-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 15px;
+
+    }
+
+
+    .result-box {
+
+        background: #eff6ff;
+
+        padding: 20px;
+
+        border-radius: 12px;
+
+        text-align: center;
+
+    }
+
+
+    .result-box span {
+
+        display: block;
+
+        color: #475569;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .result-box strong {
+
+        color: #1d4ed8;
+
+        font-size: 24px;
+
+    }
+
+
+    .graph-card {
+
+        margin-top: 25px;
+
+    }
+
+
+    .graph-buttons {
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .graph-button {
+
+        border: none;
+
+        padding: 9px 16px;
+
+        border-radius: 8px;
+
+        background: #e2e8f0;
+
+        cursor: pointer;
+
+    }
+
+
+    .graph-button.active {
+
+        background: #2563eb;
+
+        color: white;
+
+    }
+
+
+    .graph-wrapper {
+
+        width: 100%;
+
+        overflow: hidden;
+
+    }
+
+
+    #graphCanvas {
+
+        width: 100%;
+
+        height: 320px;
+
+        display: block;
+
+    }
+
+
+    .formulas-card {
+
+        margin-top: 25px;
+
+    }
+
+
+    .formula {
+
+        background: #f8fafc;
+
+        border-radius: 10px;
+
+        padding: 15px;
+
+        margin-bottom: 10px;
+
+        font-family: monospace;
+
+    }
+
+
+    .formula:last-child {
+
+        margin-bottom: 0;
+
+    }
+
+
+    @media (max-width: 1000px) {
+
+        .realtime-grid {
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+        }
+
+        .results-grid {
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+        }
+
+    }
+
+
+    @media (max-width: 850px) {
+
+        .physics-grid {
+
+            grid-template-columns: 1fr;
+
+        }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+        .realtime-grid {
+
+            grid-template-columns: 1fr;
+
+        }
+
+        .results-grid {
+
+            grid-template-columns: 1fr;
+
+        }
+
+        .physics-header h1 {
+
+            font-size: 30px;
+
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- ========================================
+     NAVBAR
+========================================= -->
+
+<nav>
+
+    <div class="logo">
+        ⚙ ENGI HUB
+    </div>
+
+    <div class="menu">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#tools">
+            Tools
+        </a>
+
+        <a href="formulas.html">
+            Formulas
+        </a>
+
+        <a href="history.html">
+            History
+        </a>
+
+        <a href="index.html#about">
+            About
+        </a>
+
+        <button
+            id="darkModeBtn"
+            class="dark-mode-btn"
+            type="button"
+        >
+            🌙
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- ========================================
+     HEADER
+========================================= -->
+
+<header class="physics-header">
+
+    <h1>
+        🌀 Spring-Mass Simulation
+    </h1>
+
+    <p>
+        การจำลองการสั่นของมวลติดสปริง
+        ตามกฎของฮุกและการเคลื่อนที่แบบฮาร์มอนิกอย่างง่าย
+    </p>
+
+</header>
+
+
+<!-- ========================================
+     MAIN
+========================================= -->
+
+<main class="physics-container">
+
+
+    <!-- ====================================
+         CONTROL + SIMULATION
+    ===================================== -->
+
+    <div class="physics-grid">
+
+
+        <!-- CONTROLS -->
+
+        <section class="physics-card">
+
+            <h2>
+                ⚙️ Parameters
+            </h2>
+
+
+            <!-- MASS -->
+
+            <div class="control-group">
+
+                <label>
+
+                    <span>
+                        มวล
+                    </span>
+
+                    <span
+                        id="massValue"
+                        class="value-display"
+                    >
+                        1.00 kg
+                    </span>
+
+                </label>
+
+                <input
+                    id="mass"
+                    type="range"
+                    min="0.1"
+                    max="20"
+                    step="0.1"
+                    value="1"
+                >
+
+            </div>
+
+
+            <!-- SPRING CONSTANT -->
+
+            <div class="control-group">
+
+                <label>
+
+                    <span>
+                        ค่าคงที่สปริง
+                    </span>
+
+                    <span
+                        id="springValue"
+                        class="value-display"
+                    >
+                        20.00 N/m
+                    </span>
+
+                </label>
+
+                <input
+                    id="spring"
+                    type="range"
+                    min="1"
+                    max="100"
+                    step="1"
+                    value="20"
+                >
+
+            </div>
+
+
+            <!-- INITIAL DISPLACEMENT -->
+
+            <div class="control-group">
+
+                <label>
+
+                    <span>
+                        การกระจัดเริ่มต้น
+                    </span>
+
+                    <span
+                        id="displacementValue"
+                        class="value-display"
+                    >
+                        0.50 m
+                    </span>
+
+                </label>
+
+                <input
+                    id="displacement"
+                    type="range"
+                    min="0.05"
+                    max="2"
+                    step="0.05"
+                    value="0.5"
+                >
+
+            </div>
+
+
+            <!-- INITIAL VELOCITY -->
+
+            <div class="control-group">
+
+                <label>
+
+                    <span>
+                        ความเร็วเริ่มต้น
+                    </span>
+
+                    <span
+                        id="velocityValue"
+                        class="value-display"
+                    >
+                        0.00 m/s
+                    </span>
+
+                </label>
+
+                <input
+                    id="velocity"
+                    type="range"
+                    min="-10"
+                    max="10"
+                    step="0.1"
+                    value="0"
+                >
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="button-group">
+
+                <button
+                    id="startButton"
+                    class="physics-button"
+                    type="button"
+                >
+                    ▶ Start
+                </button>
+
+                <button
+                    id="pauseButton"
+                    class="physics-button"
+                    type="button"
+                    disabled
+                >
+                    ⏸ Pause
+                </button>
+
+                <button
+                    id="resumeButton"
+                    class="physics-button"
+                    type="button"
+                    disabled
+                >
+                    ▶ Resume
+                </button>
+
+                <button
+                    id="resetButton"
+                    class="physics-button"
+                    type="button"
+                >
+                    🔄 Reset
+                </button>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="status">
+
+                <span
+                    id="statusDot"
+                    class="status-dot"
+                ></span>
+
+                <span id="statusText">
+                    Ready
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- SIMULATION -->
+
+        <section class="physics-card">
+
+            <h2>
+                🎯 Simulation
+            </h2>
+
+            <canvas
+                id="simulationCanvas"
+                class="simulation-canvas"
+            ></canvas>
+
+
+            <!-- REALTIME -->
+
+            <div class="realtime-grid">
+
+                <div class="realtime-box">
+
+                    <span>
+                        เวลา
+                    </span>
+
+                    <strong id="realtimeTime">
+                        0.00 s
+                    </strong>
+
+                </div>
+
+
+                <div class="realtime-box">
+
+                    <span>
+                        การกระจัด
+                    </span>
+
+                    <strong id="realtimeDisplacement">
+                        0.50 m
+                    </strong>
+
+                </div>
+
+
+                <div class="realtime-box">
+
+                    <span>
+                        ความเร็ว
+                    </span>
+
+                    <strong id="realtimeVelocity">
+                        0.00 m/s
+                    </strong>
+
+                </div>
+
+
+                <div class="realtime-box">
+
+                    <span>
+                        ความเร่ง
+                    </span>
+
+                    <strong id="realtimeAcceleration">
+                        -10.00 m/s²
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- ====================================
+         RESULTS
+    ===================================== -->
+
+    <section class="physics-card results-card">
+
+        <h2>
+            📊 Results
+        </h2>
+
+        <div class="results-grid">
+
+            <div class="result-box">
+
+                <span>
+                    คาบการสั่น T
+                </span>
+
+                <strong id="periodResult">
+                    1.40 s
+                </strong>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <span>
+                    ความถี่ f
+                </span>
+
+                <strong id="frequencyResult">
+                    0.71 Hz
+                </strong>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <span>
+                    ความถี่เชิงมุม ω
+                </span>
+
+                <strong id="angularResult">
+                    4.47 rad/s
+                </strong>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <span>
+                    ความเร็วสูงสุด
+                </span>
+
+                <strong id="maxVelocityResult">
+                    2.24 m/s
+                </strong>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <span>
+                    ความเร่งสูงสุด
+                </span>
+
+                <strong id="maxAccelerationResult">
+                    10.00 m/s²
+                </strong>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <span>
+                    พลังงานรวม
+                </span>
+
+                <strong id="energyResult">
+                    2.50 J
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ====================================
+         GRAPH
+    ===================================== -->
+
+    <section class="physics-card graph-card">
+
+        <h2>
+            📈 Real-time Graph
+        </h2>
+
+
+        <div class="graph-buttons">
+
+            <button
+                class="graph-button active"
+                data-graph="displacement"
+                type="button"
+            >
+                Displacement
+            </button>
+
+            <button
+                class="graph-button"
+                data-graph="velocity"
+                type="button"
+            >
+                Velocity
+            </button>
+
+            <button
+                class="graph-button"
+                data-graph="acceleration"
+                type="button"
+            >
+                Acceleration
+            </button>
+
+        </div>
+
+
+        <div class="graph-wrapper">
+
+            <canvas
+                id="graphCanvas"
+            ></canvas>
+
+        </div>
+
+
+        <h3 id="graphCurrentTitle">
+            การกระจัด
+        </h3>
+
+        <strong id="graphCurrentValue">
+            0.50 m
+        </strong>
+
+        <div
+            id="graphEmpty"
+            style="display:block;"
+        ></div>
+
+    </section>
+
+
+    <!-- ====================================
+         FORMULAS
+    ===================================== -->
+
+    <section class="physics-card formulas-card">
+
+        <h2>
+            📐 Formulas
+        </h2>
+
+
+        <div class="formula">
+            F = −kx
+        </div>
+
+
+        <div class="formula">
+            a = −(k/m)x
+        </div>
+
+
+        <div class="formula">
+            ω = √(k/m)
+        </div>
+
+
+        <div class="formula">
+            T = 2π√(m/k)
+        </div>
+
+
+        <div class="formula">
+            f = 1/T
+        </div>
+
+
+        <div class="formula">
+            E = ½kx² + ½mv²
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <p>
+        © 2026 ENGI HUB
+    </p>
+
+    <p>
+        Engineering Calculation Tools
+    </p>
+
+</footer>
+
+
+<!-- ========================================
+     JAVASCRIPT
+========================================= -->
+
+<script
+    src="js/physics/spring.js"
+></script>
+
+<script
+    src="js/darkmode.js"
+></script>
+```
+
+</body>
+
+</html>

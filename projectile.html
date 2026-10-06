@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Projectile Motion | ENGI HUB
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                "Noto Sans Thai",
+                sans-serif;
+
+            background: #f4f7fb;
+
+            color: #0f172a;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            background: #0f172a;
+
+            color: white;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        .logo {
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+        }
+
+
+        .nav-links a {
+
+            color: #e2e8f0;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #60a5fa;
+        }
+
+
+        .back-link {
+
+            color: #93c5fd !important;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+
+            padding: 55px 20px 45px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e3a8a
+                );
+        }
+
+
+        .hero h1 {
+
+            margin: 0 0 12px;
+
+            font-size: 40px;
+        }
+
+
+        .hero p {
+
+            margin: 0 auto;
+
+            max-width: 850px;
+
+            color: #dbeafe;
+
+            line-height: 1.8;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .page-container {
+
+            max-width: 1450px;
+
+            margin: 35px auto;
+
+            padding: 0 20px;
+        }
+
+
+        /* =========================
+           CONTROL CARD
+        ========================= */
+
+        .control-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(15, 23, 42, 0.08);
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .control-card h2 {
+
+            margin: 0 0 22px;
+
+            font-size: 23px;
+        }
+
+
+        .control-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .control-group {
+
+            padding: 18px;
+
+            border-radius: 14px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .control-group label {
+
+            display: block;
+
+            margin-bottom: 12px;
+
+            font-weight: bold;
+
+            color: #334155;
+        }
+
+
+        .control-group input {
+
+            width: 100%;
+
+            padding: 11px 13px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 9px;
+
+            font-size: 16px;
+
+            background: white;
+        }
+
+
+        .control-group input:focus {
+
+            outline: none;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.1);
+        }
+
+
+        .control-group input[type="range"] {
+
+            padding: 0;
+
+            accent-color: #2563eb;
+
+            cursor: pointer;
+        }
+
+
+        .input-value {
+
+            display: block;
+
+            margin-top: 8px;
+
+            color: #2563eb;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .button-row {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 20px;
+        }
+
+
+        button {
+
+            border: none;
+
+            border-radius: 10px;
+
+            padding: 12px 20px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        #startButton {
+
+            background: #2563eb;
+
+            color: white;
+        }
+
+
+        #startButton:hover {
+
+            background: #1d4ed8;
+        }
+
+
+        #pauseButton {
+
+            background: #f59e0b;
+
+            color: white;
+        }
+
+
+        #pauseButton:hover {
+
+            background: #d97706;
+        }
+
+
+        #resumeButton {
+
+            background: #16a34a;
+
+            color: white;
+        }
+
+
+        #resumeButton:hover {
+
+            background: #15803d;
+        }
+
+
+        #resetButton {
+
+            background: #64748b;
+
+            color: white;
+        }
+
+
+        #resetButton:hover {
+
+            background: #475569;
+        }
+
+
+        button:disabled {
+
+            opacity: 0.45;
+
+            cursor: not-allowed;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status-box {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 20px;
+
+            padding: 12px 15px;
+
+            border-radius: 10px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .status-dot {
+
+            width: 11px;
+
+            height: 11px;
+
+            border-radius: 50%;
+
+            background: #94a3b8;
+        }
+
+
+        .status-dot.running {
+
+            background: #22c55e;
+
+            box-shadow:
+                0 0 10px
+                rgba(34, 197, 94, 0.7);
+        }
+
+
+        .status-dot.paused {
+
+            background: #f59e0b;
+
+            box-shadow:
+                0 0 10px
+                rgba(245, 158, 11, 0.7);
+        }
+
+
+        .status-dot.finished {
+
+            background: #2563eb;
+        }
+
+
+        /* =========================
+           SIMULATION
+        ========================= */
+
+        .simulation-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 2fr)
+                minmax(330px, 1fr);
+
+            gap: 25px;
+
+            align-items: start;
+        }
+
+
+        .simulation-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 8px 25px
+                rgba(15, 23, 42, 0.08);
+        }
+
+
+        .simulation-card h2 {
+
+            margin: 0 0 15px;
+
+            font-size: 22px;
+        }
+
+
+        .canvas-wrapper {
+
+            width: 100%;
+
+            overflow: hidden;
+
+            border-radius: 14px;
+
+            background: #dbeafe;
+        }
+
+
+        #simulationCanvas {
+
+            display: block;
+
+            width: 100%;
+
+            height: 550px;
+        }
+
+
+        /* =========================
+           REALTIME
+        ========================= */
+
+        .realtime-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .data-card {
+
+            padding: 16px;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .data-label {
+
+            display: block;
+
+            font-size: 13px;
+
+            color: #64748b;
+
+            margin-bottom: 6px;
+        }
+
+
+        .data-value {
+
+            font-size: 21px;
+
+            font-weight: bold;
+
+            color: #0f172a;
+        }
+
+
+        /* =========================
+           RESULTS
+        ========================= */
+
+        .results-section {
+
+            margin-top: 25px;
+        }
+
+
+        .results-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .result-card {
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+
+            text-align: center;
+        }
+
+
+        .result-label {
+
+            display: block;
+
+            color: #475569;
+
+            margin-bottom: 8px;
+
+            font-size: 14px;
+        }
+
+
+        .result-value {
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+            color: #1d4ed8;
+        }
+
+
+        /* =========================
+           APEX
+        ========================= */
+
+        .apex-section {
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border-radius: 14px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .apex-section h3 {
+
+            margin-top: 0;
+
+            margin-bottom: 15px;
+        }
+
+
+        .apex-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+        }
+
+
+        /* =========================
+           GRAPH
+        ========================= */
+
+        .graph-section {
+
+            margin-top: 25px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 8px 25px
+                rgba(15, 23, 42, 0.08);
+        }
+
+
+        .graph-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .graph-header h2 {
+
+            margin: 0;
+        }
+
+
+        .graph-buttons {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+        }
+
+
+        .graph-button {
+
+            padding: 9px 14px;
+
+            border: 1px solid #cbd5e1;
+
+            background: #f8fafc;
+
+            color: #334155;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+        }
+
+
+        .graph-button:hover {
+
+            border-color: #2563eb;
+
+            color: #2563eb;
+        }
+
+
+        .graph-current {
+
+            margin-bottom: 12px;
+
+            padding: 12px 15px;
+
+            border-radius: 10px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .graph-current-title {
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+
+        .graph-current-value {
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            color: #2563eb;
+
+            margin-top: 4px;
+        }
+
+
+        .graph-wrapper {
+
+            position: relative;
+
+            width: 100%;
+
+            overflow: hidden;
+
+            border-radius: 12px;
+
+            background: #ffffff;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        #graphCanvas {
+
+            display: block;
+
+            width: 100%;
+
+            height: 400px;
+        }
+
+
+        #graphEmpty {
+
+            text-align: center;
+
+            padding: 35px;
+
+            color: #64748b;
+        }
+
+
+        /* =========================
+           FORMULAS
+        ========================= */
+
+        .formula-section {
+
+            margin-top: 25px;
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 8px 25px
+                rgba(15, 23, 42, 0.08);
+        }
+
+
+        .formula-section h2 {
+
+            margin-top: 0;
+        }
+
+
+        .formula-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .formula {
+
+            padding: 16px;
+
+            border-radius: 10px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            font-family:
+                "Times New Roman",
+                serif;
+
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-section {
+
+            max-width: 1450px;
+
+            margin: 25px auto 0;
+
+            padding: 0 20px;
+        }
+
+
+        .back-button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 10px 15px;
+
+            border-radius: 9px;
+
+            background: white;
+
+            border: 1px solid #cbd5e1;
+
+            color: #334155;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+
+        .back-button:hover {
+
+            color: #2563eb;
+
+            border-color: #2563eb;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            margin-top: 60px;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            background: #0f172a;
+
+            color: #94a3b8;
+        }
+
+
+        footer strong {
+
+            color: white;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1100px) {
+
+            .simulation-layout {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .control-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .results-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .apex-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .formula-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .graph-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            nav {
+
+                padding: 0 15px;
+            }
+
+
+            .logo {
+
+                font-size: 17px;
+            }
+
+
+            .nav-links {
+
+                gap: 10px;
+            }
+
+
+            .nav-links a {
+
+                font-size: 11px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 30px;
+            }
+
+
+            #simulationCanvas {
+
+                height: 400px;
+            }
+
+
+            #graphCanvas {
+
+                height: 300px;
+            }
+
+
+            .realtime-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+
+        <div class="nav-links">
+
+            <a
+                href="physics.html"
+                class="back-link"
+            >
+                ← Physics Simulation
+            </a>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="formulas.html">
+                Formulas
+            </a>
+
+            <a href="history.html">
+                History
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <h1>
+            🚀 Projectile Motion
+        </h1>
+
+        <p>
+            จำลองการเคลื่อนที่แบบโปรเจกไทล์
+            พร้อมดูวิถีการเคลื่อนที่ ตำแหน่ง ความเร็ว
+            จุดสูงสุด ระยะทาง และกราฟแบบ Real-time
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         BACK BUTTON
+    ========================== -->
+
+    <div class="back-section">
+
+        <a
+            href="physics.html"
+            class="back-button"
+        >
+            ← กลับไป Physics Simulation
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="page-container">
+
+
+        <!-- =========================
+             CONTROLS
+        ========================== -->
+
+        <section class="control-card">
+
+            <h2>
+                ⚙ Simulation Parameters
+            </h2>
+
+
+            <div class="control-grid">
+
+
+                <!-- VELOCITY -->
+
+                <div class="control-group">
+
+                    <label for="initialVelocity">
+                        ความเร็วต้น v₀ (m/s)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="initialVelocity"
+                        value="20"
+                        min="1"
+                        max="100"
+                        step="0.1"
+                    >
+
+                    <span class="input-value">
+                        กำหนดความเร็วเริ่มต้น
+                    </span>
+
+                </div>
+
+
+                <!-- ANGLE -->
+
+                <div class="control-group">
+
+                    <label for="launchAngle">
+                        มุมยิง θ (°)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="launchAngle"
+                        value="45"
+                        min="1"
+                        max="89"
+                        step="1"
+                    >
+
+                    <span class="input-value">
+                        1° – 89°
+                    </span>
+
+                </div>
+
+
+                <!-- GRAVITY -->
+
+                <div class="control-group">
+
+                    <label for="gravity">
+                        ความเร่งโน้มถ่วง g (m/s²)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="gravity"
+                        value="9.81"
+                        min="0.1"
+                        max="20"
+                        step="0.01"
+                    >
+
+                    <span class="input-value">
+                        ค่าโลก ≈ 9.81 m/s²
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="button-row">
+
+                <button id="startButton">
+                    ▶ Start
+                </button>
+
+                <button
+                    id="pauseButton"
+                    disabled
+                >
+                    ⏸ Pause
+                </button>
+
+                <button
+                    id="resumeButton"
+                    disabled
+                >
+                    ▶ Resume
+                </button>
+
+                <button id="resetButton">
+                    ↻ Reset
+                </button>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="status-box">
+
+                <span
+                    id="statusDot"
+                    class="status-dot"
+                ></span>
+
+                <span id="statusText">
+                    พร้อมเริ่มการจำลอง
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SIMULATION + DATA
+        ========================== -->
+
+        <div class="simulation-layout">
+
+
+            <!-- SIMULATION -->
+
+            <section class="simulation-card">
+
+                <h2>
+                    🎯 Simulation
+                </h2>
+
+
+                <div class="canvas-wrapper">
+
+                    <canvas
+                        id="simulationCanvas"
+                    ></canvas>
+
+                </div>
+
+            </section>
+
+
+            <!-- REALTIME DATA -->
+
+            <section class="simulation-card">
+
+                <h2>
+                    📡 Real-time Data
+                </h2>
+
+
+                <div class="realtime-grid">
+
+
+                    <div class="data-card">
+
+                        <span class="data-label">
+                            เวลา
+                        </span>
+
+                        <span
+                            class="data-value"
+                            id="realtimeTime"
+                        >
+                            0.00 s
+                        </span>
+
+                    </div>
+
+
+                    <div class="data-card">
+
+                        <span class="data-label">
+                            ตำแหน่ง X
+                        </span>
+
+                        <span
+                            class="data-value"
+                            id="realtimeX"
+                        >
+                            0.00 m
+                        </span>
+
+                    </div>
+
+
+                    <div class="data-card">
+
+                        <span class="data-label">
+                            ตำแหน่ง Y
+                        </span>
+
+                        <span
+                            class="data-value"
+                            id="realtimeY"
+                        >
+                            0.00 m
+                        </span>
+
+                    </div>
+
+
+                    <div class="data-card">
+
+                        <span class="data-label">
+                            ความเร็ว Vx
+                        </span>
+
+                        <span
+                            class="data-value"
+                            id="realtimeVx"
+                        >
+                            0.00 m/s
+                        </span>
+
+                    </div>
+
+
+                    <div class="data-card">
+
+                        <span class="data-label">
+                            ความเร็ว Vy
+                        </span>
+
+                        <span
+                            class="data-value"
+                            id="realtimeVy"
+                        >
+                            0.00 m/s
+                        </span>
+
+                    </div>
+
+
+                    <div class="data-card">
+
+                        <span class="data-label">
+                            ความเร็วรวม V
+                        </span>
+
+                        <span
+                            class="data-value"
+                            id="realtimeV"
+                        >
+                            0.00 m/s
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- RESULTS -->
+
+                <div class="results-section">
+
+                    <h2>
+                        📊 Results
+                    </h2>
+
+
+                    <div class="results-grid">
+
+
+                        <div class="result-card">
+
+                            <span class="result-label">
+                                ระยะทางสูงสุด
+                            </span>
+
+                            <span
+                                class="result-value"
+                                id="rangeResult"
+                            >
+                                0.00 m
+                            </span>
+
+                        </div>
+
+
+                        <div class="result-card">
+
+                            <span class="result-label">
+                                ความสูงสูงสุด
+                            </span>
+
+                            <span
+                                class="result-value"
+                                id="heightResult"
+                            >
+                                0.00 m
+                            </span>
+
+                        </div>
+
+
+                        <div class="result-card">
+
+                            <span class="result-label">
+                                เวลาทั้งหมด
+                            </span>
+
+                            <span
+                                class="result-value"
+                                id="timeResult"
+                            >
+                                0.00 s
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- APEX -->
+
+                <div class="apex-section">
+
+                    <h3>
+                        🔝 จุดสูงสุดของวิถี
+                    </h3>
+
+
+                    <div class="apex-grid">
+
+
+                        <div class="data-card">
+
+                            <span class="data-label">
+                                เวลาที่ถึงจุดสูงสุด
+                            </span>
+
+                            <span
+                                class="data-value"
+                                id="apexTime"
+                            >
+                                0.00 s
+                            </span>
+
+                        </div>
+
+
+                        <div class="data-card">
+
+                            <span class="data-label">
+                                ตำแหน่ง X
+                            </span>
+
+                            <span
+                                class="data-value"
+                                id="apexX"
+                            >
+                                0.00 m
+                            </span>
+
+                        </div>
+
+
+                        <div class="data-card">
+
+                            <span class="data-label">
+                                ความสูง Y
+                            </span>
+
+                            <span
+                                class="data-value"
+                                id="apexY"
+                            >
+                                0.00 m
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+        <!-- =========================
+             GRAPH
+        ========================== -->
+
+        <section class="graph-section">
+
+            <div class="graph-header">
+
+                <h2>
+                    📈 Real-time Graph
+                </h2>
+
+
+                <div class="graph-buttons">
+
+                    <button
+                        class="graph-button"
+                        data-graph="x"
+                    >
+                        X(t)
+                    </button>
+
+                    <button
+                        class="graph-button"
+                        data-graph="y"
+                    >
+                        Y(t)
+                    </button>
+
+                    <button
+                        class="graph-button"
+                        data-graph="vx"
+                    >
+                        Vx(t)
+                    </button>
+
+                    <button
+                        class="graph-button"
+                        data-graph="vy"
+                    >
+                        Vy(t)
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="graph-current">
+
+                <div
+                    id="graphCurrentTitle"
+                    class="graph-current-title"
+                >
+                    เลือกตัวแปร
+                </div>
+
+                <div
+                    id="graphCurrentValue"
+                    class="graph-current-value"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="graph-wrapper">
+
+                <canvas
+                    id="graphCanvas"
+                ></canvas>
+
+
+                <div id="graphEmpty">
+                    กด Start เพื่อเริ่มเก็บข้อมูลและแสดงกราฟ
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FORMULAS
+        ========================== -->
+
+        <section class="formula-section">
+
+            <h2>
+                🧮 Physics Formulas
+            </h2>
+
+
+            <div class="formula-grid">
+
+
+                <div class="formula">
+                    x = v₀ cos(θ)t
+                </div>
+
+
+                <div class="formula">
+                    y = v₀ sin(θ)t − ½gt²
+                </div>
+
+
+                <div class="formula">
+                    vₓ = v₀ cos(θ)
+                </div>
+
+
+                <div class="formula">
+                    vᵧ = v₀ sin(θ) − gt
+                </div>
+
+
+                <div class="formula">
+                    Hmax = v₀²sin²(θ) / 2g
+                </div>
+
+
+                <div class="formula">
+                    R = v₀²sin(2θ) / g
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <strong>
+            ⚙ ENGI HUB
+        </strong>
+
+        <br><br>
+
+        Engineering Calculation & Simulation Tools
+
+        <br>
+
+        © 2026 ENGI HUB
+
+    </footer>
+
+
+    <!-- =========================
+         PROJECTILE JAVASCRIPT
+    ========================== -->
+
+    <script src="js/physics/projectile.js"></script>
+
+
+</body>
+
+</html>

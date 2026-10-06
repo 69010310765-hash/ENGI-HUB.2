@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        2D Motion Laboratory | ENGI HUB
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family:
+                Arial,
+                "Noto Sans Thai",
+                sans-serif;
+            background: #f4f7fb;
+            color: #0f172a;
+        }
+
+        /* =========================
+           NAV
+        ========================== */
+
+        nav {
+            min-height: 70px;
+            background: #0f172a;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        nav .menu a {
+            color: #ffffff !important;
+            text-decoration: none;
+        }
+
+        nav .menu a:visited {
+            color: #ffffff !important;
+        }
+
+        nav .menu a:hover {
+            color: #60a5fa !important;
+        }
+
+        .dark-mode-btn {
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        .lab-header {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e3a8a
+                );
+
+            color: white;
+            text-align: center;
+
+            padding: 60px 20px;
+        }
+
+        .lab-badge {
+            display: inline-block;
+
+            padding: 8px 16px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,0.12);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.2);
+
+            font-size: 14px;
+
+            margin-bottom: 18px;
+        }
+
+        .lab-header h1 {
+            margin: 0 0 15px;
+
+            font-size:
+                clamp(
+                    32px,
+                    5vw,
+                    52px
+                );
+        }
+
+        .lab-header p {
+            max-width: 850px;
+
+            margin: auto;
+
+            line-height: 1.8;
+
+            color: #dbeafe;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================== */
+
+        .lab-container {
+            max-width: 1400px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+        }
+
+        .lab-grid {
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.6fr)
+                minmax(320px, 0.9fr);
+
+            gap: 24px;
+
+            align-items: start;
+        }
+
+        .lab-card {
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(15,23,42,0.08);
+        }
+
+        .card-title {
+            margin: 0 0 8px;
+
+            font-size: 22px;
+        }
+
+        .card-description {
+            margin: 0 0 20px;
+
+            color: #64748b;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           SIMULATION
+        ========================== */
+
+        .canvas-wrapper {
+            width: 100%;
+
+            background: #020617;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+        }
+
+        #simulationCanvas {
+            display: block;
+
+            width: 100%;
+
+            height: auto;
+        }
+
+        /* =========================
+           STATUS
+        ========================== */
+
+        .status-box {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 15px;
+
+            padding: 12px 15px;
+
+            background: #f8fafc;
+
+            border-radius: 10px;
+        }
+
+        .status-dot {
+            width: 11px;
+            height: 11px;
+
+            border-radius: 50%;
+
+            background: #64748b;
+
+            flex-shrink: 0;
+        }
+
+        .status-text {
+            color: #475569;
+
+            font-size: 14px;
+        }
+
+        /* =========================
+           REALTIME
+        ========================== */
+
+        .realtime-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 12px;
+
+            margin-top: 18px;
+        }
+
+        .realtime-card {
+            background: #f8fafc;
+
+            border-radius: 12px;
+
+            padding: 14px;
+
+            text-align: center;
+        }
+
+        .realtime-label {
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+        .realtime-value {
+            font-size: 17px;
+
+            font-weight: bold;
+
+            color: #0f172a;
+        }
+
+        /* =========================
+           CONTROLS
+        ========================== */
+
+        .control-section {
+            margin-bottom: 25px;
+        }
+
+        .control-section h3 {
+            margin: 0 0 15px;
+
+            font-size: 18px;
+        }
+
+        .control-group {
+            margin-bottom: 18px;
+        }
+
+        .control-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 8px;
+        }
+
+        .control-label {
+            font-weight: 600;
+
+            color: #334155;
+        }
+
+        .control-value {
+            color: #2563eb;
+
+            font-weight: bold;
+        }
+
+        .control-group input[type="range"] {
+            width: 100%;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================== */
+
+        .button-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+        .lab-button {
+            min-height: 46px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+        .start-button {
+            background: #2563eb;
+            color: white;
+        }
+
+        .pause-button {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .resume-button {
+            background: #16a34a;
+            color: white;
+        }
+
+        .reset-button {
+            background: #64748b;
+            color: white;
+        }
+
+        .save-button {
+            background: #7c3aed;
+            color: white;
+
+            grid-column: 1 / -1;
+        }
+
+        /* =========================
+           RESULTS
+        ========================== */
+
+        .results-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+
+            margin-top: 20px;
+        }
+
+        .result-card {
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+        .result-label {
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-bottom: 6px;
+        }
+
+        .result-value {
+            color: #0f172a;
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+        /* =========================
+           GRAPH
+        ========================== */
+
+        .graph-card {
+            margin-top: 24px;
+        }
+
+        .graph-controls {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-bottom: 15px;
+        }
+
+        .graph-button {
+            padding: 8px 13px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            background: white;
+
+            color: #475569;
+
+            cursor: pointer;
+        }
+
+        .graph-button.active {
+            background: #2563eb;
+
+            color: white;
+
+            border-color: #2563eb;
+        }
+
+        .graph-info {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 10px;
+        }
+
+        .graph-current-title {
+            font-weight: bold;
+        }
+
+        .graph-current-value {
+            color: #2563eb;
+
+            font-weight: bold;
+        }
+
+        #graphCanvas {
+            width: 100%;
+
+            height: 300px;
+
+            display: block;
+
+            background: #f8fafc;
+
+            border-radius: 12px;
+        }
+
+        /* =========================
+           FORMULA
+        ========================== */
+
+        .formula-card {
+            margin-top: 24px;
+
+            padding: 24px;
+
+            border-radius: 16px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #f8fafc
+                );
+
+            border:
+                1px solid #dbeafe;
+        }
+
+        .formula-card h2 {
+            margin-top: 0;
+        }
+
+        .formula-list {
+            display: grid;
+
+            gap: 10px;
+        }
+
+        .formula-item {
+            padding: 13px 16px;
+
+            border-radius: 10px;
+
+            background: white;
+
+            color: #1e3a8a;
+
+            font-family:
+                "Courier New",
+                monospace;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            margin-top: 60px;
+
+            padding: 30px 20px;
+
+            text-align: center;
+
+            background: #0f172a;
+
+            color: white;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* =========================
+           DARK MODE
+        ========================== */
+
+        body.dark-mode {
+            background: #020617;
+
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .lab-card {
+            background: #0f172a;
+        }
+
+        body.dark-mode .card-description,
+        body.dark-mode .control-label,
+        body.dark-mode .result-label {
+            color: #94a3b8;
+        }
+
+        body.dark-mode .status-box,
+        body.dark-mode .realtime-card,
+        body.dark-mode .result-card {
+            background: #111827;
+
+            border-color: #1e293b;
+        }
+
+        body.dark-mode .realtime-value,
+        body.dark-mode .result-value {
+            color: #f8fafc;
+        }
+
+        body.dark-mode .graph-button {
+            background: #111827;
+
+            color: #cbd5e1;
+
+            border-color: #334155;
+        }
+
+        body.dark-mode .graph-button.active {
+            background: #2563eb;
+
+            color: white;
+        }
+
+        body.dark-mode #graphCanvas {
+            background: #111827;
+        }
+
+        body.dark-mode .formula-card {
+            background: #0f172a;
+
+            border-color: #1e3a8a;
+        }
+
+        body.dark-mode .formula-item {
+            background: #111827;
+
+            color: #93c5fd;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 1000px) {
+
+            .lab-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .realtime-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 15px 18px;
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+            .menu {
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 12px;
+            }
+
+            .lab-header {
+                padding: 45px 18px;
+            }
+
+            .realtime-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .save-button {
+                grid-column: auto;
+            }
+
+        }
+
+        @media (max-width: 450px) {
+
+            .lab-container {
+                padding: 0 12px;
+            }
+
+            .lab-card {
+                padding: 16px;
+            }
+
+            .realtime-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+        <div class="menu">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#tools">
+                Tools
+            </a>
+
+            <a href="formulas.html">
+                Formulas
+            </a>
+
+            <a href="equipment.html">
+                Equipment
+            </a>
+
+            <a href="history.html">
+                History
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <button
+                id="darkModeBtn"
+                class="dark-mode-btn"
+                type="button"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="lab-header">
+
+        <div class="lab-badge">
+            🎯 ENGINEERING PHYSICS
+        </div>
+
+        <h1>
+            2D Motion Laboratory
+        </h1>
+
+        <p>
+            ห้องทดลองการเคลื่อนที่แบบ 2 มิติ
+            ศึกษาตำแหน่ง ความเร็ว และความเร่ง
+            ในแกน X และ Y พร้อมดูเวกเตอร์
+            และกราฟแบบ Real-time
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="lab-container">
+
+        <div class="lab-grid">
+
+
+            <!-- =========================
+                 SIMULATION
+            ========================== -->
+
+            <section class="lab-card">
+
+                <h2 class="card-title">
+                    🎯 2D Motion Simulation
+                </h2>
+
+                <p class="card-description">
+                    วัตถุจะเคลื่อนที่บนระนาบ X-Y
+                    โดยสามารถกำหนดตำแหน่งเริ่มต้น
+                    ความเร็วเริ่มต้น และความเร่งในแต่ละแกน
+                </p>
+
+
+                <div class="canvas-wrapper">
+
+                    <canvas
+                        id="simulationCanvas"
+                        width="900"
+                        height="520"
+                    ></canvas>
+
+                </div>
+
+
+                <div class="status-box">
+
+                    <div
+                        id="statusDot"
+                        class="status-dot"
+                    ></div>
+
+                    <div
+                        id="statusText"
+                        class="status-text"
+                    >
+                        พร้อมเริ่มการทดลอง
+                    </div>
+
+                </div>
+
+
+                <!-- REALTIME -->
+
+                <div class="realtime-grid">
+
+                    <div class="realtime-card">
+
+                        <div class="realtime-label">
+                            เวลา
+                        </div>
+
+                        <div
+                            id="realtimeTime"
+                            class="realtime-value"
+                        >
+                            0.00 s
+                        </div>
+
+                    </div>
+
+
+                    <div class="realtime-card">
+
+                        <div class="realtime-label">
+                            ตำแหน่ง X
+                        </div>
+
+                        <div
+                            id="realtimeX"
+                            class="realtime-value"
+                        >
+                            0.00 m
+                        </div>
+
+                    </div>
+
+
+                    <div class="realtime-card">
+
+                        <div class="realtime-label">
+                            ตำแหน่ง Y
+                        </div>
+
+                        <div
+                            id="realtimeY"
+                            class="realtime-value"
+                        >
+                            0.00 m
+                        </div>
+
+                    </div>
+
+
+                    <div class="realtime-card">
+
+                        <div class="realtime-label">
+                            ความเร็ว
+                        </div>
+
+                        <div
+                            id="realtimeVelocity"
+                            class="realtime-value"
+                        >
+                            0.00 m/s
+                        </div>
+
+                    </div>
+
+
+                    <div class="realtime-card">
+
+                        <div class="realtime-label">
+                            ความเร่ง
+                        </div>
+
+                        <div
+                            id="realtimeAcceleration"
+                            class="realtime-value"
+                        >
+                            0.00 m/s²
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESULTS -->
+
+                <div class="results-grid">
+
+                    <div class="result-card">
+
+                        <div class="result-label">
+                            ระยะทางจากจุดเริ่มต้น
+                        </div>
+
+                        <div
+                            id="distanceResult"
+                            class="result-value"
+                        >
+                            0.00 m
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <div class="result-label">
+                            ความเร็วสุดท้าย
+                        </div>
+
+                        <div
+                            id="finalVelocityResult"
+                            class="result-value"
+                        >
+                            0.00 m/s
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <div class="result-label">
+                            ความเร็วแกน X
+                        </div>
+
+                        <div
+                            id="finalVxResult"
+                            class="result-value"
+                        >
+                            0.00 m/s
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <div class="result-label">
+                            ความเร็วแกน Y
+                        </div>
+
+                        <div
+                            id="finalVyResult"
+                            class="result-value"
+                        >
+                            0.00 m/s
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <div class="result-label">
+                            ความเร่งลัพธ์
+                        </div>
+
+                        <div
+                            id="resultAcceleration"
+                            class="result-value"
+                        >
+                            0.00 m/s²
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-card">
+
+                        <div class="result-label">
+                            มุมของความเร็ว
+                        </div>
+
+                        <div
+                            id="velocityAngleResult"
+                            class="result-value"
+                        >
+                            0.00°
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================
+                 CONTROLS
+            ========================== -->
+
+            <aside class="lab-card">
+
+                <h2 class="card-title">
+                    ⚙️ Simulation Controls
+                </h2>
+
+                <p class="card-description">
+                    ปรับค่าของวัตถุในแกน X และ Y
+                    แล้วกด Start เพื่อเริ่มการทดลอง
+                </p>
+
+
+                <!-- POSITION -->
+
+                <div class="control-section">
+
+                    <h3>
+                        📍 Initial Position
+                    </h3>
+
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                ตำแหน่งเริ่มต้น X₀
+                            </span>
+
+                            <span
+                                id="initialXValue"
+                                class="control-value"
+                            >
+                                0.0 m
+                            </span>
+
+                        </div>
+
+                        <input
+                            id="initialX"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                ตำแหน่งเริ่มต้น Y₀
+                            </span>
+
+                            <span
+                                id="initialYValue"
+                                class="control-value"
+                            >
+                                0.0 m
+                            </span>
+
+                        </div>
+
+                        <input
+                            id="initialY"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- VELOCITY -->
+
+                <div class="control-section">
+
+                    <h3>
+                        🏃 Initial Velocity
+                    </h3>
+
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                ความเร็วเริ่มต้น Vx₀
+                            </span>
+
+                            <span
+                                id="initialVxValue"
+                                class="control-value"
+                            >
+                                5.0 m/s
+                            </span>
+
+                        </div>
+
+                        <input
+                            id="initialVx"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="5"
+                        >
+
+                    </div>
+
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                ความเร็วเริ่มต้น Vy₀
+                            </span>
+
+                            <span
+                                id="initialVyValue"
+                                class="control-value"
+                            >
+                                8.0 m/s
+                            </span>
+
+                        </div>
+
+                        <input
+                            id="initialVy"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="8"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACCELERATION -->
+
+                <div class="control-section">
+
+                    <h3>
+                        🧲 Acceleration
+                    </h3>
+
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                ความเร่ง Ax
+                            </span>
+
+                            <span
+                                id="accelerationXValue"
+                                class="control-value"
+                            >
+                                0.0 m/s²
+                            </span>
+
+                        </div>
+
+                        <input
+                            id="accelerationX"
+                            type="range"
+                            min="-5"
+                            max="5"
+                            step="0.1"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                ความเร่ง Ay
+                            </span>
+
+                            <span
+                                id="accelerationYValue"
+                                class="control-value"
+                            >
+                                -9.8 m/s²
+                            </span>
+
+                        </div>
+
+                        <input
+                            id="accelerationY"
+                            type="range"
+                            min="-15"
+                            max="5"
+                            step="0.1"
+                            value="-9.8"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- TIME -->
+
+                <div class="control-section">
+
+                    <h3>
+                        ⏱ Simulation Time
+                    </h3>
+
+
+                    <div class="control-group">
+
+                        <div class="control-top">
+
+                            <span class="control-label">
+                                ระยะเวลาการทดลอง
+                            </span>
+
+                            <span
+                                id="simulationTimeValue"
+                                class="control-value"
+                            >
+                                5 s
+                            </span>
+
+                        </div>
+
+                        <input
+                            id="simulationTime"
+                            type="range"
+                            min="1"
+                            max="20"
+                            step="1"
+                            value="5"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="button-grid">
+
+                    <button
+                        id="startButton"
+                        class="lab-button start-button"
+                        type="button"
+                    >
+                        ▶ Start
+                    </button>
+
+                    <button
+                        id="pauseButton"
+                        class="lab-button pause-button"
+                        type="button"
+                    >
+                        ⏸ Pause
+                    </button>
+
+                    <button
+                        id="resumeButton"
+                        class="lab-button resume-button"
+                        type="button"
+                    >
+                        ▶ Resume
+                    </button>
+
+                    <button
+                        id="resetButton"
+                        class="lab-button reset-button"
+                        type="button"
+                    >
+                        ↺ Reset
+                    </button>
+
+                    <button
+                        id="saveButton"
+                        class="lab-button save-button"
+                        type="button"
+                    >
+                        💾 Save to History
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+        <!-- =========================
+             GRAPH
+        ========================== -->
+
+        <section class="lab-card graph-card">
+
+            <h2 class="card-title">
+                📈 Real-time Graph
+            </h2>
+
+            <p class="card-description">
+                เลือกตัวแปรที่ต้องการดูการเปลี่ยนแปลงตามเวลา
+            </p>
+
+
+            <div class="graph-controls">
+
+                <button
+                    type="button"
+                    class="graph-button active"
+                    data-graph="x"
+                >
+                    Position X
+                </button>
+
+                <button
+                    type="button"
+                    class="graph-button"
+                    data-graph="y"
+                >
+                    Position Y
+                </button>
+
+                <button
+                    type="button"
+                    class="graph-button"
+                    data-graph="velocity"
+                >
+                    Velocity
+                </button>
+
+                <button
+                    type="button"
+                    class="graph-button"
+                    data-graph="acceleration"
+                >
+                    Acceleration
+                </button>
+
+            </div>
+
+
+            <div class="graph-info">
+
+                <span
+                    id="graphCurrentTitle"
+                    class="graph-current-title"
+                >
+                    Position X
+                </span>
+
+                <span
+                    id="graphCurrentValue"
+                    class="graph-current-value"
+                >
+                    0.00 m
+                </span>
+
+            </div>
+
+
+            <canvas
+                id="graphCanvas"
+                width="1200"
+                height="300"
+            ></canvas>
+
+        </section>
+
+
+        <!-- =========================
+             FORMULAS
+        ========================== -->
+
+        <section class="formula-card">
+
+            <h2>
+                🧮 2D Motion Formulas
+            </h2>
+
+            <div class="formula-list">
+
+                <div class="formula-item">
+                    x = x₀ + vₓ₀t + ½aₓt²
+                </div>
+
+                <div class="formula-item">
+                    y = y₀ + vᵧ₀t + ½aᵧt²
+                </div>
+
+                <div class="formula-item">
+                    vₓ = vₓ₀ + aₓt
+                </div>
+
+                <div class="formula-item">
+                    vᵧ = vᵧ₀ + aᵧt
+                </div>
+
+                <div class="formula-item">
+                    |v| = √(vₓ² + vᵧ²)
+                </div>
+
+                <div class="formula-item">
+                    |a| = √(aₓ² + aᵧ²)
+                </div>
+
+                <div class="formula-item">
+                    θ = tan⁻¹(vᵧ / vₓ)
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            © 2026 ENGI HUB
+        </p>
+
+        <p>
+            Engineering Calculation Tools
+        </p>
+
+    </footer>
+
+
+    <script src="js/darkmode.js"></script>
+
+    <script
+        type="module"
+        src="js/physics/motion-2d.js"
+    ></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1635 @@
+/* ========================================
+   ENGI HUB - Main Style
+======================================== */
+
+
+/* ---------- Reset ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ---------- Body ---------- */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   Navigation
+======================================== */
+
+nav {
+    width: 100%;
+    height: 70px;
+
+    background: #0f172a;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Logo */
+
+.logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+/* Menu */
+
+.menu {
+    display: flex;
+    gap: 28px;
+}
+
+
+.menu a {
+    color: #cbd5e1;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+
+.menu a:hover {
+    color: white;
+}
+
+
+/* ========================================
+   Hero
+======================================== */
+
+.hero {
+    min-height: 430px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 60px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a
+        );
+}
+
+
+.hero-content {
+    max-width: 750px;
+}
+
+
+.hero h1 {
+    color: white;
+
+    font-size: 52px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+}
+
+
+.hero p {
+    color: #dbeafe;
+
+    font-size: 19px;
+
+    margin-bottom: 35px;
+}
+
+
+/* Hero Button */
+
+.hero-button {
+    display: inline-block;
+
+    padding: 13px 28px;
+
+    background: white;
+
+    color: #1e3a8a;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.hero-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ========================================
+   Tools Section
+======================================== */
+
+.tools-section {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 80px 25px;
+}
+
+
+.tools-section h2 {
+    text-align: center;
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+
+.section-description {
+    text-align: center;
+
+    color: #64748b;
+
+    margin-bottom: 45px;
+}
+
+
+/* Tools Grid */
+
+.tools-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* ========================================
+   Tool Card
+======================================== */
+
+.tool-card {
+    background: white;
+
+    padding: 30px 25px;
+
+    border-radius: 16px;
+
+    text-align: center;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, 0.06);
+
+    transition: 0.3s;
+}
+
+
+.tool-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 15px 30px rgba(15, 23, 42, 0.12);
+}
+
+
+/* Icon */
+
+.tool-card .icon {
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+
+/* Title */
+
+.tool-card h3 {
+    font-size: 21px;
+
+    margin-bottom: 10px;
+}
+
+
+/* Description */
+
+.tool-card p {
+    color: #64748b;
+
+    font-size: 14px;
+
+    min-height: 48px;
+
+    margin-bottom: 15px;
+}
+
+
+/* Formula */
+
+.formula {
+    display: inline-block;
+
+    padding: 7px 14px;
+
+    margin-bottom: 20px;
+
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+
+/* Tool Button */
+
+.tool-card button {
+    display: block;
+
+    width: 100%;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.tool-card button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+}
+
+
+/* ========================================
+   Information Sections
+======================================== */
+
+.info-section {
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 70px 25px;
+
+    text-align: center;
+}
+
+
+.info-section h2 {
+    font-size: 30px;
+
+    margin-bottom: 15px;
+}
+
+
+.info-section p {
+    color: #64748b;
+}
+
+
+/* ========================================
+   Footer
+======================================== */
+
+footer {
+    background: #0f172a;
+
+    color: #94a3b8;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    margin-top: 30px;
+}
+
+
+footer p {
+    margin: 5px;
+}
+
+
+/* ========================================
+   Responsive
+======================================== */
+
+@media (max-width: 900px) {
+
+    .tools-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    nav {
+        height: auto;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    .menu {
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* ========================================
+   Calculator Pages
+======================================== */
+
+
+/* ---------- Calculator Page ---------- */
+
+.calculator-page {
+    min-height: calc(100vh - 70px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    padding: 60px 20px;
+
+    background: #f4f7fb;
+}
+
+
+/* ---------- Calculator Card ---------- */
+
+.calculator-card {
+    width: 100%;
+
+    max-width: 600px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 18px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* ---------- Calculator Title ---------- */
+
+.calculator-card h1 {
+    text-align: center;
+
+    font-size: 30px;
+
+    color: #0f172a;
+
+    margin-bottom: 8px;
+}
+
+
+/* ---------- Description ---------- */
+
+.calculator-description {
+    text-align: center;
+
+    color: #64748b;
+
+    margin-bottom: 30px;
+}
+
+
+/* ---------- Labels ---------- */
+
+.calculator-card label {
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+    color: #334155;
+}
+
+
+/* ---------- Input Group ---------- */
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+
+/* ---------- Input / Select ---------- */
+
+.calculator-card input,
+.calculator-card select {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #1e293b;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+/* ---------- Focus ---------- */
+
+.calculator-card input:focus,
+.calculator-card select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* ---------- Calculate Button ---------- */
+
+.calculate-button {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.calculate-button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+}
+
+
+/* ---------- Result Box ---------- */
+
+.result-box {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    background: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+
+.result-box h2 {
+    color: #1e3a8a;
+
+    margin-bottom: 10px;
+}
+
+
+.result-box p {
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: #1d4ed8;
+
+    word-break: break-word;
+}
+
+
+/* ---------- Calculation Steps ---------- */
+
+.steps {
+    margin-top: 25px;
+
+    padding: 20px;
+
+    background: #f8fafc;
+
+    border-left: 4px solid #2563eb;
+
+    border-radius: 8px;
+}
+
+
+.steps h3 {
+    margin-bottom: 10px;
+
+    color: #334155;
+}
+
+
+.steps p {
+    color: #475569;
+
+    margin: 5px 0;
+}
+
+
+/* ---------- Back Button ---------- */
+
+.back-button {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    background: #e2e8f0;
+
+    color: #334155;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.back-button:hover {
+    background: #cbd5e1;
+}
+
+
+/* ========================================
+   Calculator Responsive
+======================================== */
+
+@media (max-width: 650px) {
+
+    .calculator-page {
+        padding: 30px 15px;
+    }
+
+
+    .calculator-card {
+        padding: 25px 20px;
+    }
+
+
+    .calculator-card h1 {
+        font-size: 25px;
+    }
+
+
+    .result-box p {
+        font-size: 19px;
+    }
+
+}
+/* ========================================
+   Formula Library
+======================================== */
+
+
+/* ---------- Formula Header ---------- */
+
+.formula-header {
+    padding: 70px 20px 50px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a
+        );
+
+    color: white;
+}
+
+
+.formula-header h1 {
+    font-size: 42px;
+
+    margin-bottom: 12px;
+}
+
+
+.formula-header p {
+    color: #dbeafe;
+
+    font-size: 17px;
+}
+
+
+/* ---------- Formula Library ---------- */
+
+.formula-library {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 60px 25px;
+}
+
+
+/* ---------- Category ---------- */
+
+.formula-category {
+    margin-bottom: 60px;
+}
+
+
+.formula-category h2 {
+    font-size: 26px;
+
+    margin-bottom: 25px;
+
+    color: #0f172a;
+
+    border-left: 5px solid #2563eb;
+
+    padding-left: 14px;
+}
+
+
+/* ---------- Formula Grid ---------- */
+
+.formula-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+
+/* ---------- Formula Card ---------- */
+
+.formula-card {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 16px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, 0.06);
+
+    transition: 0.3s;
+}
+
+
+.formula-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 15px 30px rgba(15, 23, 42, 0.12);
+}
+
+
+/* ---------- Formula Icon ---------- */
+
+.formula-icon {
+    font-size: 38px;
+
+    margin-bottom: 10px;
+}
+
+
+/* ---------- Formula Title ---------- */
+
+.formula-card h3 {
+    font-size: 21px;
+
+    margin-bottom: 15px;
+}
+
+
+/* ---------- Big Formula ---------- */
+
+.big-formula {
+    display: block;
+
+    padding: 18px;
+
+    margin-bottom: 20px;
+
+    background: #eff6ff;
+
+    color: #1d4ed8;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    font-size: 28px;
+
+    font-weight: bold;
+}
+
+
+/* ---------- Formula Information ---------- */
+
+.formula-info {
+    margin-bottom: 20px;
+}
+
+
+.formula-info p {
+    color: #64748b;
+
+    font-size: 14px;
+
+    margin: 7px 0;
+}
+
+
+.formula-info strong {
+    color: #1e293b;
+}
+
+
+/* ---------- Formula Button ---------- */
+
+.formula-button {
+    display: block;
+
+    width: 100%;
+
+    padding: 11px;
+
+    text-align: center;
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.formula-button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+}
+
+
+/* ========================================
+   Formula Responsive
+======================================== */
+
+@media (max-width: 700px) {
+
+    .formula-header h1 {
+        font-size: 32px;
+    }
+
+
+    .formula-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .formula-library {
+        padding: 40px 15px;
+    }
+
+}
+/* ========================================
+   Calculation History
+======================================== */
+
+
+/* ---------- History Header ---------- */
+
+.history-header {
+    padding: 70px 20px 50px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a
+        );
+
+    color: white;
+}
+
+
+.history-header h1 {
+    font-size: 42px;
+
+    margin-bottom: 12px;
+}
+
+
+.history-header p {
+    color: #dbeafe;
+
+    font-size: 17px;
+}
+
+
+/* ---------- History Container ---------- */
+
+.history-container {
+    max-width: 1000px;
+
+    margin: auto;
+
+    padding: 60px 25px;
+
+    min-height: 500px;
+}
+
+
+/* ---------- History Card ---------- */
+
+.history-card {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 16px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 5px 20px rgba(15, 23, 42, 0.06);
+}
+
+
+/* ---------- History Top ---------- */
+
+.history-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+
+.history-top h2 {
+    font-size: 24px;
+
+    color: #0f172a;
+}
+
+
+/* ---------- Clear Button ---------- */
+
+.clear-history-button {
+    padding: 10px 16px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.clear-history-button:hover {
+    background: #fecaca;
+
+    transform: translateY(-2px);
+}
+
+
+/* ---------- Empty History ---------- */
+
+.empty-history {
+    padding: 60px 20px;
+
+    text-align: center;
+
+    border: 2px dashed #cbd5e1;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+}
+
+
+.empty-icon {
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+
+.empty-history h3 {
+    font-size: 21px;
+
+    color: #334155;
+
+    margin-bottom: 10px;
+}
+
+
+.empty-history p {
+    color: #64748b;
+
+    margin-bottom: 25px;
+}
+
+
+/* ---------- History Button ---------- */
+
+.history-button {
+    display: inline-block;
+
+    padding: 11px 20px;
+
+    background: #2563eb;
+
+    color: white;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.history-button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-2px);
+}
+
+
+/* ========================================
+   History Responsive
+======================================== */
+
+@media (max-width: 650px) {
+
+    .history-header h1 {
+        font-size: 32px;
+    }
+
+
+    .history-container {
+        padding: 40px 15px;
+    }
+
+
+    .history-card {
+        padding: 20px;
+    }
+
+
+    .history-top {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .clear-history-button {
+        width: 100%;
+    }
+
+}
+/* ========================================
+   Tool Search
+======================================== */
+
+.tool-search {
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+.tool-search input {
+    width: 100%;
+    padding: 15px 20px;
+
+    font-size: 16px;
+
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    background: white;
+
+    transition: 0.3s;
+}
+
+.tool-search input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.tool-search input::placeholder {
+    color: #94a3b8;
+}
+/* ========================================
+   Dark Mode Button
+======================================== */
+
+.dark-mode-btn {
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.dark-mode-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+
+/* ========================================
+   Dark Mode
+======================================== */
+
+body.dark-mode {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+body.dark-mode nav {
+    background: #111827;
+}
+
+body.dark-mode .hero {
+    background: #0f172a;
+}
+
+body.dark-mode .tool-card,
+body.dark-mode .dashboard-card {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+
+body.dark-mode .tool-card h3,
+body.dark-mode .dashboard-info strong {
+    color: #f8fafc;
+}
+
+body.dark-mode .tool-card p,
+body.dark-mode .dashboard-info span {
+    color: #cbd5e1;
+}
+
+body.dark-mode .dashboard-section {
+    background: #0f172a;
+}
+
+body.dark-mode .section-description {
+    color: #cbd5e1;
+}
+
+body.dark-mode footer {
+    background: #020617;
+}
+
+body.dark-mode .dark-mode-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+/* ========================================
+   Dark Mode - Calculator Pages
+======================================== */
+
+body.dark-mode .calculator-page {
+    background: #0f172a;
+}
+
+body.dark-mode .calculator-card {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+
+body.dark-mode .calculator-card h1 {
+    color: #f8fafc;
+}
+
+body.dark-mode .calculator-description {
+    color: #cbd5e1;
+}
+
+body.dark-mode .calculator-card label {
+    color: #e2e8f0;
+}
+
+body.dark-mode .calculator-card select,
+body.dark-mode .calculator-card input,
+body.dark-mode .calculator-card textarea {
+    background: #0f172a;
+    color: #f8fafc;
+    border-color: #475569;
+}
+
+body.dark-mode .formula-box {
+    background: #0f172a;
+    color: #f8fafc;
+}
+
+body.dark-mode .result-box {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+body.dark-mode .result-box h2 {
+    color: #f8fafc;
+}
+
+body.dark-mode .explanation-box {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+body.dark-mode .explanation-box h2 {
+    color: #f8fafc;
+}
+/* ========================================
+   Dark Mode - Formula Page
+======================================== */
+
+body.dark-mode .formula-page {
+    background: #0f172a;
+}
+
+body.dark-mode .formula-card {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+
+body.dark-mode .formula-card h2,
+body.dark-mode .formula-card h3 {
+    color: #f8fafc;
+}
+
+body.dark-mode .formula-card p {
+    color: #cbd5e1;
+}
+/* ========================================
+   Dark Mode - History Page
+======================================== */
+
+body.dark-mode .history-page {
+    background: #0f172a;
+}
+
+body.dark-mode .history-card {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+
+body.dark-mode .history-card h2,
+body.dark-mode .history-card h3 {
+    color: #f8fafc;
+}
+
+body.dark-mode .history-card p {
+    color: #cbd5e1;
+}
+/* ========================================
+   Formula Information
+======================================== */
+
+.formula-info {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.formula-info h2 {
+    margin-bottom: 18px;
+}
+
+.formula-item {
+    padding: 15px;
+    margin-bottom: 12px;
+    background: white;
+    border-radius: 10px;
+    border-left: 4px solid #2563eb;
+}
+
+.formula-item:last-child {
+    margin-bottom: 0;
+}
+
+.formula-item strong {
+    display: block;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.formula-item p {
+    margin: 4px 0;
+}
+
+.formula-item span {
+    font-size: 14px;
+    color: #64748b;
+}
+
+
+/* ========================================
+   Dark Mode
+======================================== */
+
+body.dark-mode .formula-info {
+    background: #0f172a;
+}
+
+body.dark-mode .formula-item {
+    background: #1e293b;
+}
+
+body.dark-mode .formula-item strong {
+    color: #f8fafc;
+}
+
+body.dark-mode .formula-item p {
+    color: #cbd5e1;
+}
+
+body.dark-mode .formula-item span {
+    color: #94a3b8;
+}
+/* ========================================
+   Example Box
+======================================== */
+
+.example-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: #eff6ff;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.example-box h2 {
+    margin-bottom: 15px;
+}
+
+.example-box p {
+    line-height: 1.7;
+}
+
+.example-formula {
+    margin: 15px 0;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.example-result {
+    margin-top: 15px;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+}
+
+
+/* ========================================
+   Dark Mode - Example
+======================================== */
+
+body.dark-mode .example-box {
+    background: #172554;
+}
+
+body.dark-mode .example-box h2 {
+    color: #f8fafc;
+}
+
+body.dark-mode .example-box p {
+    color: #cbd5e1;
+}
+
+body.dark-mode .example-formula,
+body.dark-mode .example-result {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+/* ========================================
+   Responsive Design
+   สำหรับมือถือและแท็บเล็ต
+======================================== */
+
+@media (max-width: 768px) {
+
+    /* Navigation */
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+
+    /* Hero */
+
+    .hero {
+        padding: 50px 20px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    /* Tools */
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Dashboard */
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Calculator */
+
+    .calculator-page {
+        padding: 30px 15px;
+    }
+
+    .calculator-card {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+
+    /* Formula */
+
+    .formula-info {
+        padding: 15px;
+    }
+
+    .formula-item {
+        padding: 12px;
+    }
+
+
+    /* Example */
+
+    .example-box {
+        padding: 15px;
+    }
+
+    .example-formula {
+        font-size: 18px;
+        overflow-x: auto;
+    }
+
+}
+
+
+/* ========================================
+   Small Mobile
+======================================== */
+
+@media (max-width: 480px) {
+
+    nav .logo {
+        font-size: 20px;
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+
+    .dark-mode-btn {
+        font-size: 16px;
+    }
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    .calculator-card h1 {
+        font-size: 26px;
+    }
+
+    .calculate-button {
+        width: 100%;
+    }
+
+}
+/* ========================================
+   Equipment Details
+======================================== */
+
+.equipment-thai-name {
+    margin: 0 0 10px;
+    color: #64748b;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+.equipment-description {
+    margin: 10px 0;
+    color: #475569;
+    line-height: 1.7;
+}
+
+
+.equipment-details {
+    margin-top: 15px;
+    padding: 15px;
+
+    background: #f8fafc;
+
+    border-radius: 10px;
+}
+
+
+.equipment-details p {
+    margin: 8px 0;
+
+    color: #475569;
+
+    line-height: 1.6;
+}
+
+
+.equipment-details strong {
+    color: #1e293b;
+}
+
+
+.equipment-measurement {
+    margin-top: 15px;
+}
+
+
+.equipment-measurement strong {
+    color: #1e293b;
+}
+
+
+.equipment-measurement ul {
+    margin-top: 8px;
+    padding-left: 20px;
+}
+
+
+.equipment-measurement li {
+    margin-bottom: 5px;
+    color: #475569;
+}

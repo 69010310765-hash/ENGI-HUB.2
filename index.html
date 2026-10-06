@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ENGI HUB | Engineering Tools</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        /* ========================================
+           DASHBOARD
+        ======================================== */
+
+        .dashboard-section {
+            padding: 60px 20px;
+            background: #f8fafc;
+            text-align: center;
+        }
+
+        .dashboard-section h2 {
+            margin-bottom: 10px;
+        }
+
+        .dashboard-grid {
+            width: 90%;
+            max-width: 1000px;
+
+            margin: 30px auto 0;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+        .dashboard-card {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 16px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 20px;
+
+            text-align: left;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+        }
+
+        .dashboard-icon {
+            font-size: 38px;
+        }
+
+        .dashboard-info {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+        .dashboard-info span {
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+        .dashboard-info strong {
+            font-size: 26px;
+
+            color: #1e293b;
+        }
+
+
+        /* ========================================
+           ENGINEERING EQUIPMENT
+        ======================================== */
+
+        .equipment-section {
+            padding: 70px 20px;
+
+            background: #f1f5f9;
+
+            text-align: center;
+        }
+
+        .equipment-section h2 {
+            margin-bottom: 10px;
+
+            color: #1e293b;
+        }
+
+
+        /* Equipment Search */
+
+        .equipment-search {
+            width: 90%;
+
+            max-width: 700px;
+
+            margin: 30px auto 15px;
+        }
+
+        .equipment-search input {
+            width: 100%;
+
+            height: 55px;
+
+            padding: 15px 20px;
+
+            box-sizing: border-box;
+
+            border: 2px solid #2563eb;
+
+            border-radius: 12px;
+
+            background: white;
+
+            color: #1e293b;
+
+            font-size: 16px;
+
+            outline: none;
+        }
+
+        .equipment-search input:focus {
+            border-color: #1d4ed8;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(37, 99, 235, 0.15);
+        }
+
+
+        /* ========================================
+           EQUIPMENT CATEGORIES
+        ======================================== */
+
+        .equipment-categories {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin: 20px auto 35px;
+        }
+
+        .equipment-category {
+            padding: 9px 18px;
+
+            border: none;
+
+            border-radius: 20px;
+
+            background: #e2e8f0;
+
+            color: #334155;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        .equipment-category:hover {
+            background: #cbd5e1;
+        }
+
+        .equipment-category.active {
+            background: #2563eb;
+
+            color: white;
+        }
+
+
+        /* ========================================
+           EQUIPMENT RESULTS
+        ======================================== */
+
+        .equipment-results {
+            width: 90%;
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+
+            text-align: left;
+        }
+
+
+        /* ========================================
+           EQUIPMENT CARD
+        ======================================== */
+
+        .equipment-card {
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.08);
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .equipment-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        /* ========================================
+           EQUIPMENT IMAGE
+        ======================================== */
+
+        .equipment-image {
+            width: 100%;
+
+            height: 220px;
+
+            object-fit: cover;
+
+            display: block;
+
+            background: #e2e8f0;
+        }
+
+
+        /* ========================================
+           EQUIPMENT INFO
+        ======================================== */
+
+        .equipment-info {
+            padding: 20px;
+        }
+
+        .equipment-info h3 {
+            margin: 0 0 8px;
+
+            color: #1e293b;
+
+            font-size: 20px;
+        }
+
+        .equipment-category-label {
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            margin-bottom: 10px;
+
+            border-radius: 15px;
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+            font-size: 12px;
+        }
+
+        .equipment-source {
+            display: inline-block;
+
+            margin-top: 12px;
+
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+        .equipment-source:hover {
+            text-decoration: underline;
+        }
+/* ========================================
+   EQUIPMENT DETAIL BUTTON
+======================================== */
+
+.equipment-detail-button {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 10px 16px;
+
+    background: #2563eb;
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-align: center;
+
+    transition: 0.2s;
+}
+
+.equipment-detail-button:hover {
+    background: #1d4ed8;
+}
+
+body.dark-mode .equipment-detail-button {
+    color: white;
+}
+
+
+        /* ========================================
+           EQUIPMENT LOADING
+        ======================================== */
+
+        .equipment-loading {
+            grid-column: 1 / -1;
+
+            padding: 40px;
+
+            text-align: center;
+
+            color: #64748b;
+
+            font-size: 16px;
+        }
+
+
+        /* ========================================
+           EQUIPMENT EMPTY
+        ======================================== */
+
+        .equipment-empty {
+            grid-column: 1 / -1;
+
+            padding: 40px;
+
+            text-align: center;
+
+            color: #64748b;
+        }
+
+
+        /* ========================================
+           PHYSICS SIMULATION CARD
+        ======================================== */
+
+        .physics-card {
+            position: relative;
+        }
+
+        .physics-badge {
+            display: inline-block;
+
+            margin-bottom: 10px;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            background: #ede9fe;
+
+            color: #7c3aed;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* ========================================
+           INDEX RESPONSIVE
+        ======================================== */
+
+        @media (max-width: 1000px) {
+
+            .equipment-results {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .equipment-results {
+                grid-template-columns: 1fr;
+            }
+
+            .equipment-image {
+                height: 240px;
+            }
+
+        }
+
+    
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ========================================
+         NAVIGATION
+    ======================================== -->
+
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+
+        <div class="menu">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="#tools">
+                Tools
+            </a>
+
+            <a href="formulas.html">
+                Formulas
+            </a>
+
+            <a href="#equipment">
+                Equipment
+            </a>
+
+            <a href="physics.html">
+                ⚛ Physics Simulation
+            </a>
+
+            <a href="history.html">
+                History
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <button
+                id="darkModeBtn"
+                class="dark-mode-btn"
+                type="button"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ========================================
+         HERO
+    ======================================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                ENGINEERING TOOLBOX
+            </h1>
+
+            <p>
+                รวมเครื่องมือคำนวณทางวิศวกรรม
+                ที่ใช้งานง่ายและรวดเร็ว
+            </p>
+
+            <a
+                href="#tools"
+                class="hero-button"
+            >
+                Explore Tools →
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         DASHBOARD
+    ======================================== -->
+
+    <section
+        id="dashboard"
+        class="dashboard-section"
+    >
+
+        <h2>
+            📊 Dashboard
+        </h2>
+
+        <p class="section-description">
+            สถิติการใช้งาน ENGI HUB
+        </p>
+
+
+        <div class="dashboard-grid">
+
+
+            <!-- Total Tools -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🛠️
+                </div>
+
+                <div class="dashboard-info">
+
+                    <span>
+                        เครื่องมือทั้งหมด
+                    </span>
+
+                    <strong id="totalTools">
+                        7
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Total Calculations -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🧮
+                </div>
+
+                <div class="dashboard-info">
+
+                    <span>
+                        จำนวนครั้งที่คำนวณ
+                    </span>
+
+                    <strong id="totalCalculations">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Last Used -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-icon">
+                    🕘
+                </div>
+
+                <div class="dashboard-info">
+
+                    <span>
+                        เครื่องมือที่ใช้ล่าสุด
+                    </span>
+
+                    <strong id="lastUsedTool">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         ENGINEERING TOOLS
+    ======================================== -->
+
+    <section
+        id="tools"
+        class="tools-section"
+    >
+
+        <h2>
+            🛠 Engineering Tools
+        </h2>
+
+        <p class="section-description">
+            เลือกเครื่องมือที่ต้องการใช้งาน
+        </p>
+
+
+        <!-- Search -->
+
+        <div class="tool-search">
+
+            <input
+                type="text"
+                id="toolSearch"
+                placeholder="🔎 ค้นหาเครื่องมือ เช่น Force, Power, Torque..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="tools-grid">
+
+
+            <!-- Ohm's Law -->
+
+            <div
+                class="tool-card"
+                data-keywords="ohm โอห์ม กฎของโอห์ม voltage แรงดัน current กระแส resistance ความต้านทาน"
+            >
+
+                <div class="icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Ohm's Law
+                </h3>
+
+                <p>
+                    คำนวณแรงดันไฟฟ้า
+                    กระแสไฟฟ้า และความต้านทาน
+                </p>
+
+                <div class="formula">
+                    V = IR
+                </div>
+
+                <button
+                    type="button"
+                    onclick="location.href='ohm.html'"
+                >
+                    Open Tool →
+                </button>
+
+            </div>
+
+
+            <!-- Electrical Power -->
+
+            <div
+                class="tool-card"
+                data-keywords="power กำลังไฟฟ้า electrical power voltage แรงดัน current กระแส"
+            >
+
+                <div class="icon">
+                    🔌
+                </div>
+
+                <h3>
+                    Electrical Power
+                </h3>
+
+                <p>
+                    คำนวณกำลังไฟฟ้า
+                    แรงดัน และกระแส
+                </p>
+
+                <div class="formula">
+                    P = VI
+                </div>
+
+                <button
+                    type="button"
+                    onclick="location.href='power.html'"
+                >
+                    Open Tool →
+                </button>
+
+            </div>
+
+
+            <!-- Force -->
+
+            <div
+                class="tool-card"
+                data-keywords="force แรง mass มวล acceleration ความเร่ง"
+            >
+
+                <div class="icon">
+                    💪
+                </div>
+
+                <h3>
+                    Force Calculator
+                </h3>
+
+                <p>
+                    คำนวณแรง
+                    มวล และความเร่ง
+                </p>
+
+                <div class="formula">
+                    F = ma
+                </div>
+
+                <button
+                    type="button"
+                    onclick="location.href='force.html'"
+                >
+                    Open Tool →
+                </button>
+
+            </div>
+
+
+            <!-- Torque -->
+
+            <div
+                class="tool-card"
+                data-keywords="torque แรงบิด force แรง distance ระยะทาง"
+            >
+
+                <div class="icon">
+                    🔧
+                </div>
+
+                <h3>
+                    Torque Calculator
+                </h3>
+
+                <p>
+                    คำนวณแรงบิดจากแรง
+                    และระยะทาง
+                </p>
+
+                <div class="formula">
+                    T = Fr
+                </div>
+
+                <button
+                    type="button"
+                    onclick="location.href='torque.html'"
+                >
+                    Open Tool →
+                </button>
+
+            </div>
+
+
+            <!-- Pressure -->
+
+            <div
+                class="tool-card"
+                data-keywords="pressure ความดัน force แรง area พื้นที่"
+            >
+
+                <div class="icon">
+                    💨
+                </div>
+
+                <h3>
+                    Pressure Calculator
+                </h3>
+
+                <p>
+                    คำนวณความดัน
+                    แรง และพื้นที่
+                </p>
+
+                <div class="formula">
+                    P = F/A
+                </div>
+
+                <button
+                    type="button"
+                    onclick="location.href='pressure.html'"
+                >
+                    Open Tool →
+                </button>
+
+            </div>
+
+
+            <!-- Unit Converter -->
+
+            <div
+                class="tool-card"
+                data-keywords="unit converter แปลงหน่วย หน่วย length ความยาว mass มวล time เวลา temperature อุณหภูมิ pressure ความดัน"
+            >
+
+                <div class="icon">
+                    🔄
+                </div>
+
+                <h3>
+                    Unit Converter
+                </h3>
+
+                <p>
+                    แปลงหน่วยพื้นฐาน
+                    สำหรับงานวิศวกรรม
+                </p>
+
+                <div class="formula">
+                    Unit → Unit
+                </div>
+
+                <button
+                    type="button"
+                    onclick="location.href='unit.html'"
+                >
+                    Open Tool →
+                </button>
+
+            </div>
+
+
+            <!-- Physics Simulation -->
+
+            <div
+                class="tool-card physics-card"
+                data-keywords="physics physics simulation ฟิสิกส์ การจำลองฟิสิกส์ simulation projectile projectile motion โพรเจกไทล์ โปรเจกไทล์ pendulum simple pendulum ลูกตุ้ม ลูกตุ้มอย่างง่าย free fall freefall ตกอิสระ การตกอย่างอิสระ การเคลื่อนที่"
+            >
+
+                <div class="icon">
+                    ⚛
+                </div>
+
+                <div class="physics-badge">
+                    PHYSICS SIMULATION
+                </div>
+
+                <h3>
+                    Physics Simulation
+                </h3>
+
+                <p>
+                    ห้องทดลองฟิสิกส์เสมือนจริง
+                    รวมการจำลอง Projectile Motion,
+                    Simple Pendulum และ Free Fall
+                </p>
+
+                <div class="formula">
+                    Real-time Simulation
+                </div>
+
+                <button
+                    type="button"
+                    onclick="location.href='physics.html'"
+                >
+                    Open Simulation →
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         ENGINEERING EQUIPMENT
+    ======================================== -->
+
+    <section
+        id="equipment"
+        class="equipment-section"
+    >
+
+        <h2>
+            🛠 Engineering Equipment
+        </h2>
+
+        <p class="section-description">
+            ค้นหาอุปกรณ์และเครื่องมือทางวิศวกรรม
+            จากฐานข้อมูล ENGI HUB
+        </p>
+
+
+        <div class="equipment-search">
+
+            <input
+                type="text"
+                id="equipmentSearch"
+                placeholder="🔎 ค้นหา เช่น Multimeter, Oscilloscope, Caliper..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="equipment-categories">
+
+            <button
+                type="button"
+                class="equipment-category active"
+                data-category="all"
+            >
+                ทั้งหมด
+            </button>
+
+            <button
+                type="button"
+                class="equipment-category"
+                data-category="electrical"
+            >
+                ⚡ Electrical
+            </button>
+
+            <button
+                type="button"
+                class="equipment-category"
+                data-category="mechanical"
+            >
+                ⚙ Mechanical
+            </button>
+
+            <button
+                type="button"
+                class="equipment-category"
+                data-category="civil"
+            >
+                🏗 Civil
+            </button>
+
+            <button
+                type="button"
+                class="equipment-category"
+                data-category="electronics"
+            >
+                💻 Electronics
+            </button>
+
+            <button
+                type="button"
+                class="equipment-category"
+                data-category="instrumentation"
+            >
+                📐 Instrumentation
+            </button>
+
+        </div>
+
+
+        <div
+            id="equipmentResults"
+            class="equipment-results"
+        >
+
+            <div class="equipment-empty">
+                🔎 พิมพ์ชื่ออุปกรณ์เพื่อเริ่มค้นหา
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ========================================
+         FORMULA SECTION
+    ======================================== -->
+
+    <section
+        id="formulas"
+        class="info-section"
+    >
+
+        <h2>
+            📐 Engineering Formulas
+        </h2>
+
+        <p>
+            รวมสูตรพื้นฐานทางวิศวกรรม
+            เพื่อช่วยในการคำนวณและทบทวนความรู้
+        </p>
+
+        <a
+            href="formulas.html"
+            class="hero-button"
+        >
+            Open Formulas →
+        </a>
+
+    </section>
+
+
+
+    <!-- ========================================
+         PHYSICS SECTION
+    ======================================== -->
+
+    <section
+        id="physics"
+        class="info-section"
+    >
+
+        <h2>
+            ⚛ Physics Simulation
+        </h2>
+
+        <p>
+            ห้องทดลองฟิสิกส์เสมือนจริง
+            สำหรับศึกษาและทดลองการเคลื่อนที่
+            ผ่าน Simulation แบบ Interactive
+        </p>
+
+        <a
+            href="physics.html"
+            class="hero-button"
+        >
+            Open Physics Simulation →
+        </a>
+
+    </section>
+
+
+
+    <!-- ========================================
+         HISTORY SECTION
+    ======================================== -->
+
+    <section
+        id="history"
+        class="info-section"
+    >
+
+        <h2>
+            🕘 Calculation History
+        </h2>
+
+        <p>
+            ดูประวัติการคำนวณทั้งหมด
+        </p>
+
+        <a
+            href="history.html"
+            class="hero-button"
+        >
+            Open History →
+        </a>
+
+    </section>
+
+
+
+    <!-- ========================================
+         ABOUT
+    ======================================== -->
+
+    <section
+        id="about"
+        class="info-section"
+    >
+
+        <h2>
+            ℹ️ About ENGI HUB
+        </h2>
+
+        <p>
+            ENGI HUB คือเว็บไซต์รวมเครื่องมือ
+            สำหรับช่วยคำนวณค่าทางวิศวกรรม
+            และจำลองปรากฏการณ์ทางฟิสิกส์
+            ในรูปแบบที่ใช้งานง่ายและรวดเร็ว
+        </p>
+
+    </section>
+
+
+
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
+
+    <footer>
+
+        <p>
+            © 2026 ENGI HUB
+        </p>
+
+        <p>
+            Engineering Calculation & Simulation Tools
+        </p>
+
+    </footer>
+
+
+
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
+
+    <script src="js/search.js"></script>
+
+    <script src="js/equipment-search.js"></script>
+
+
+    <!-- Dashboard -->
+
+    <script>
+
+        window.addEventListener(
+            "load",
+            function () {
+
+                let history = [];
+
+
+                try {
+
+                    const savedHistory =
+                        localStorage.getItem(
+                            "engiHistory"
+                        );
+
+
+                    if (savedHistory) {
+
+                        const parsedHistory =
+                            JSON.parse(
+                                savedHistory
+                            );
+
+
+                        if (
+                            Array.isArray(
+                                parsedHistory
+                            )
+                        ) {
+
+                            history =
+                                parsedHistory;
+
+                        }
+
+                    }
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "History Error:",
+                        error
+                    );
+
+                    history = [];
+
+                }
+
+
+                /* จำนวนเครื่องมือ */
+
+                const totalTools =
+                    document.getElementById(
+                        "totalTools"
+                    );
+
+
+                if (totalTools) {
+
+                    totalTools.textContent =
+                        "7";
+
+                }
+
+
+                /* จำนวนครั้งที่คำนวณ */
+
+                const totalCalculations =
+                    document.getElementById(
+                        "totalCalculations"
+                    );
+
+
+                if (totalCalculations) {
+
+                    totalCalculations.textContent =
+                        history.length;
+
+                }
+
+
+                /* เครื่องมือที่ใช้ล่าสุด */
+
+                const lastUsedTool =
+                    document.getElementById(
+                        "lastUsedTool"
+                    );
+
+
+                if (lastUsedTool) {
+
+                    if (
+                        history.length > 0 &&
+                        history[0].title
+                    ) {
+
+                        lastUsedTool.textContent =
+                            history[0].title;
+
+                    }
+
+                    else {
+
+                        lastUsedTool.textContent =
+                            "-";
+
+                    }
+
+                }
+
+            }
+
+        );
+
+    </script>
+
+
+
+    <!-- Dark Mode -->
+
+    <script>
+
+        const darkModeBtn =
+            document.getElementById(
+                "darkModeBtn"
+            );
+
+
+        if (darkModeBtn) {
+
+            /* Load Dark Mode */
+
+            if (
+                localStorage.getItem(
+                    "darkMode"
+                ) === "enabled"
+            ) {
+
+                document.body.classList.add(
+                    "dark-mode"
+                );
+
+                darkModeBtn.textContent =
+                    "☀️";
+
+            }
+
+
+            /* Toggle Dark Mode */
+
+            darkModeBtn.addEventListener(
+                "click",
+                function () {
+
+                    document.body.classList.toggle(
+                        "dark-mode"
+                    );
+
+
+                    const isDarkMode =
+                        document.body.classList.contains(
+                            "dark-mode"
+                        );
+
+
+                    if (isDarkMode) {
+
+                        localStorage.setItem(
+                            "darkMode",
+                            "enabled"
+                        );
+
+                        darkModeBtn.textContent =
+                            "☀️";
+
+                    }
+
+                    else {
+
+                        localStorage.setItem(
+                            "darkMode",
+                            "disabled"
+                        );
+
+                        darkModeBtn.textContent =
+                            "🌙";
+
+                    }
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

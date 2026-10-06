@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Force Vector Laboratory | ENGI HUB
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #f4f7fb;
+
+            color: #0f172a;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        nav {
+            height: 70px;
+
+            background: #0f172a;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .logo {
+            color: white;
+
+            font-size: 21px;
+
+            font-weight: bold;
+        }
+
+
+        .menu {
+            display: flex;
+
+            align-items: center;
+
+            gap: 22px;
+        }
+
+
+        nav .menu a {
+            color: white !important;
+
+            text-decoration: none;
+        }
+
+
+        nav .menu a:visited {
+            color: white !important;
+        }
+
+
+        nav .menu a:hover {
+            color: #60a5fa !important;
+        }
+
+
+        .dark-mode-btn {
+            border: none;
+
+            background: transparent;
+
+            color: white;
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================== */
+
+        .force-header {
+            text-align: center;
+
+            padding: 55px 20px 35px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #7f1d1d
+                );
+
+            color: white;
+        }
+
+
+        .force-badge {
+            display: inline-block;
+
+            padding: 8px 15px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(255,255,255,0.12);
+
+            font-size: 13px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .force-header h1 {
+            margin: 0;
+
+            font-size: 42px;
+        }
+
+
+        .force-header p {
+            max-width: 800px;
+
+            margin: 14px auto 0;
+
+            line-height: 1.7;
+
+            color: #fee2e2;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================== */
+
+        .force-container {
+            width: min(1400px, 94%);
+
+            margin: 35px auto 60px;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.45fr)
+                minmax(330px, 0.75fr);
+
+            gap: 25px;
+
+            align-items: start;
+        }
+
+
+        .force-card {
+            background: white;
+
+            border-radius: 20px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 10px 30px
+                rgba(15,23,42,0.08);
+
+            overflow: hidden;
+        }
+
+
+        /* =========================
+           CANVAS
+        ========================== */
+
+        .canvas-header {
+            padding: 18px 22px;
+
+            border-bottom:
+                1px solid #e2e8f0;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .canvas-header h2 {
+            margin: 0;
+
+            font-size: 19px;
+        }
+
+
+        .canvas-help {
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            color: #64748b;
+
+            text-align: right;
+        }
+
+
+        #forceCanvas {
+            display: block;
+
+            width: 100%;
+
+            height: 600px;
+
+            background: #0b1120;
+        }
+
+
+        /* =========================
+           CONTROLS
+        ========================== */
+
+        .controls {
+            padding: 22px;
+        }
+
+
+        .control-section {
+            margin-bottom: 25px;
+        }
+
+
+        .control-section h3 {
+            margin: 0 0 14px;
+
+            font-size: 17px;
+        }
+
+
+        .force-block {
+            padding: 15px;
+
+            margin-bottom: 14px;
+
+            border-radius: 13px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .force-block-title {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+        }
+
+
+        .force-name {
+            font-weight: bold;
+
+            font-size: 16px;
+        }
+
+
+        .force-color {
+            width: 11px;
+
+            height: 11px;
+
+            border-radius: 50%;
+        }
+
+
+        .force-slider {
+            margin-bottom: 12px;
+        }
+
+
+        .force-slider-label {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 6px;
+
+            font-size: 13px;
+        }
+
+
+        .force-slider-value {
+            font-weight: bold;
+
+            color: #dc2626;
+        }
+
+
+        .force-slider input {
+            width: 100%;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================== */
+
+        .button-row {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+
+        .force-button {
+            border: none;
+
+            border-radius: 10px;
+
+            padding: 12px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        #resetButton {
+            background: #e2e8f0;
+
+            color: #0f172a;
+        }
+
+
+        #saveButton {
+            background: #dc2626;
+
+            color: white;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================== */
+
+        .status-box {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 20px;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            background: #f8fafc;
+
+            font-size: 13px;
+        }
+
+
+        #statusDot {
+            width: 10px;
+
+            height: 10px;
+
+            flex: 0 0 10px;
+
+            border-radius: 50%;
+
+            background: #22c55e;
+        }
+
+
+        /* =========================
+           RESULT
+        ========================== */
+
+        .results {
+            margin-top: 25px;
+        }
+
+
+        .result-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+        }
+
+
+        .result-item {
+            padding: 14px;
+
+            background: #f8fafc;
+
+            border-radius: 12px;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .result-item.full {
+            grid-column: 1 / -1;
+        }
+
+
+        .result-title {
+            font-size: 12px;
+
+            color: #64748b;
+
+            margin-bottom: 6px;
+        }
+
+
+        .result-value {
+            font-weight: bold;
+
+            word-break: break-word;
+
+            line-height: 1.5;
+        }
+
+
+        .result-highlight {
+            margin-top: 15px;
+
+            padding: 18px;
+
+            border-radius: 14px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fff1f2,
+                    #eff6ff
+                );
+
+            border: 1px solid #fecaca;
+        }
+
+
+        .result-highlight-title {
+            font-size: 13px;
+
+            color: #64748b;
+
+            margin-bottom: 8px;
+        }
+
+
+        #resultVector {
+            font-size: 23px;
+
+            font-weight: bold;
+
+            color: #b91c1c;
+
+            word-break: break-word;
+        }
+
+
+        /* =========================
+           EQUILIBRIUM
+        ========================== */
+
+        .equilibrium-box {
+            margin-top: 15px;
+
+            padding: 15px;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        #equilibriumText {
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           FORMULA
+        ========================== */
+
+        .formula-card {
+            margin-top: 25px;
+
+            padding: 18px;
+
+            border-radius: 14px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .formula-card h3 {
+            margin-top: 0;
+        }
+
+
+        .formula {
+            font-family:
+                "Times New Roman",
+                serif;
+
+            font-size: 18px;
+
+            margin: 11px 0;
+
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           EDUCATION
+        ========================== */
+
+        .education-card {
+            width: min(1400px, 94%);
+
+            margin:
+                -30px auto 30px;
+
+            padding: 22px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 10px 30px
+                rgba(15,23,42,0.06);
+        }
+
+
+        .education-card h2 {
+            margin-top: 0;
+        }
+
+
+        .education-text {
+            color: #64748b;
+
+            line-height: 1.8;
+
+            font-size: 14px;
+        }
+
+
+        .education-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-top: 18px;
+        }
+
+
+        .education-item {
+            padding: 17px;
+
+            border-radius: 13px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        .education-item strong {
+            display: block;
+
+            margin-bottom: 8px;
+        }
+
+
+        .education-item span {
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            text-align: center;
+
+            padding: 30px;
+
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           DARK MODE
+        ========================== */
+
+        body.dark-mode {
+            background: #020617;
+
+            color: #e2e8f0;
+        }
+
+
+        body.dark-mode .force-card,
+        body.dark-mode .education-card {
+            background: #0f172a;
+
+            border-color: #1e293b;
+        }
+
+
+        body.dark-mode .canvas-header {
+            border-color: #1e293b;
+        }
+
+
+        body.dark-mode .canvas-help {
+            color: #94a3b8;
+        }
+
+
+        body.dark-mode .force-block,
+        body.dark-mode .result-item,
+        body.dark-mode .formula-card,
+        body.dark-mode .equilibrium-box,
+        body.dark-mode .status-box,
+        body.dark-mode .education-item {
+            background: #020617;
+
+            border-color: #1e293b;
+        }
+
+
+        body.dark-mode .result-highlight {
+            background:
+                linear-gradient(
+                    135deg,
+                    #450a0a,
+                    #172554
+                );
+
+            border-color: #7f1d1d;
+        }
+
+
+        body.dark-mode #resultVector {
+            color: #fca5a5;
+        }
+
+
+        body.dark-mode #resetButton {
+            background: #334155;
+
+            color: #e2e8f0;
+        }
+
+
+        body.dark-mode .education-text,
+        body.dark-mode .education-item span {
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 1050px) {
+
+            .force-container {
+                grid-template-columns: 1fr;
+            }
+
+
+            #forceCanvas {
+                height: 520px;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 0 15px;
+            }
+
+
+            .menu {
+                gap: 10px;
+            }
+
+
+            .menu a {
+                font-size: 12px;
+            }
+
+
+            .force-header h1 {
+                font-size: 30px;
+            }
+
+
+            #forceCanvas {
+                height: 420px;
+            }
+
+
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .result-item.full {
+                grid-column: auto;
+            }
+
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .canvas-header {
+                align-items: flex-start;
+
+                flex-direction: column;
+            }
+
+
+            .canvas-help {
+                text-align: left;
+            }
+
+        }
+
+    </style>
+
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three":
+                "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+
+            "three/addons/":
+                "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+        }
+    }
+    </script>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<nav>
+
+    <div class="logo">
+        ⚙ ENGI HUB
+    </div>
+
+
+    <div class="menu">
+
+        <a href="index.html">
+            Home
+        </a>
+
+
+        <a href="index.html#tools">
+            Tools
+        </a>
+
+
+        <a href="formulas.html">
+            Formulas
+        </a>
+
+
+        <a href="history.html">
+            History
+        </a>
+
+
+        <a href="index.html#about">
+            About
+        </a>
+
+
+        <button
+            id="darkModeBtn"
+            class="dark-mode-btn"
+            type="button"
+        >
+            🌙
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HEADER
+========================== -->
+
+<header class="force-header">
+
+    <div class="force-badge">
+        🧲 ENGINEERING PHYSICS
+    </div>
+
+
+    <h1>
+        Force Vector Laboratory
+    </h1>
+
+
+    <p>
+        ทดลองแรงหลายแรงในระบบ 3 มิติ
+        ดูแรงลัพธ์ ΣF และองค์ประกอบ
+        Fx, Fy, Fz แบบ Real-time
+    </p>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================== -->
+
+<main class="force-container">
+
+
+    <!-- =========================
+         3D VIEW
+    ========================== -->
+
+    <section class="force-card">
+
+        <div class="canvas-header">
+
+            <h2>
+                🌐 3D Force System
+            </h2>
+
+
+            <div class="canvas-help">
+                Drag = Rotate<br>
+                Scroll = Zoom<br>
+                🔴 F₁ &nbsp; 🟠 F₂ &nbsp; 🟣 F₃ &nbsp; 🟢 ΣF
+            </div>
+
+        </div>
+
+
+        <canvas id="forceCanvas"></canvas>
+
+    </section>
+
+
+    <!-- =========================
+         CONTROLS
+    ========================== -->
+
+    <section class="force-card">
+
+        <div class="controls">
+
+
+            <div class="control-section">
+
+                <h3>
+                    💪 Force Vectors
+                </h3>
+
+
+                <!-- F1 -->
+
+                <div class="force-block">
+
+                    <div class="force-block-title">
+
+                        <span class="force-name">
+                            🔴 Force F₁
+                        </span>
+
+                        <span
+                            class="force-color"
+                            style="background:#ef4444;"
+                        ></span>
+
+                    </div>
+
+
+                    <div class="force-slider">
+
+                        <div class="force-slider-label">
+
+                            <span>
+                                Fx
+                            </span>
+
+                            <span
+                                id="f1xValue"
+                                class="force-slider-value"
+                            >
+                                4.0 N
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            id="f1x"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="4"
+                        >
+
+                    </div>
+
+
+                    <div class="force-slider">
+
+                        <div class="force-slider-label">
+
+                            <span>
+                                Fy
+                            </span>
+
+                            <span
+                                id="f1yValue"
+                                class="force-slider-value"
+                            >
+                                2.0 N
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            id="f1y"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="2"
+                        >
+
+                    </div>
+
+
+                    <div class="force-slider">
+
+                        <div class="force-slider-label">
+
+                            <span>
+                                Fz
+                            </span>
+
+                            <span
+                                id="f1zValue"
+                                class="force-slider-value"
+                            >
+                                1.0 N
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            id="f1z"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="1"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- F2 -->
+
+                <div class="force-block">
+
+                    <div class="force-block-title">
+
+                        <span class="force-name">
+                            🟠 Force F₂
+                        </span>
+
+                        <span
+                            class="force-color"
+                            style="background:#f97316;"
+                        ></span>
+
+                    </div>
+
+
+                    <div class="force-slider">
+
+                        <div class="force-slider-label">
+
+                            <span>
+                                Fx
+                            </span>
+
+                            <span
+                                id="f2xValue"
+                                class="force-slider-value"
+                            >
+                                -2.0 N
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            id="f2x"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="-2"
+                        >
+
+                    </div>
+
+
+                    <div class="force-slider">
+
+                        <div class="force-slider-label">
+
+                            <span>
+                                Fy
+                            </span>
+
+                            <span
+                                id="f2yValue"
+                                class="force-slider-value"
+                            >
+                                3.0 N
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            id="f2y"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="3"
+                        >
+
+                    </div>
+
+
+                    <div class="force-slider">
+
+                        <div class="force-slider-label">
+
+                            <span>
+                                Fz
+                            </span>
+
+                            <span
+                                id="f2zValue"
+                                class="force-slider-value"
+                            >
+                                2.0 N
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            id="f2z"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="2"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- F3 -->
+
+                <div class="force-block">
+
+                    <div class="force-block-title">
+
+                        <span class="force-name">
+                            🟣 Force F₃
+                        </span>
+
+                        <span
+                            class="force-color"
+                            style="background:#a855f7;"
+                        ></span>
+
+                    </div>
+
+
+                    <div class="force-slider">
+
+                        <div class="force-slider-label">
+
+                            <span>
+                                Fx
+                            </span>
+
+                            <span
+                                id="f3xValue"
+                                class="force-slider-value"
+                            >
+                                1.0 N
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            id="f3x"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="1"
+                        >
+
+                    </div>
+
+
+                    <div class="force-slider">
+
+                        <div class="force-slider-label">
+
+                            <span>
+                                Fy
+                            </span>
+
+                            <span
+                                id="f3yValue"
+                                class="force-slider-value"
+                            >
+                                -1.0 N
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            id="f3y"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="-1"
+                        >
+
+                    </div>
+
+
+                    <div class="force-slider">
+
+                        <div class="force-slider-label">
+
+                            <span>
+                                Fz
+                            </span>
+
+                            <span
+                                id="f3zValue"
+                                class="force-slider-value"
+                            >
+                                3.0 N
+                            </span>
+
+                        </div>
+
+
+                        <input
+                            id="f3z"
+                            type="range"
+                            min="-10"
+                            max="10"
+                            step="0.1"
+                            value="3"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="button-row">
+
+                    <button
+                        id="resetButton"
+                        class="force-button"
+                        type="button"
+                    >
+                        ↻ Reset
+                    </button>
+
+
+                    <button
+                        id="saveButton"
+                        class="force-button"
+                        type="button"
+                    >
+                        💾 Save
+                    </button>
+
+                </div>
+
+
+                <div class="status-box">
+
+                    <span id="statusDot"></span>
+
+                    <span id="statusText">
+                        Ready
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 RESULTS
+            ========================== -->
+
+            <div class="results">
+
+                <h3>
+                    📐 Resultant Force
+                </h3>
+
+
+                <div class="result-grid">
+
+
+                    <div class="result-item">
+
+                        <div class="result-title">
+                            Resultant Fx
+                        </div>
+
+
+                        <div
+                            id="resultFx"
+                            class="result-value"
+                        >
+                            3.00 N
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-item">
+
+                        <div class="result-title">
+                            Resultant Fy
+                        </div>
+
+
+                        <div
+                            id="resultFy"
+                            class="result-value"
+                        >
+                            4.00 N
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-item">
+
+                        <div class="result-title">
+                            Resultant Fz
+                        </div>
+
+
+                        <div
+                            id="resultFz"
+                            class="result-value"
+                        >
+                            6.00 N
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-item">
+
+                        <div class="result-title">
+                            |ΣF|
+                        </div>
+
+
+                        <div
+                            id="resultMagnitude"
+                            class="result-value"
+                        >
+                            7.81 N
+                        </div>
+
+                    </div>
+
+
+                    <div class="result-item full">
+
+                        <div class="result-title">
+                            Direction Unit Vector
+                        </div>
+
+
+                        <div
+                            id="resultUnit"
+                            class="result-value"
+                        >
+                            (0.384, 0.512, 0.768)
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-highlight">
+
+                    <div class="result-highlight-title">
+                        แรงลัพธ์ทั้งหมด
+                    </div>
+
+
+                    <div id="resultVector">
+                        ΣF = (3, 4, 6) N
+                    </div>
+
+                </div>
+
+
+                <div class="equilibrium-box">
+
+                    <div class="result-title">
+                        Equilibrium Status
+                    </div>
+
+
+                    <div id="equilibriumText">
+                        ⚠️ ระบบยังไม่สมดุล
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 FORMULAS
+            ========================== -->
+
+            <div class="formula-card">
+
+                <h3>
+                    📚 Force Formulas
+                </h3>
+
+
+                <div class="formula">
+                    ΣF = F₁ + F₂ + F₃
+                </div>
+
+
+                <div class="formula">
+                    ΣFx = F₁x + F₂x + F₃x
+                </div>
+
+
+                <div class="formula">
+                    ΣFy = F₁y + F₂y + F₃y
+                </div>
+
+
+                <div class="formula">
+                    ΣFz = F₁z + F₂z + F₃z
+                </div>
+
+
+                <div class="formula">
+                    |ΣF| =
+                    √(ΣFx² + ΣFy² + ΣFz²)
+                </div>
+
+
+                <div class="formula">
+                    Equilibrium:
+                    ΣF = 0
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     EDUCATION
+========================== -->
+
+<section class="education-card">
+
+    <h2>
+        🧠 เรียนรู้อะไรจาก Simulation นี้?
+    </h2>
+
+
+    <p class="education-text">
+
+        ในทางวิศวกรรม แรงหลายแรงที่กระทำต่อวัตถุ
+        สามารถนำมารวมกันเป็นแรงลัพธ์เพียงแรงเดียวได้
+        โดยต้องรวมองค์ประกอบของแรงตามแกน X, Y และ Z
+        ก่อน แล้วจึงคำนวณขนาดของแรงลัพธ์
+
+    </p>
+
+
+    <div class="education-grid">
+
+
+        <div class="education-item">
+
+            <strong>
+                ① แตกแรง
+            </strong>
+
+            <span>
+                แรงหนึ่งแรงใน 3D สามารถเขียนเป็น
+                Fx, Fy และ Fz
+            </span>
+
+        </div>
+
+
+        <div class="education-item">
+
+            <strong>
+                ② รวมแรง
+            </strong>
+
+            <span>
+                นำองค์ประกอบของแรงทุกแรงมาบวกกัน
+                เพื่อหา ΣFx, ΣFy และ ΣFz
+            </span>
+
+        </div>
+
+
+        <div class="education-item">
+
+            <strong>
+                ③ สมดุลแรง
+            </strong>
+
+            <span>
+                ถ้า ΣF = 0 แสดงว่าวัตถุอยู่ในสภาวะสมดุล
+                ในโมเดลนี้
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <p>
+        © 2026 ENGI HUB
+    </p>
+
+
+    <p>
+        Engineering Calculation Tools
+    </p>
+
+</footer>
+
+
+<script
+    type="module"
+    src="js/physics/force-vector.js"
+></script>
+
+
+<script src="js/darkmode.js"></script>
+
+
+</body>
+
+</html>

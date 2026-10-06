@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Torque Calculator | ENGI HUB</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+
+        <div class="logo">
+            ⚙ ENGI HUB
+        </div>
+
+        <div class="menu">
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="index.html#tools">
+        Tools
+    </a>
+
+    <a href="formulas.html">
+        Formulas
+    </a>
+
+    <a href="history.html">
+        History
+    </a>
+
+    <a href="index.html#about">
+        About
+    </a>
+
+    <button id="darkModeBtn" class="dark-mode-btn">
+        🌙
+    </button>
+
+</div>
+    </nav>
+
+
+    <!-- Calculator -->
+    <main class="calculator-page">
+
+        <div class="calculator-card">
+
+            <h1>
+                🔧 Torque Calculator
+            </h1>
+
+            <p class="calculator-description">
+                คำนวณแรงบิด แรง
+                และระยะจากจุดหมุน
+            </p>
+
+
+            <!-- Formula -->
+            <div class="formula-box">
+
+                <span>
+                    τ = rF
+                </span>
+
+            </div>
+            <!-- Formula Explanation -->
+
+<div class="formula-info">
+
+    <h2>📚 สูตรและความหมาย</h2>
+
+    <div class="formula-item">
+        <strong>τ — Torque</strong>
+        <p>แรงบิด</p>
+        <span>หน่วย: Newton-meter (N·m)</span>
+    </div>
+
+    <div class="formula-item">
+        <strong>r — Radius / Lever Arm</strong>
+        <p>ระยะจากจุดหมุนถึงจุดที่ออกแรง</p>
+        <span>หน่วย: Meter (m)</span>
+    </div>
+
+    <div class="formula-item">
+        <strong>F — Force</strong>
+        <p>แรงที่กระทำ</p>
+        <span>หน่วย: Newton (N)</span>
+    </div>
+
+</div>
+<!-- Example -->
+
+<div class="example-box">
+
+    <h2>💡 ตัวอย่างการคำนวณ</h2>
+
+    <p>
+        กำหนดให้มีระยะจากจุดหมุน
+        <strong>0.5 m</strong>
+        และออกแรง
+        <strong>20 N</strong>
+    </p>
+
+    <div class="example-formula">
+        τ = r × F
+    </div>
+
+    <p>
+        τ = 0.5 × 20
+    </p>
+
+    <p>
+        τ = <strong>10 N·m</strong>
+    </p>
+
+    <div class="example-result">
+        ✅ ดังนั้น แรงบิดมีค่า
+        <strong>10 Newton-meter</strong>
+    </div>
+
+</div>
+
+
+            <!-- Select -->
+            <label>
+                ต้องการคำนวณอะไร?
+            </label>
+
+            <select id="calculateType">
+
+                <option value="torque">
+                    Torque (τ)
+                </option>
+
+                <option value="distance">
+                    Distance (r)
+                </option>
+
+                <option value="force">
+                    Force (F)
+                </option>
+
+            </select>
+
+
+            <!-- Inputs -->
+            <div id="inputArea">
+
+
+                <!-- Torque -->
+                <div class="input-group"
+                     id="torqueGroup">
+
+                    <label>
+                        Torque (N·m)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="torque"
+                        placeholder="เช่น 20"
+                    >
+
+                </div>
+
+
+                <!-- Distance -->
+                <div class="input-group"
+                     id="distanceGroup">
+
+                    <label>
+                        Distance (m)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="distance"
+                        placeholder="เช่น 2"
+                    >
+
+                </div>
+
+
+                <!-- Force -->
+                <div class="input-group"
+                     id="forceGroup">
+
+                    <label>
+                        Force (N)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="force"
+                        placeholder="เช่น 10"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Calculate Button -->
+            <button
+                class="calculate-button"
+                onclick="calculateTorque()"
+            >
+
+                🧮 Calculate
+
+            </button>
+
+
+            <!-- Result -->
+            <div id="result"
+                 class="result-box">
+
+                <h2>
+                    Result
+                </h2>
+
+                <p id="answer">
+                    -
+                </p>
+
+            </div><a href="index.html"
+   class="back-button">
+
+    🏠 Back to Home
+
+</a>
+
+
+            <!-- Explanation -->
+            <div id="explanation"
+                 class="explanation-box">
+
+                <h2>
+                    📖 วิธีทำ
+                </h2>
+
+                <p id="steps">
+
+                    กรุณากรอกข้อมูล
+                    แล้วกด Calculate
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/torque.js"></script>
+    <script src="js/darkmode.js"></script>
+
+</body>
+
+</html>
